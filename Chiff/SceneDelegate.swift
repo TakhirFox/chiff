@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
+
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -14,11 +16,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
-        window?.rootViewController = MainTabBar()
-        window?.makeKeyAndVisible()
+        
+        
+        let accessToken: String? = KeychainWrapper.standard.string(forKey: "token")
+        // Чекаем, если токен сохранен, при входе запускаем майнтаббар, иначе на экран авторизации.
+        if accessToken != nil {
+            guard let windowScene = (scene as? UIWindowScene) else { return }
+            window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+            window?.windowScene = windowScene
+            window?.rootViewController = MainTabBar()
+            window?.makeKeyAndVisible()
+        } else {
+            guard let windowScene = (scene as? UIWindowScene) else { return }
+            window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+            window?.windowScene = windowScene
+            
+            let authViewController = UIStoryboard(name: "Main",
+                                                  bundle: nil)
+                .instantiateViewController(withIdentifier: "SignInController") as! SignInController
+            window?.rootViewController = authViewController
+            window?.makeKeyAndVisible()
+        }
         
     }
 

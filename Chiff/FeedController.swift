@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -21,17 +22,20 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
         
-        networkService.getAuth(login: "winzero", password: "zasazasa") { (auth) in
-            
-            
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                self.auth = auth
+ 
+        configureUI()
+        
+        
+        networkService.getProfileInfo { result in
+            switch result {
+            case .success(let user):
+                print("LOG: user information \(user)")
+            case .failure(let error):
+                print("LOG: Проблема с входом а именно \(error)")
             }
             
         }
-   
-        configureUI()
+        
         
     }
     
@@ -41,6 +45,17 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView.layer.masksToBounds = true
         collectionView.layer.borderColor = UIColor.black.cgColor
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(logoutAction))
+    }
+    
+    @objc func logoutAction() {
+        KeychainWrapper.standard.removeObject(forKey: "token")
+        KeychainWrapper.standard.removeObject(forKey: "user_email")
+        KeychainWrapper.standard.removeObject(forKey: "user_nicename")
+        KeychainWrapper.standard.removeObject(forKey: "user_display_name")
+        
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

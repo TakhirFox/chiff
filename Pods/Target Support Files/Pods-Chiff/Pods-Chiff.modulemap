@@ -1,0 +1,6 @@
+framework module Pods_Chiff {
+  umbrella header "Pods-Chiff-umbrella.h"
+
+  export *
+  module * { export * }
+}

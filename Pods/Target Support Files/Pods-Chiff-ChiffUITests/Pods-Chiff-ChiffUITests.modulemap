@@ -1,0 +1,6 @@
+framework module Pods_Chiff_ChiffUITests {
+  umbrella header "Pods-Chiff-ChiffUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -12,6 +12,10 @@ enum Endpoints {
     // case
 }
 
+enum NetworkError: Error {
+    case badURL, requestFailed, unknown, errorSignIn
+}
+
 protocol NetworkServiceProtocol {
     func getData(complitionHandler: @escaping ([News]) -> Void)
 }
@@ -42,8 +46,38 @@ class NetworkService: NetworkServiceProtocol {
         
     }
     
+    // Информация о пользователе
+    func getProfileInfo(complitionHandler: @escaping (Result<User, NetworkError>) -> Void) {
+        
+        guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
+        
+        guard let url = URL(string: "\(baseUrl)/wp/v2/users/1") else { return }
+        var loginRequest = URLRequest(url: url)
+        loginRequest.httpMethod = "GET"
+        loginRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+                     
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                complitionHandler(.failure(.errorSignIn))
+                    return
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let user = try JSONDecoder().decode(User.self, from: data)
+                complitionHandler(.success(user))
+            } catch {
+                print("ошибка \(error.localizedDescription)")
+            }
+
+        }.resume()
+        
+    }
+    
     // Аутентификация и авторизация
-    func getAuth(login: String, password: String, complitionHandler: @escaping (Auth) -> Void) {
+    func getAuth(login: String, password: String, complitionHandler: @escaping (Result<Auth, NetworkError>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)/jwt-auth/v1/token") else { return }
         
@@ -58,28 +92,36 @@ class NetworkService: NetworkServiceProtocol {
         
         URLSession.shared.dataTask(with: loginRequest) { (data, response, error) in
             if error != nil {
-                print("Error One")
+                print("LOG: ОШИБКА ПОЛУЧЕНИЯ ДАННЫХ")
                 return
             }
             
-            print(response!)
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                complitionHandler(.failure(.errorSignIn))
+                    return
+            }
+
             
             guard let data = data else { return }
             
             // Нужно сохранить в кейчейн данные
             do {
-                let auth = try? JSONDecoder().decode(Auth.self, from: data)
-                let saveToken: Bool = KeychainWrapper.standard.set(auth?.token ?? "", forKey: "token")
-                let saveEmail: Bool = KeychainWrapper.standard.set(auth?.user_email ?? "", forKey: "user_email")
-                let saveNickName: Bool = KeychainWrapper.standard.set(auth?.user_nicename ?? "", forKey: "user_nicename")
-                let saveDisplayName: Bool = KeychainWrapper.standard.set(auth?.user_display_name ?? "", forKey: "user_display_name")
+                let auth = try JSONDecoder().decode(Auth.self, from: data)
                 
-                print("\(saveToken), \(saveEmail), \(saveNickName), \(saveDisplayName)")
+                KeychainWrapper.standard.set(auth.token ?? "", forKey: "token")
+                KeychainWrapper.standard.set(auth.user_email ?? "", forKey: "user_email")
+                KeychainWrapper.standard.set(auth.user_nicename ?? "", forKey: "user_nicename")
+                KeychainWrapper.standard.set(auth.user_display_name ?? "", forKey: "user_display_name")
                 
-                print("LOG: TOKEN \(String(describing: auth?.token))")
+                print("\(auth.token), \(auth.user_email), \(auth.user_nicename), \(auth.user_display_name)")
                 
-                complitionHandler(auth!)
+                print("LOG: TOKEN \(String(describing: auth.token))")
+                
+                complitionHandler(.success(auth))
+            } catch let error {
+                complitionHandler(.failure(error as! NetworkError))
             }
+            
         }.resume()
     }
     

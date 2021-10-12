@@ -3,12 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3E7317297C189DCE6EEB81C9 /* Pods_Chiff_ChiffUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72188C8DE3785ADD69C53A38 /* Pods_Chiff_ChiffUITests.framework */; };
 		546325029F172DCA4D8DC93C /* Pods_Chiff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC10AFD7344AF9C85331FF5E /* Pods_Chiff.framework */; };
+		8476F81F271559A8003F15BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8476F81E271559A8003F15BC /* Main.storyboard */; };
+		8476F821271559EE003F15BC /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476F820271559EE003F15BC /* SignInController.swift */; };
+		8476F82327157A5F003F15BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476F82227157A5F003F15BC /* User.swift */; };
 		AD7F1229261CAFFF00EB09F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7F1228261CAFFF00EB09F7 /* AppDelegate.swift */; };
 		AD7F122B261CAFFF00EB09F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7F122A261CAFFF00EB09F7 /* SceneDelegate.swift */; };
 		AD7F1233261CAFFF00EB09F7 /* Chiff.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD7F1231261CAFFF00EB09F7 /* Chiff.xcdatamodeld */; };
@@ -49,6 +52,9 @@
 		38623BBBB2A8CC8E4E7DE5A2 /* Pods-Chiff-ChiffUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff-ChiffUITests.debug.xcconfig"; path = "Target Support Files/Pods-Chiff-ChiffUITests/Pods-Chiff-ChiffUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		48BD314AB0DA7C2E1E09CC04 /* Pods-ChiffTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiffTests.release.xcconfig"; path = "Target Support Files/Pods-ChiffTests/Pods-ChiffTests.release.xcconfig"; sourceTree = "<group>"; };
 		72188C8DE3785ADD69C53A38 /* Pods_Chiff_ChiffUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chiff_ChiffUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8476F81E271559A8003F15BC /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		8476F820271559EE003F15BC /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
+		8476F82227157A5F003F15BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8E6B9B9F7936790BE785E652 /* Pods-Chiff.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff.debug.xcconfig"; path = "Target Support Files/Pods-Chiff/Pods-Chiff.debug.xcconfig"; sourceTree = "<group>"; };
 		911F226AFF4F13EC2E195535 /* Pods_ChiffTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChiffTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B86D80CF6F7D347389FF6A /* Pods-Chiff-ChiffUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff-ChiffUITests.release.xcconfig"; path = "Target Support Files/Pods-Chiff-ChiffUITests/Pods-Chiff-ChiffUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 				AD7F12BB2622F1C200EB09F7 /* View */,
 				AD7F12BA2622F17400EB09F7 /* Presenter */,
 				AD7F1272261CB55E00EB09F7 /* UIView+Layout.swift */,
+				8476F81E271559A8003F15BC /* Main.storyboard */,
 				AD7F1278261CBA2C00EB09F7 /* MainTabBar.swift */,
 				AD7F1234261CB00000EB09F7 /* Assets.xcassets */,
 				AD7F1236261CB00000EB09F7 /* LaunchScreen.storyboard */,
@@ -179,6 +186,7 @@
 				AD7F12BC2622F1DB00EB09F7 /* Networking */,
 				AD7F12B42622E45100EB09F7 /* News.swift */,
 				ADA7C963262F37F60067C116 /* Auth.swift */,
+				8476F82227157A5F003F15BC /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -188,6 +196,7 @@
 			children = (
 				AD7F1261261CB0C800EB09F7 /* FeedController.swift */,
 				AD7F12A42621B71C00EB09F7 /* MockupPage.swift */,
+				8476F820271559EE003F15BC /* SignInController.swift */,
 			);
 			name = Presenter;
 			sourceTree = "<group>";
@@ -218,7 +227,6 @@
 				01A955FD5AADB18D93F74689 /* Pods-ChiffTests.debug.xcconfig */,
 				48BD314AB0DA7C2E1E09CC04 /* Pods-ChiffTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -330,6 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8476F81F271559A8003F15BC /* Main.storyboard in Resources */,
 				AD7F1238261CB00000EB09F7 /* LaunchScreen.storyboard in Resources */,
 				AD7F1235261CB00000EB09F7 /* Assets.xcassets in Resources */,
 			);
@@ -459,6 +468,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8476F82327157A5F003F15BC /* User.swift in Sources */,
 				AD7F1229261CAFFF00EB09F7 /* AppDelegate.swift in Sources */,
 				AD7F1268261CB31200EB09F7 /* FeedCell.swift in Sources */,
 				AD7F1279261CBA2C00EB09F7 /* MainTabBar.swift in Sources */,
@@ -468,6 +478,7 @@
 				ADA7C964262F37F60067C116 /* Auth.swift in Sources */,
 				AD7F122B261CAFFF00EB09F7 /* SceneDelegate.swift in Sources */,
 				AD7F1262261CB0C800EB09F7 /* FeedController.swift in Sources */,
+				8476F821271559EE003F15BC /* SignInController.swift in Sources */,
 				AD7F12B52622E45100EB09F7 /* News.swift in Sources */,
 				AD7F12A52621B71C00EB09F7 /* MockupPage.swift in Sources */,
 			);
