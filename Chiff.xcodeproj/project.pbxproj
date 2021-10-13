@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3E7317297C189DCE6EEB81C9 /* Pods_Chiff_ChiffUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72188C8DE3785ADD69C53A38 /* Pods_Chiff_ChiffUITests.framework */; };
 		546325029F172DCA4D8DC93C /* Pods_Chiff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC10AFD7344AF9C85331FF5E /* Pods_Chiff.framework */; };
+		8476E20F2716890E0032B909 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476E20E2716890E0032B909 /* FeedPresenter.swift */; };
+		8476E2112716891D0032B909 /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476E2102716891D0032B909 /* SignInPresenter.swift */; };
 		8476F81F271559A8003F15BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8476F81E271559A8003F15BC /* Main.storyboard */; };
 		8476F821271559EE003F15BC /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476F820271559EE003F15BC /* SignInController.swift */; };
 		8476F82327157A5F003F15BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476F82227157A5F003F15BC /* User.swift */; };
@@ -52,6 +54,8 @@
 		38623BBBB2A8CC8E4E7DE5A2 /* Pods-Chiff-ChiffUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff-ChiffUITests.debug.xcconfig"; path = "Target Support Files/Pods-Chiff-ChiffUITests/Pods-Chiff-ChiffUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		48BD314AB0DA7C2E1E09CC04 /* Pods-ChiffTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiffTests.release.xcconfig"; path = "Target Support Files/Pods-ChiffTests/Pods-ChiffTests.release.xcconfig"; sourceTree = "<group>"; };
 		72188C8DE3785ADD69C53A38 /* Pods_Chiff_ChiffUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chiff_ChiffUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8476E20E2716890E0032B909 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
+		8476E2102716891D0032B909 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
 		8476F81E271559A8003F15BC /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8476F820271559EE003F15BC /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		8476F82227157A5F003F15BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -121,6 +125,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8476E20D271688C40032B909 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				AD7F12B42622E45100EB09F7 /* News.swift */,
+				ADA7C963262F37F60067C116 /* Auth.swift */,
+				8476F82227157A5F003F15BC /* User.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		AD7F121C261CAFFF00EB09F7 = {
 			isa = PBXGroup;
 			children = (
@@ -184,9 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				AD7F12BC2622F1DB00EB09F7 /* Networking */,
-				AD7F12B42622E45100EB09F7 /* News.swift */,
-				ADA7C963262F37F60067C116 /* Auth.swift */,
-				8476F82227157A5F003F15BC /* User.swift */,
+				8476E20D271688C40032B909 /* Entity */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -194,9 +206,8 @@
 		AD7F12BA2622F17400EB09F7 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				AD7F1261261CB0C800EB09F7 /* FeedController.swift */,
-				AD7F12A42621B71C00EB09F7 /* MockupPage.swift */,
-				8476F820271559EE003F15BC /* SignInController.swift */,
+				8476E20E2716890E0032B909 /* FeedPresenter.swift */,
+				8476E2102716891D0032B909 /* SignInPresenter.swift */,
 			);
 			name = Presenter;
 			sourceTree = "<group>";
@@ -205,6 +216,9 @@
 			isa = PBXGroup;
 			children = (
 				AD7F1267261CB31200EB09F7 /* FeedCell.swift */,
+				AD7F1261261CB0C800EB09F7 /* FeedController.swift */,
+				AD7F12A42621B71C00EB09F7 /* MockupPage.swift */,
+				8476F820271559EE003F15BC /* SignInController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -471,6 +485,7 @@
 				8476F82327157A5F003F15BC /* User.swift in Sources */,
 				AD7F1229261CAFFF00EB09F7 /* AppDelegate.swift in Sources */,
 				AD7F1268261CB31200EB09F7 /* FeedCell.swift in Sources */,
+				8476E2112716891D0032B909 /* SignInPresenter.swift in Sources */,
 				AD7F1279261CBA2C00EB09F7 /* MainTabBar.swift in Sources */,
 				AD7F1273261CB55E00EB09F7 /* UIView+Layout.swift in Sources */,
 				AD7F12AA2621C19E00EB09F7 /* NetworkService.swift in Sources */,
@@ -480,6 +495,7 @@
 				AD7F1262261CB0C800EB09F7 /* FeedController.swift in Sources */,
 				8476F821271559EE003F15BC /* SignInController.swift in Sources */,
 				AD7F12B52622E45100EB09F7 /* News.swift in Sources */,
+				8476E20F2716890E0032B909 /* FeedPresenter.swift in Sources */,
 				AD7F12A52621B71C00EB09F7 /* MockupPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,7 +666,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J4B53B6TAD;
+				DEVELOPMENT_TEAM = ER36S6E3W4;
 				INFOPLIST_FILE = Chiff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -670,7 +686,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J4B53B6TAD;
+				DEVELOPMENT_TEAM = ER36S6E3W4;
 				INFOPLIST_FILE = Chiff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -1,0 +1,17 @@
+//
+//  FeedPresenter.swift
+//  Chiff
+//
+//  Created by admin on 13.10.2021.
+//
+
+import Foundation
+
+protocol FeedView {
+    
+}
+
+class FeedPresenter {
+    
+}
+
