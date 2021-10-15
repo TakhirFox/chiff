@@ -11,7 +11,7 @@ import SwiftKeychainWrapper
 class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "cellId"
-    var news: [News] = []
+    var news: [News]?
     var auth: Auth?
     var networkService = NetworkService()
     
@@ -20,6 +20,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
  
         configureUI()
         
+        print("LOG: COUNT \(news?.count)")
         
         networkService.getProfileInfo { result in
             switch result {
@@ -29,6 +30,18 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 print("LOG: Проблема с входом а именно \(error)")
             }
             
+        }
+        
+        networkService.getData { result in
+            switch result {
+            case .success(let news):
+                DispatchQueue.main.async {
+                    self.news = news
+                    self.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print("LOG: error for controller \(error)")
+            }
         }
         
         
@@ -56,13 +69,16 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return news?.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FeedCell
-        cell.label.text = auth?.user_display_name
+        
+        
+        cell.label.text = news?[indexPath.row].slug
+        print("LOG: test tets \(news?[indexPath.row].slug)")
+        cell.imageView.image = UIImage(named: "masterdomIcon")
         return cell
         
     }
@@ -71,8 +87,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return .init(width: view.frame.width - 20, height: 400)
     }
     
-    
-    
+
 }
 
 

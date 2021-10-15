@@ -28,8 +28,8 @@ class SignInPresenter {
     }
     
     public func auth(login: String, password: String) {
-                
-        networkService.getAuth(login: login, password: password) { result in
+        networkService.getAuth(login: login, password: password) { [weak self] result in
+            guard let self = self else { return }
             
             switch result {
             case .success(let auth):
@@ -46,7 +46,6 @@ class SignInPresenter {
                     self.view?.wrongLoginOrPass()
                 }
             }
-              
         }
     }
 

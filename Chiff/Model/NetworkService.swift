@@ -17,7 +17,11 @@ enum NetworkError: Error {
 }
 
 protocol NetworkServiceProtocol {
-    func getData(complitionHandler: @escaping ([News]) -> Void)
+    func getData(complitionHandler: @escaping (Result<[News], NetworkError>) -> Void)
+    func getProfileInfo(complitionHandler: @escaping (Result<User, NetworkError>) -> Void)
+    func getAuth(login: String, password: String, complitionHandler: @escaping (Result<Auth, NetworkError>) -> Void)
+    func getRegister()
+    func getPosts()
 }
 
 class NetworkService: NetworkServiceProtocol {
@@ -26,18 +30,18 @@ class NetworkService: NetworkServiceProtocol {
     
     
     // Запрос каких либо данных
-    func getData(complitionHandler: @escaping ([News]) -> Void) {
+    func getData(complitionHandler: @escaping (Result<[News], NetworkError>) -> Void) {
         
-        guard let url = URL(string: "\(baseUrl)/wp/v2") else { return }
+        guard let url = URL(string: "\(baseUrl)/wp/v2/posts") else { return }
         
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             
-            guard error != nil else { return }
+            print("LOG: ERROR GETDATA \(String(describing: error))")
             guard let data = data else { return }
             
             do {
                 let news = try JSONDecoder().decode([News].self, from: data)
-                complitionHandler(news)
+                complitionHandler(.success(news))
             } catch {
                 print("ошибка \(error.localizedDescription)")
             }
@@ -112,9 +116,7 @@ class NetworkService: NetworkServiceProtocol {
                 KeychainWrapper.standard.set(auth.user_email ?? "", forKey: "user_email")
                 KeychainWrapper.standard.set(auth.user_nicename ?? "", forKey: "user_nicename")
                 KeychainWrapper.standard.set(auth.user_display_name ?? "", forKey: "user_display_name")
-                
-                print("\(auth.token), \(auth.user_email), \(auth.user_nicename), \(auth.user_display_name)")
-                
+                                
                 print("LOG: TOKEN \(String(describing: auth.token))")
                 
                 complitionHandler(.success(auth))

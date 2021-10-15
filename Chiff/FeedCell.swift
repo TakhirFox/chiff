@@ -10,6 +10,7 @@ import UIKit
 class FeedCell: UICollectionViewCell {
     
     let label = UILabel()
+    let imageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,7 +21,9 @@ class FeedCell: UICollectionViewCell {
         layer.masksToBounds = true
         
         addSubview(label)
-        label.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 16, left: 16, bottom: 16, right: 16))
+        addSubview(imageView)
+        imageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 300))
+        label.anchor(top: imageView.topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 16, left: 16, bottom: 16, right: 16))
         
         
     }
