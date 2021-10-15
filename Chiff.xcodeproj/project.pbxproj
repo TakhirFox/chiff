@@ -125,6 +125,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		84744E0D271840C200B19CA4 /* Core data */ = {
+			isa = PBXGroup;
+			children = (
+				AD7F1231261CAFFF00EB09F7 /* Chiff.xcdatamodeld */,
+			);
+			name = "Core data";
+			path = ..;
+			sourceTree = "<group>";
+		};
 		8476E20D271688C40032B909 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,7 +180,6 @@
 				AD7F1234261CB00000EB09F7 /* Assets.xcassets */,
 				AD7F1236261CB00000EB09F7 /* LaunchScreen.storyboard */,
 				AD7F1239261CB00000EB09F7 /* Info.plist */,
-				AD7F1231261CAFFF00EB09F7 /* Chiff.xcdatamodeld */,
 			);
 			path = Chiff;
 			sourceTree = "<group>";
@@ -197,7 +205,8 @@
 		AD7F12B92622F15900EB09F7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AD7F12BC2622F1DB00EB09F7 /* Networking */,
+				84744E0D271840C200B19CA4 /* Core data */,
+				AD7F12BC2622F1DB00EB09F7 /* ServiceLayer */,
 				8476E20D271688C40032B909 /* Entity */,
 			);
 			path = Model;
@@ -223,12 +232,12 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		AD7F12BC2622F1DB00EB09F7 /* Networking */ = {
+		AD7F12BC2622F1DB00EB09F7 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
 				AD7F12A92621C19E00EB09F7 /* NetworkService.swift */,
 			);
-			name = Networking;
+			name = ServiceLayer;
 			sourceTree = "<group>";
 		};
 		C49C2E042797680D889AE388 /* Pods */ = {
