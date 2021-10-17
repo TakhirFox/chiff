@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import SwiftyGif
 
 class SignInController: UIViewController {
 
     @IBOutlet var loginTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var loginButton: UIButton!
+    
+    let splashAnimationView = SplashAnimationView()
     
     private let presenter = SignInPresenter()
     
@@ -21,8 +24,17 @@ class SignInController: UIViewController {
         loginButton.layer.cornerRadius = 8
         
         presenter.setViewDelegate(view: self)
-//        presenter.load()
+        
+        view.addSubview(splashAnimationView)
+        splashAnimationView.pinEdgesToSuperView()
+        splashAnimationView.logoGifImageView.delegate = self
+        
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+        splashAnimationView.logoGifImageView.startAnimatingGif()
+        }
     
     @IBAction func goToApp(_ sender: Any) {
         loginTextField.text = "winzero"
@@ -63,4 +75,11 @@ extension SignInController: SignInView {
 
     }
     
+}
+
+// MARK: - SwiftyGifDelegate
+extension SignInController: SwiftyGifDelegate {
+    func gifDidStop(sender: UIImageView) {
+        splashAnimationView.isHidden = true
+    }
 }

@@ -7,11 +7,24 @@
 
 import Foundation
 
-protocol FeedView {
-    
+protocol FeedView: AnyObject {
+    func someFuncForNetworking()
 }
 
 class FeedPresenter {
+    
+    weak var view: FeedView?
+    
+    var networkService = NetworkService()
+    
+    public func setViewDelegate(view: FeedView) {
+        self.view = view
+    }
+    
+    public func someFunc() {
+        
+    }
+    
     
 }
 

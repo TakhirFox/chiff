@@ -15,9 +15,13 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     var auth: Auth?
     var networkService = NetworkService()
     
+    private let presenter = FeedPresenter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
  
+        presenter.setViewDelegate(view: self)
+        
         configureUI()
         
         print("LOG: COUNT \(news?.count)")
@@ -92,6 +96,10 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
 
 // Тут типо реализуем методы из презентера
-extension FeedController {
+extension FeedController: FeedView {
+    func someFuncForNetworking() {
+        // Тут реализую методы, когда вызову их из презентера
+    }
+    
     
 }
