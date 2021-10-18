@@ -8,7 +8,7 @@
 import Foundation
 
 protocol FeedView: AnyObject {
-    func someFuncForNetworking()
+    func presentNews(news: [News])
 }
 
 class FeedPresenter {
@@ -21,8 +21,15 @@ class FeedPresenter {
         self.view = view
     }
     
-    public func someFunc() {
-        
+    public func loadNews() {
+        networkService.getData { result in
+            switch result {
+            case .success(let news):
+                self.view?.presentNews(news: news)
+            case .failure(let error):
+                print("LOG: error for controller \(error)")
+            }
+        }
     }
     
     

@@ -21,10 +21,9 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         super.viewDidLoad()
  
         presenter.setViewDelegate(view: self)
+        presenter.loadNews()
         
         configureUI()
-        
-        print("LOG: COUNT \(news?.count)")
         
         networkService.getProfileInfo { result in
             switch result {
@@ -36,17 +35,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             
         }
         
-        networkService.getData { result in
-            switch result {
-            case .success(let news):
-                DispatchQueue.main.async {
-                    self.news = news
-                    self.collectionView.reloadData()
-                }
-            case .failure(let error):
-                print("LOG: error for controller \(error)")
-            }
-        }
+        
         
         
     }
@@ -81,8 +70,10 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         
         cell.label.text = news?[indexPath.row].slug
-        print("LOG: test tets \(news?[indexPath.row].slug)")
         cell.imageView.image = UIImage(named: "masterdomIcon")
+//        print("LOG: IMAGE??? - \(news?[indexPath.row].links?.collection?[0].href)")
+        print("LOG: IMAGE??? - \(news?[indexPath.row].links)")
+
         return cell
         
     }
@@ -97,8 +88,11 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
 // Тут типо реализуем методы из презентера
 extension FeedController: FeedView {
-    func someFuncForNetworking() {
-        // Тут реализую методы, когда вызову их из презентера
+    func presentNews(news: [News]) {
+        DispatchQueue.main.async {
+            self.news = news
+            self.collectionView.reloadData()
+        }
     }
     
     

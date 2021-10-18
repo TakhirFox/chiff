@@ -41,6 +41,10 @@ class NetworkService: NetworkServiceProtocol {
             
             do {
                 let news = try JSONDecoder().decode([News].self, from: data)
+//                let news2 = try JSONDecoder().decode(Linkes.self, from: data)
+                print("LOG: NEWS JSON \(news)")
+//                print("LOG: NEWS Linkes \(news2)")
+                
                 complitionHandler(.success(news))
             } catch {
                 print("ошибка \(error.localizedDescription)")

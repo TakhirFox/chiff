@@ -1,16 +1,20 @@
 PODS:
   - SwiftKeychainWrapper (4.0.1)
+  - SwiftyGif (5.4.0)
 
 DEPENDENCIES:
   - SwiftKeychainWrapper
+  - SwiftyGif
 
 SPEC REPOS:
   trunk:
     - SwiftKeychainWrapper
+    - SwiftyGif
 
 SPEC CHECKSUMS:
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
+  SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
 
-PODFILE CHECKSUM: 763b6a6d8fa85f7318aa7e1a97b4ae16a55a62a1
+PODFILE CHECKSUM: c99ce59b59ea1338e04deda1bb35133098521dac
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.0
