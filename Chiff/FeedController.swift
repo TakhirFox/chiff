@@ -57,8 +57,14 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         KeychainWrapper.standard.removeObject(forKey: "user_nicename")
         KeychainWrapper.standard.removeObject(forKey: "user_display_name")
 
-        // Переход на другой экран, если все отлично
-        // Код с переходом
+        // Переход на экран логина, если вышел
+        // TODO: Под вопросом если честно.
+        let authViewController = UIStoryboard(name: "Main",
+                                              bundle: nil)
+            .instantiateViewController(withIdentifier: "SignInController") as! SignInController
+        authViewController.modalPresentationStyle = .fullScreen
+        present(authViewController, animated:true, completion:nil)
+
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -70,8 +76,8 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         let news = news[indexPath.row]
         
-        cell.label.text = news.title?.rendered
-        
+        cell.titleLabel.text = news.title?.rendered
+        cell.authorLabel.text = nil
         cell.imageView.image = UIImage(named: "no_image")
         
         networkService.getImagesFromPosts(idPost: news.featuredMedia ?? 0) { result in
@@ -90,13 +96,26 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 print("Ошибка \(error.localizedDescription)")
             }
         }
+        
+        networkService.getUsernamePost(id: news.author ?? 0) { result in
+            switch result {
+            case .success(let username):
+                
+                DispatchQueue.main.async {
+                    cell.authorLabel.text = username.name
+                }
+                
+            case .failure(let error):
+                print("Ошибка \(error.localizedDescription)")
+            }
+        }
 
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: (view.frame.width / 2) - 16, height: 200)
+        return .init(width: (view.frame.width / 2) - 16, height: 300)
     }
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

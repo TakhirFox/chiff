@@ -9,8 +9,9 @@ import UIKit
 
 class FeedCell: UICollectionViewCell {
     
-    let label = UILabel()
+    let titleLabel = UILabel()
     let imageView = UIImageView()
+    let authorLabel = UILabel()
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -24,21 +25,26 @@ class FeedCell: UICollectionViewCell {
         
         backgroundColor = UIColor.lightGray
         
-        layer.cornerRadius = 10
+        layer.cornerRadius = 8
         layer.masksToBounds = true
         
-        label.numberOfLines = 0
-        label.font = label.font.withSize(14)
+        titleLabel.numberOfLines = 0
+        titleLabel.font = UIFont(name: "ArialMT", size: 15)
 
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 8
         
-        addSubview(label)
+        authorLabel.font = UIFont(name: "Arial-BoldMT", size: 12)
+        authorLabel.textColor = .white
+        
         addSubview(imageView)
+        addSubview(titleLabel)
+        addSubview(authorLabel)
         
         imageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
-        label.anchor(top: imageView.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 4, left: 4, bottom: 4, right: 4), size: .init(width: 0, height: 40))
-        
+        titleLabel.anchor(top: imageView.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 4, left: 4, bottom: 4, right: 4), size: .init(width: 0, height: 40))
+        authorLabel.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 4, left: 4, bottom: 4, right: 4), size: .init(width: 0, height: 40))
         
     }
     

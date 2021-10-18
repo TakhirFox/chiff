@@ -8,16 +8,13 @@
 import Foundation
 import SwiftKeychainWrapper
 
-enum Endpoints {
-    // case
-}
-
 enum NetworkError: Error {
     case badURL, requestFailed, unknown, errorSignIn
 }
 
 protocol NetworkServiceProtocol {
     func getData(page: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
+    func getUsernamePost(id: Int, complitionHandler: @escaping (Result<User, Error>) -> Void)
     func getProfileInfo(complitionHandler: @escaping (Result<User, NetworkError>) -> Void)
     func getAuth(login: String, password: String, complitionHandler: @escaping (Result<Auth, NetworkError>) -> Void)
     func getRegister()
@@ -40,6 +37,26 @@ class NetworkService: NetworkServiceProtocol {
             do {
                 let news = try JSONDecoder().decode([News].self, from: data)
                 complitionHandler(.success(news))
+            } catch {
+                complitionHandler(.failure(error))
+            }
+
+        }.resume()
+        
+    }
+    
+    // Получаем пользователя, запостивший пост ))))
+    func getUsernamePost(id: Int, complitionHandler: @escaping (Result<User, Error>) -> Void) {
+        
+        guard let url = URL(string: "\(baseUrl)/wp/v2/users/\(id)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
+            
+            guard let data = data else { return }
+            
+            do {
+                let user = try JSONDecoder().decode(User.self, from: data)
+                complitionHandler(.success(user))
             } catch {
                 complitionHandler(.failure(error))
             }
