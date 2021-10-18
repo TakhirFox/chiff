@@ -14,6 +14,7 @@
 		8476F81F271559A8003F15BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8476F81E271559A8003F15BC /* Main.storyboard */; };
 		8476F821271559EE003F15BC /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476F820271559EE003F15BC /* SignInController.swift */; };
 		8476F82327157A5F003F15BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476F82227157A5F003F15BC /* User.swift */; };
+		847FA2A2271D690400FF9699 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FA2A1271D690400FF9699 /* Media.swift */; };
 		AD7F1229261CAFFF00EB09F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7F1228261CAFFF00EB09F7 /* AppDelegate.swift */; };
 		AD7F122B261CAFFF00EB09F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7F122A261CAFFF00EB09F7 /* SceneDelegate.swift */; };
 		AD7F1233261CAFFF00EB09F7 /* Chiff.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD7F1231261CAFFF00EB09F7 /* Chiff.xcdatamodeld */; };
@@ -61,6 +62,7 @@
 		8476F81E271559A8003F15BC /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8476F820271559EE003F15BC /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		8476F82227157A5F003F15BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		847FA2A1271D690400FF9699 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		8E6B9B9F7936790BE785E652 /* Pods-Chiff.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff.debug.xcconfig"; path = "Target Support Files/Pods-Chiff/Pods-Chiff.debug.xcconfig"; sourceTree = "<group>"; };
 		911F226AFF4F13EC2E195535 /* Pods_ChiffTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChiffTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B86D80CF6F7D347389FF6A /* Pods-Chiff-ChiffUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff-ChiffUITests.release.xcconfig"; path = "Target Support Files/Pods-Chiff-ChiffUITests/Pods-Chiff-ChiffUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				AD7F12B42622E45100EB09F7 /* News.swift */,
 				ADA7C963262F37F60067C116 /* Auth.swift */,
 				8476F82227157A5F003F15BC /* User.swift */,
+				847FA2A1271D690400FF9699 /* Media.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				AD7F1262261CB0C800EB09F7 /* FeedController.swift in Sources */,
 				8476F821271559EE003F15BC /* SignInController.swift in Sources */,
 				AD7F12B52622E45100EB09F7 /* News.swift in Sources */,
+				847FA2A2271D690400FF9699 /* Media.swift in Sources */,
 				8476E20F2716890E0032B909 /* FeedPresenter.swift in Sources */,
 				AD7F12A52621B71C00EB09F7 /* MockupPage.swift in Sources */,
 			);

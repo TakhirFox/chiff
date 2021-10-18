@@ -14,6 +14,7 @@ protocol FeedView: AnyObject {
 class FeedPresenter {
     
     weak var view: FeedView?
+    let news: [News] = []
     
     var networkService = NetworkService()
     
@@ -21,8 +22,8 @@ class FeedPresenter {
         self.view = view
     }
     
-    public func loadNews() {
-        networkService.getData { result in
+    public func loadNews(page: Int) {
+        networkService.getData(page: page) { result in
             switch result {
             case .success(let news):
                 self.view?.presentNews(news: news)
@@ -30,6 +31,8 @@ class FeedPresenter {
                 print("LOG: error for controller \(error)")
             }
         }
+        
+//        networkService.getImagesFromPosts(idPost: <#T##Int#>, complitionHandler: <#T##(Result<Media, NetworkError>) -> Void#>)
     }
     
     

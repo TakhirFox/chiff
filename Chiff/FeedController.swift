@@ -11,7 +11,10 @@ import SwiftKeychainWrapper
 class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "cellId"
-    var news: [News]?
+    var currentPage = 1
+    var isLoadedPage: Bool = false
+    
+    var news = [News]()
     var auth: Auth?
     var networkService = NetworkService()
     
@@ -21,7 +24,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         super.viewDidLoad()
  
         presenter.setViewDelegate(view: self)
-        presenter.loadNews()
+        presenter.loadNews(page: currentPage)
         
         configureUI()
         
@@ -34,9 +37,6 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             }
             
         }
-        
-        
-        
         
     }
     
@@ -62,24 +62,55 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return news?.count ?? 0
+        return news.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FeedCell
         
+        let news = news[indexPath.row]
         
-        cell.label.text = news?[indexPath.row].slug
-        cell.imageView.image = UIImage(named: "masterdomIcon")
-//        print("LOG: IMAGE??? - \(news?[indexPath.row].links?.collection?[0].href)")
-        print("LOG: IMAGE??? - \(news?[indexPath.row].links)")
+        cell.label.text = news.title?.rendered
+        
+        cell.imageView.image = UIImage(named: "no_image")
+        
+        networkService.getImagesFromPosts(idPost: news.featuredMedia ?? 0) { result in
+            switch result {
+            case .success(let media):
+                
+                DispatchQueue.global().async {
+                    guard let imageUrl = URL(string: media.guid?.rendered ?? "") else { return }
+                    guard let imageData = try? Data(contentsOf: imageUrl) else { return }
+                    DispatchQueue.main.async {
+                        cell.imageView.image = UIImage(data: imageData)
+                    }
+                }
+                
+            case .failure(let error):
+                print("Ошибка \(error.localizedDescription)")
+            }
+        }
 
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 20, height: 400)
+        return .init(width: (view.frame.width / 2) - 16, height: 200)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        let count = news.count
+        
+        if indexPath.item == count - 1 {
+            print("current page = \(currentPage)")
+            self.isLoadedPage = true
+            presenter.loadNews(page: currentPage)
+            currentPage += 1
+        }
+        
+        self.isLoadedPage = false
     }
     
 
@@ -90,7 +121,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
 extension FeedController: FeedView {
     func presentNews(news: [News]) {
         DispatchQueue.main.async {
-            self.news = news
+            self.news += news
             self.collectionView.reloadData()
         }
     }

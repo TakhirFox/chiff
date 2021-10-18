@@ -12,6 +12,13 @@ class FeedCell: UICollectionViewCell {
     let label = UILabel()
     let imageView = UIImageView()
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        imageView.image = nil
+        
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -20,10 +27,17 @@ class FeedCell: UICollectionViewCell {
         layer.cornerRadius = 10
         layer.masksToBounds = true
         
+        label.numberOfLines = 0
+        label.font = label.font.withSize(14)
+
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        
         addSubview(label)
         addSubview(imageView)
-        imageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 300))
-        label.anchor(top: imageView.topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 16, left: 16, bottom: 16, right: 16))
+        
+        imageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+        label.anchor(top: imageView.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 4, left: 4, bottom: 4, right: 4), size: .init(width: 0, height: 40))
         
         
     }

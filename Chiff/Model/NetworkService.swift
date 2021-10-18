@@ -17,7 +17,7 @@ enum NetworkError: Error {
 }
 
 protocol NetworkServiceProtocol {
-    func getData(complitionHandler: @escaping (Result<[News], NetworkError>) -> Void)
+    func getData(page: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
     func getProfileInfo(complitionHandler: @escaping (Result<User, NetworkError>) -> Void)
     func getAuth(login: String, password: String, complitionHandler: @escaping (Result<Auth, NetworkError>) -> Void)
     func getRegister()
@@ -26,30 +26,44 @@ protocol NetworkServiceProtocol {
 
 class NetworkService: NetworkServiceProtocol {
     
-    let baseUrl = "http://swiftdevs.ru/wp-json"
-    
+    private let baseUrl = "http://swiftdevs.ru/wp-json"
     
     // Запрос каких либо данных
-    func getData(complitionHandler: @escaping (Result<[News], NetworkError>) -> Void) {
+    func getData(page: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void) {
         
-        guard let url = URL(string: "\(baseUrl)/wp/v2/posts") else { return }
+        guard let url = URL(string: "\(baseUrl)/wp/v2/posts?page=\(page)") else { return }
         
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             
-            print("LOG: ERROR GETDATA \(String(describing: error))")
             guard let data = data else { return }
             
             do {
                 let news = try JSONDecoder().decode([News].self, from: data)
-//                let news2 = try JSONDecoder().decode(Linkes.self, from: data)
-                print("LOG: NEWS JSON \(news)")
-//                print("LOG: NEWS Linkes \(news2)")
-                
                 complitionHandler(.success(news))
             } catch {
-                print("ошибка \(error.localizedDescription)")
+                complitionHandler(.failure(error))
             }
 
+        }.resume()
+        
+    }
+    
+    // Запрашиваем изображения для постов
+    func getImagesFromPosts(idPost: Int, complitionHandler: @escaping (Result<Media, NetworkError>) -> Void) {
+        
+        guard let url = URL(string: "\(baseUrl)/wp/v2/media/\(idPost)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            
+            guard let data = data else { return }
+            
+            do {
+                let media = try JSONDecoder().decode(Media.self, from: data)
+                complitionHandler(.success(media))
+            } catch {
+                print("Не удалось загрузить картинки \(error.localizedDescription)")
+            }
+            
         }.resume()
         
     }
