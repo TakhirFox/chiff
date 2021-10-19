@@ -42,7 +42,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     fileprivate func configureUI() {
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView.backgroundColor = UIColor.gray
+        collectionView.backgroundColor = UIColor.systemGroupedBackground
         collectionView.layer.cornerRadius = 20
         collectionView.layer.masksToBounds = true
         collectionView.layer.borderColor = UIColor.black.cgColor

@@ -91,39 +91,28 @@ class NetworkService: NetworkServiceProtocol {
         
         guard let url = URL(string: "\(baseUrl)/wp/v2/posts") else { return }
         guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
-        
-        let sessionConfiguration = URLSessionConfiguration.default
-        let session = URLSession(configuration: sessionConfiguration)
-        
-        let headers = ["Content-Type": "application/json", "Accept": "application/json", "Authorization": "Bearer \(accessToken)"]
+
+        let headers = ["Content-Type": "application/json", "Accept": "application/json"]
         let parameters = ["title": title, "content": content, "status": status] as [String: Any]
         let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: [])
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.allHTTPHeaderFields = headers
         request.httpBody = httpBody
-        request.setValue("1", forHTTPHeaderField: "X-API-VERSION")
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
-//        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        request.allHTTPHeaderFields = headers
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         
-        session.dataTask(with: url) { data, response, error in
-            print("LOG \(response)")
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                print(responseJSON)
+            }
         }.resume()
-        
-//        URLSession.shared.dataTask(with: url) { data, response, error in
-//            guard let data = data else { return }
-//
-//            print("LOG: RESPONSE \(response)")
-//
-//            do {
-////                let post = try JSONDecoder().decode(News.self, from: data)
-//                complitionHandler(.success("YEAH"))
-//            } catch {
-//                complitionHandler(.failure(error))
-//            }
-//        }.resume()
+
     }
     
     // Информация о пользователе
@@ -136,7 +125,7 @@ class NetworkService: NetworkServiceProtocol {
         loginRequest.httpMethod = "GET"
         loginRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        URLSession.shared.dataTask(with: loginRequest) { (data, response, error) in
                      
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
                 complitionHandler(.failure(.errorSignIn))

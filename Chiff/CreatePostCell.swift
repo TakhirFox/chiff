@@ -10,26 +10,27 @@ import UIKit
 class CreatePostCell: UICollectionViewCell {
     
     let titleLabel = UILabel()
-    let textfield = UITextField()
-        
+    let textView = UITextView()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-
+        textView.delegate = self
+        textView.text = "Введите поле"
+        textView.textColor = UIColor.lightGray
+        textView.backgroundColor = .systemGray5
+        textView.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
+        textView.layer.cornerRadius = 8
         
-        backgroundColor = .green
-        
-        textfield.placeholder = "Введите поле"
-        textfield.backgroundColor = .red
-        textfield.layer.cornerRadius = 8
         
         titleLabel.text = "Описание поста, записи, чего-либо еще"
+        titleLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
         
         addSubview(titleLabel)
-        addSubview(textfield)
+        addSubview(textView)
         
-        titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 0))
-        textfield.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 70))
+        titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 0))
+        textView.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 5, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 0))
     }
     
     required init?(coder: NSCoder) {
@@ -38,4 +39,20 @@ class CreatePostCell: UICollectionViewCell {
     
 }
 
+extension CreatePostCell: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = .label
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Введите поле"
+            textView.textColor = UIColor.lightGray
+        }
+    }
+    
+}
 

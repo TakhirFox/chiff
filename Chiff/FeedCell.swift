@@ -23,7 +23,7 @@ class FeedCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.lightGray
+        backgroundColor = UIColor.systemGray5
         
         layer.cornerRadius = 8
         layer.masksToBounds = true

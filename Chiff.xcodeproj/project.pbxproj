@@ -33,6 +33,8 @@
 		AD7F12B52622E45100EB09F7 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7F12B42622E45100EB09F7 /* News.swift */; };
 		AD8EFE5E271B45640056F8A8 /* SplashAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8EFE5D271B45640056F8A8 /* SplashAnimationView.swift */; };
 		AD8EFE60271B4DE50056F8A8 /* logoAnim.gif in Resources */ = {isa = PBXBuildFile; fileRef = AD8EFE5F271B4DE50056F8A8 /* logoAnim.gif */; };
+		AD8EFE63271F2B4F0056F8A8 /* UITextView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8EFE62271F2B4F0056F8A8 /* UITextView+Layout.swift */; };
+		AD8EFE65271F3B3A0056F8A8 /* CreatePostImageButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8EFE64271F3B3A0056F8A8 /* CreatePostImageButtonCell.swift */; };
 		ADA7C964262F37F60067C116 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7C963262F37F60067C116 /* Auth.swift */; };
 		FDE51F86CEF4F6DCF197B5FE /* Pods_ChiffTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911F226AFF4F13EC2E195535 /* Pods_ChiffTests.framework */; };
 /* End PBXBuildFile section */
@@ -92,6 +94,8 @@
 		AD7F12B42622E45100EB09F7 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		AD8EFE5D271B45640056F8A8 /* SplashAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAnimationView.swift; sourceTree = "<group>"; };
 		AD8EFE5F271B4DE50056F8A8 /* logoAnim.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logoAnim.gif; sourceTree = "<group>"; };
+		AD8EFE62271F2B4F0056F8A8 /* UITextView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Layout.swift"; sourceTree = "<group>"; };
+		AD8EFE64271F3B3A0056F8A8 /* CreatePostImageButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostImageButtonCell.swift; sourceTree = "<group>"; };
 		ADA7C963262F37F60067C116 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		BC10AFD7344AF9C85331FF5E /* Pods_Chiff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chiff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F729E0A94703A46F2DC016D7 /* Pods-Chiff.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff.release.xcconfig"; path = "Target Support Files/Pods-Chiff/Pods-Chiff.release.xcconfig"; sourceTree = "<group>"; };
@@ -176,7 +180,7 @@
 				AD7F12B92622F15900EB09F7 /* Model */,
 				AD7F12BB2622F1C200EB09F7 /* View */,
 				AD7F12BA2622F17400EB09F7 /* Presenter */,
-				AD7F1272261CB55E00EB09F7 /* UIView+Layout.swift */,
+				AD8EFE61271F2B2E0056F8A8 /* Extensions */,
 				8476F81E271559A8003F15BC /* Main.storyboard */,
 				AD7F1278261CBA2C00EB09F7 /* MainTabBar.swift */,
 				AD7F1234261CB00000EB09F7 /* Assets.xcassets */,
@@ -234,6 +238,7 @@
 				8476F820271559EE003F15BC /* SignInController.swift */,
 				84E9C24F271EB76A004AB184 /* CreatePostCell.swift */,
 				84E9C24D271EB38A004AB184 /* CreatePostController.swift */,
+				AD8EFE64271F3B3A0056F8A8 /* CreatePostImageButtonCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -244,6 +249,15 @@
 				AD7F12A92621C19E00EB09F7 /* NetworkService.swift */,
 			);
 			name = Networking;
+			sourceTree = "<group>";
+		};
+		AD8EFE61271F2B2E0056F8A8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AD7F1272261CB55E00EB09F7 /* UIView+Layout.swift */,
+				AD8EFE62271F2B4F0056F8A8 /* UITextView+Layout.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		C49C2E042797680D889AE388 /* Pods */ = {
@@ -507,6 +521,7 @@
 				AD7F1273261CB55E00EB09F7 /* UIView+Layout.swift in Sources */,
 				AD7F12AA2621C19E00EB09F7 /* NetworkService.swift in Sources */,
 				AD7F1233261CAFFF00EB09F7 /* Chiff.xcdatamodeld in Sources */,
+				AD8EFE65271F3B3A0056F8A8 /* CreatePostImageButtonCell.swift in Sources */,
 				84E9C24E271EB38A004AB184 /* CreatePostController.swift in Sources */,
 				ADA7C964262F37F60067C116 /* Auth.swift in Sources */,
 				AD7F122B261CAFFF00EB09F7 /* SceneDelegate.swift in Sources */,
@@ -515,6 +530,7 @@
 				AD7F12B52622E45100EB09F7 /* News.swift in Sources */,
 				84E9C250271EB76A004AB184 /* CreatePostCell.swift in Sources */,
 				847FA2A2271D690400FF9699 /* Media.swift in Sources */,
+				AD8EFE63271F2B4F0056F8A8 /* UITextView+Layout.swift in Sources */,
 				8476E20F2716890E0032B909 /* FeedPresenter.swift in Sources */,
 				AD7F12A52621B71C00EB09F7 /* MockupPage.swift in Sources */,
 			);
