@@ -22,7 +22,8 @@ class MainTabBar: UITabBarController, UITabBarControllerDelegate {
         
         viewControllers = [
             createNavController(viewController: FeedController(collectionViewLayout: UICollectionViewFlowLayout()), title: "Feed"),
-            createNavController(viewController: MockupPage(), title: "Еще")
+            createNavController(viewController: CreatePostController(collectionViewLayout: UICollectionViewFlowLayout()), title: "Добавить"),
+            createNavController(viewController: MockupPage(), title: "Профиль")
         ]
         
     }

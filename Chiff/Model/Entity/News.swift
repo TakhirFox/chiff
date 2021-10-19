@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct News: Decodable {
+struct News: Codable {
     let id: Int?
     let date, dateGmt: String?
     let guid: GUID?
@@ -38,18 +38,18 @@ struct News: Decodable {
 }
 
 // MARK: - Content
-struct Content: Decodable {
+struct Content: Codable {
     let rendered: String?
     let protected: Bool?
 }
 
 // MARK: - GUID
-struct GUID: Decodable {
+struct GUID: Codable {
     let rendered: String?
 }
 
 // MARK: - Links
-struct Linkes: Decodable {
+struct Linkes: Codable {
     let linksSelf, collection, about: [About]?
     let replies: [Reply]?
     let versionHistory: [VersionHistory]?
@@ -70,30 +70,30 @@ struct Linkes: Decodable {
 }
 
 // MARK: - About
-struct About: Decodable {
+struct About: Codable {
     let href: String?
 }
 
 // MARK: - Cury
-struct Cury: Decodable {
+struct Cury: Codable {
     let name, href: String?
     let templated: Bool?
 }
 
 // MARK: - Reply
-struct Reply: Decodable {
+struct Reply: Codable {
     let embeddable: Bool?
     let href: String?
 }
 
 // MARK: - VersionHistory
-struct VersionHistory: Decodable {
+struct VersionHistory: Codable {
     let count: Int?
     let href: String?
 }
 
 // MARK: - WpTerm
-struct WpTerm: Decodable {
+struct WpTerm: Codable {
     let taxonomy: String?
     let embeddable: Bool?
     let href: String?

@@ -15,6 +15,7 @@ enum NetworkError: Error {
 protocol NetworkServiceProtocol {
     func getData(page: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
     func getUsernamePost(id: Int, complitionHandler: @escaping (Result<User, Error>) -> Void)
+    func postNewPost(title: String, content: String, status: String, complitionHandler: @escaping (Result<String, Error>) -> Void)
     func getProfileInfo(complitionHandler: @escaping (Result<User, NetworkError>) -> Void)
     func getAuth(login: String, password: String, complitionHandler: @escaping (Result<Auth, NetworkError>) -> Void)
     func getRegister()
@@ -83,6 +84,46 @@ class NetworkService: NetworkServiceProtocol {
             
         }.resume()
         
+    }
+    
+    // Отправляем POST запрос, для создания поста
+    func postNewPost(title: String, content: String, status: String, complitionHandler: @escaping (Result<String, Error>) -> Void) {
+        
+        guard let url = URL(string: "\(baseUrl)/wp/v2/posts") else { return }
+        guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
+        
+        let sessionConfiguration = URLSessionConfiguration.default
+        let session = URLSession(configuration: sessionConfiguration)
+        
+        let headers = ["Content-Type": "application/json", "Accept": "application/json", "Authorization": "Bearer \(accessToken)"]
+        let parameters = ["title": title, "content": content, "status": status] as [String: Any]
+        let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: [])
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = headers
+        request.httpBody = httpBody
+        request.setValue("1", forHTTPHeaderField: "X-API-VERSION")
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.addValue("application/json", forHTTPHeaderField: "Accept")
+//        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        
+        session.dataTask(with: url) { data, response, error in
+            print("LOG \(response)")
+        }.resume()
+        
+//        URLSession.shared.dataTask(with: url) { data, response, error in
+//            guard let data = data else { return }
+//
+//            print("LOG: RESPONSE \(response)")
+//
+//            do {
+////                let post = try JSONDecoder().decode(News.self, from: data)
+//                complitionHandler(.success("YEAH"))
+//            } catch {
+//                complitionHandler(.failure(error))
+//            }
+//        }.resume()
     }
     
     // Информация о пользователе
