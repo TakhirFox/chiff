@@ -104,12 +104,12 @@ class NetworkService: NetworkServiceProtocol {
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
+                return complitionHandler(.failure(error as! Error))
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
             if let responseJSON = responseJSON as? [String: Any] {
                 print(responseJSON)
+                complitionHandler(.success("Ok"))
             }
         }.resume()
 

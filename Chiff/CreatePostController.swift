@@ -10,7 +10,9 @@ import UIKit
 class CreatePostController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let networkService = NetworkService()
-    let publishPost = UIView()
+    let publishPostButton = UIButton()
+    let activityIndicator = UIActivityIndicatorView()
+    var isFilledFields = [false, false, false]
     
     private enum Items: Int {
         case titleItem = 0
@@ -20,33 +22,35 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         case someItem = 4
         case some2Item = 5
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.backgroundColor = .systemGroupedBackground
-
+        
         collectionView.register(CreatePostCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.register(CreatePostImageButtonCell.self, forCellWithReuseIdentifier: "cell2")
         
-        publishPost.backgroundColor = .red
-        publishPost.layer.cornerRadius = 8
-        publishPost.isHidden = true
+        publishPostButton.backgroundColor = UIColor(displayP3Red: 255, green: 0, blue: 0, alpha: 0.5)
+        publishPostButton.layer.cornerRadius = 8
+        publishPostButton.setTitle("Опубликовать", for: .normal)
+        //        publishPostButton.isHidden = true
+            // TODO Как скрыть кнопку изначально? может снизу его показать изначально?
         
-        view.addSubview(publishPost)
+        activityIndicator.style = .large
+        activityIndicator.color = .black
         
-        publishPost.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 32, bottom: tabBarController!.tabBar.frame.size.height + 10, right: 32), size: .init(width: 0, height: 50))
+        checkFilledFieldsAndEnableButton()
         
-//        networkService.postNewPost(title: "asddas", content: "asdads", status: "publish") { result in
-//            switch result {
-//
-//            case .success(let post):
-//                print("LOG: CREATE POST SUCCESSFUL \(post)")
-//            case .failure(let error):
-//                print("LOG: ERROR CREATING POST: \(error)")
-//
-//            }
-//        }
+        view.addSubview(publishPostButton)
+        view.addSubview(activityIndicator)
+        
+        publishPostButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 32, bottom: -100, right: 32), size: .init(width: 0, height: 50))
+        activityIndicator.centerInSuperview()
+        
+        
+        
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -61,19 +65,22 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         case .titleItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CreatePostCell
             cell.titleLabel.text = "Наименование товара"
-            cell.textView.text = "Что вы продаете?"
+            //            cell.textView.text = "Что вы продаете?"
+            isFilledFields[0] = !cell.textView.text.isEmpty
             return cell
             
         case .descriptionItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CreatePostCell
             cell.titleLabel.text = "Описание товара"
-            cell.textView.text = "Расскажите подробнее"
+            //            cell.textView.text = "Расскажите подробнее"
+            isFilledFields[1] = !cell.textView.text.isEmpty
             return cell
             
         case .costItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CreatePostCell
             cell.titleLabel.text = "Цена"
-            cell.textView.text = "Цена Р"
+            //            cell.textView.text = "Цена Р"
+            isFilledFields[2] = !cell.textView.text.isEmpty
             return cell
             
         case .imageItem:
@@ -100,9 +107,9 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
             return cell
             
         }
-
-    }
         
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var height: CGFloat = 0
         
@@ -129,17 +136,71 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         
     }
     
+    // Отправляем запрос 
+    @objc func goToPublish() {
+        
+        activityIndicator.startAnimating()
+        view.isUserInteractionEnabled = false
+        
+        
+        networkService.postNewPost(title: "asddas", content: "asdads", status: "publish") { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
+                    // TODO Показать что пост был загружен в алерте,
+                    // В алерте после кнопки ОК, пересоздать пустой экран, либо перевести пользователя в объявление.
+                }
+            case .failure(let error):
+                print("LOG: ERROR CREATING POST: \(error)")
+            }
+        }
+    }
+    
+    // Проверяем, заполнили мы все поля, и активируем кнопку.
+    func checkFilledFieldsAndEnableButton() {
+        publishPostButton.addTarget(self, action: #selector(goToPublish), for: .touchUpInside)
+        publishPostButton.backgroundColor = UIColor(displayP3Red: 255, green: 0, blue: 0, alpha: 1)
+    }
+    
+    
 }
 
 extension CreatePostController {
+    // Анимируем появление кнопки "Опубликовать", когда спускаемся вниз.
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let scrollViewContentHeight = scrollView.contentSize.height
         let scrollViewHeight = scrollView.frame.height
+        let heightTabBar = tabBarController!.tabBar.frame.size.height
         
         if scrollView.contentOffset.y < (scrollViewContentHeight - scrollViewHeight){
-            publishPost.isHidden = true
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+                self.publishPostButton.frame.origin.y = (scrollViewHeight - 60) + heightTabBar
+            }
         } else {
-            publishPost.isHidden = false
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+                self.publishPostButton.frame.origin.y = (scrollViewHeight - 60) - heightTabBar
+            }
+            //            publishPostButton.isHidden = false
         }
+        
+        // TODO Сделать проверку на пустые поля, но как без костылей,?????
+        
+        //        if isFilledFields == [true, true, true] {
+        //            print("LOG: УРААА ВСЕ ЗАПОЛНЕННО \(isFilledFields)")
+        //        } else {
+        //            print("LOG: НЕА НЕ ВСЕ ЗАПОЛНЕННО \(isFilledFields)")
+        //        }
     }
+    
 }
+//
+//extension CreatePostController: UITextViewDelegate {
+//    func textViewDidEndEditing(_ textView: UITextView) {
+//        if isFilledFields == [true, true, true] {
+//            print("LOG: УРААА ВСЕ ЗАПОЛНЕННО")
+//        }
+//    }
+//    
+//}

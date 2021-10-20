@@ -16,7 +16,6 @@ class CreatePostCell: UICollectionViewCell {
         super.init(frame: frame)
         
         textView.delegate = self
-        textView.text = "Введите поле"
         textView.textColor = UIColor.lightGray
         textView.backgroundColor = .systemGray5
         textView.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
@@ -49,7 +48,6 @@ extension CreatePostCell: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Введите поле"
             textView.textColor = UIColor.lightGray
         }
     }
