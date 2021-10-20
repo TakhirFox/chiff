@@ -13,6 +13,7 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
     let publishPostButton = UIButton()
     let activityIndicator = UIActivityIndicatorView()
     var isFilledFields = [false, false, false]
+    // Add localModel
     
     private enum Items: Int {
         case titleItem = 0
