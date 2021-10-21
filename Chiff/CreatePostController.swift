@@ -145,20 +145,22 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         activityIndicator.startAnimating()
         view.isUserInteractionEnabled = false
         
-        
-        networkService.postNewPost(title: "asddas", content: "asdads", status: "publish") { result in
-            switch result {
-            case .success(_):
-                DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
-                    self.view.isUserInteractionEnabled = true
-                    // TODO Показать что пост был загружен в алерте,
-                    // В алерте после кнопки ОК, пересоздать пустой экран, либо перевести пользователя в объявление.
-                }
-            case .failure(let error):
-                print("LOG: ERROR CREATING POST: \(error)")
-            }
-        }
+        let title = postCreate.title ?? "ПУСТО"
+        let description = postCreate.description ?? "ПУСТО"
+        print("LOG: ЗАПОЛНЕННЫЕ ДАННЫЕ \(title) И \(description)")
+//        networkService.postNewPost(title: title, content: description, status: "publish") { result in
+//            switch result {
+//            case .success(_):
+//                DispatchQueue.main.async {
+//                    self.activityIndicator.stopAnimating()
+//                    self.view.isUserInteractionEnabled = true
+//                    // TODO Показать что пост был загружен в алерте,
+//                    // В алерте после кнопки ОК, пересоздать пустой экран, либо перевести пользователя в объявление.
+//                }
+//            case .failure(let error):
+//                print("LOG: ERROR CREATING POST: \(error)")
+//            }
+//        }
     }
     
     // Проверяем, заполнили мы все поля, и активируем кнопку.
@@ -190,11 +192,11 @@ extension CreatePostController {
         
         // TODO Сделать проверку на пустые поля, но как без костылей,?????
         
-        if let title = postCreate.title, title.isEmpty {
-            print("LOG: УРААА ВСЕ ЗАПОЛНЕННО")
-        } else {
-            print("LOG: НЕА НЕ ЗАПОЛНЕННО")
-        }
+//        if postCreate.title == "" {
+//            print("LOG: УРААА ВСЕ ЗАПОЛНЕННО")
+//        } else {
+//            print("LOG: НЕА НЕ ЗАПОЛНЕННО")
+//        }
         
         //        if isFilledFields == [true, true, true] {
         //            print("LOG: УРААА ВСЕ ЗАПОЛНЕННО \(isFilledFields)")
@@ -204,12 +206,20 @@ extension CreatePostController {
     }
     
 }
-//
-//extension CreatePostController: UITextViewDelegate {
+
+extension CreatePostController: UITextViewDelegate {
 //    func textViewDidEndEditing(_ textView: UITextView) {
 //        if isFilledFields == [true, true, true] {
 //            print("LOG: УРААА ВСЕ ЗАПОЛНЕННО")
 //        }
 //    }
-//    
-//}
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    
+}
+
+
