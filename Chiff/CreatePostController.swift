@@ -12,8 +12,7 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
     let networkService = NetworkService()
     let publishPostButton = UIButton()
     let activityIndicator = UIActivityIndicatorView()
-    var isFilledFields = [false, false, false]
-    // Add localModel
+    var postCreate = PostCreate()
     
     private enum Items: Int {
         case titleItem = 0
@@ -67,21 +66,24 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CreatePostCell
             cell.titleLabel.text = "Наименование товара"
             //            cell.textView.text = "Что вы продаете?"
-            isFilledFields[0] = !cell.textView.text.isEmpty
+//            isFilledFields[0] = !cell.textView.text.isEmpty
+            postCreate.title = cell.textView.text
             return cell
             
         case .descriptionItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CreatePostCell
             cell.titleLabel.text = "Описание товара"
             //            cell.textView.text = "Расскажите подробнее"
-            isFilledFields[1] = !cell.textView.text.isEmpty
+//            isFilledFields[1] = !cell.textView.text.isEmpty
+            postCreate.description = cell.textView.text
             return cell
             
         case .costItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CreatePostCell
             cell.titleLabel.text = "Цена"
             //            cell.textView.text = "Цена Р"
-            isFilledFields[2] = !cell.textView.text.isEmpty
+//            isFilledFields[2] = !cell.textView.text.isEmpty
+            postCreate.cost = cell.textView.text
             return cell
             
         case .imageItem:
@@ -187,6 +189,12 @@ extension CreatePostController {
         }
         
         // TODO Сделать проверку на пустые поля, но как без костылей,?????
+        
+        if let title = postCreate.title, title.isEmpty {
+            print("LOG: УРААА ВСЕ ЗАПОЛНЕННО")
+        } else {
+            print("LOG: НЕА НЕ ЗАПОЛНЕННО")
+        }
         
         //        if isFilledFields == [true, true, true] {
         //            print("LOG: УРААА ВСЕ ЗАПОЛНЕННО \(isFilledFields)")
