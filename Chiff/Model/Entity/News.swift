@@ -34,7 +34,7 @@ struct News: Codable {
         case pingStatus = "ping_status"
         case sticky, template, format, categories
         case links = "_links"
-    }
+    } 
 }
 
 // MARK: - Content

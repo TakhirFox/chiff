@@ -15,7 +15,6 @@ class CreatePostCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        textView.delegate = self
         textView.textColor = UIColor.lightGray
         textView.backgroundColor = .systemGray5
         textView.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
@@ -39,18 +38,7 @@ class CreatePostCell: UICollectionViewCell {
 }
 
 extension CreatePostCell: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = .label
-        }
-    }
     
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.textColor = UIColor.lightGray
-        }
-    }
     
 }
 

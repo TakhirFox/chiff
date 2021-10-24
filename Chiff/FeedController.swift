@@ -16,7 +16,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     var news = [News]()
     var auth: Auth?
-    var networkService = NetworkService()
+    let networkService = NetworkService()
     
     private let presenter = FeedPresenter()
     
@@ -111,6 +111,15 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
 
         return cell
+        
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = DetailController(collectionViewLayout: UICollectionViewFlowLayout())
+        controller.idPost = news[indexPath.row].id
+        navigationController?.pushViewController(controller, animated: true)
+//        present(controller, animated: true, completion: nil)
         
     }
     

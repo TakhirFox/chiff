@@ -25,17 +25,18 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         collectionView.backgroundColor = .systemGroupedBackground
         
         collectionView.register(CreatePostCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(TextfieldCell.self, forCellWithReuseIdentifier: "cell1")
         collectionView.register(CreatePostImageButtonCell.self, forCellWithReuseIdentifier: "cell2")
         
         publishPostButton.backgroundColor = UIColor(displayP3Red: 255, green: 0, blue: 0, alpha: 0.5)
         publishPostButton.layer.cornerRadius = 8
         publishPostButton.setTitle("Опубликовать", for: .normal)
         //        publishPostButton.isHidden = true
-            // TODO Как скрыть кнопку изначально? может снизу его показать изначально?
+        // TODO Как скрыть кнопку изначально? может снизу его показать изначально?
         
         activityIndicator.style = .large
         activityIndicator.color = .black
@@ -63,27 +64,33 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         
         switch items {
         case .titleItem:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CreatePostCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
             cell.titleLabel.text = "Наименование товара"
             //            cell.textView.text = "Что вы продаете?"
-//            isFilledFields[0] = !cell.textView.text.isEmpty
-            postCreate.title = cell.textView.text
+            //            isFilledFields[0] = !cell.textView.text.isEmpty
+            postCreate.title = cell.textField.text
+            cell.textField.delegate = self
+            
             return cell
             
         case .descriptionItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CreatePostCell
             cell.titleLabel.text = "Описание товара"
             //            cell.textView.text = "Расскажите подробнее"
-//            isFilledFields[1] = !cell.textView.text.isEmpty
+            //            isFilledFields[1] = !cell.textView.text.isEmpty
             postCreate.description = cell.textView.text
+            cell.textView.delegate = self
+            
             return cell
             
         case .costItem:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CreatePostCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
             cell.titleLabel.text = "Цена"
             //            cell.textView.text = "Цена Р"
-//            isFilledFields[2] = !cell.textView.text.isEmpty
-            postCreate.cost = cell.textView.text
+            //            isFilledFields[2] = !cell.textView.text.isEmpty
+            postCreate.cost = cell.textField.text
+            cell.textField.delegate = self
+
             return cell
             
         case .imageItem:
@@ -93,15 +100,19 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
             return cell
             
         case .someItem:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CreatePostCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
             cell.titleLabel.text = "Еще что-то"
-            cell.textView.text = "Еще что-то"
+            cell.textField.placeholder = "Еще что-то"
+            cell.textField.delegate = self
+
             return cell
             
         case .some2Item:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CreatePostCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
             cell.titleLabel.text = "Еще что-то"
-            cell.textView.text = "Еще что-то"
+            cell.textField.placeholder = "Еще что-то"
+            cell.textField.delegate = self
+
             return cell
             
         case .none:
@@ -139,7 +150,7 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         
     }
     
-    // Отправляем запрос 
+    // Отправляем запрос
     @objc func goToPublish() {
         
         activityIndicator.startAnimating()
@@ -148,19 +159,19 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         let title = postCreate.title ?? "ПУСТО"
         let description = postCreate.description ?? "ПУСТО"
         print("LOG: ЗАПОЛНЕННЫЕ ДАННЫЕ \(title) И \(description)")
-//        networkService.postNewPost(title: title, content: description, status: "publish") { result in
-//            switch result {
-//            case .success(_):
-//                DispatchQueue.main.async {
-//                    self.activityIndicator.stopAnimating()
-//                    self.view.isUserInteractionEnabled = true
-//                    // TODO Показать что пост был загружен в алерте,
-//                    // В алерте после кнопки ОК, пересоздать пустой экран, либо перевести пользователя в объявление.
-//                }
-//            case .failure(let error):
-//                print("LOG: ERROR CREATING POST: \(error)")
-//            }
-//        }
+        networkService.postNewPost(title: title, content: description, status: "publish") { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
+                    // TODO Показать что пост был загружен в алерте,
+                    // В алерте после кнопки ОК, пересоздать пустой экран, либо перевести пользователя в объявление.
+                }
+            case .failure(let error):
+                print("LOG: ERROR CREATING POST: \(error)")
+            }
+        }
     }
     
     // Проверяем, заполнили мы все поля, и активируем кнопку.
@@ -192,11 +203,11 @@ extension CreatePostController {
         
         // TODO Сделать проверку на пустые поля, но как без костылей,?????
         
-//        if postCreate.title == "" {
-//            print("LOG: УРААА ВСЕ ЗАПОЛНЕННО")
-//        } else {
-//            print("LOG: НЕА НЕ ЗАПОЛНЕННО")
-//        }
+        //        if postCreate.title == "" {
+        //            print("LOG: УРААА ВСЕ ЗАПОЛНЕННО")
+        //        } else {
+        //            print("LOG: НЕА НЕ ЗАПОЛНЕННО")
+        //        }
         
         //        if isFilledFields == [true, true, true] {
         //            print("LOG: УРААА ВСЕ ЗАПОЛНЕННО \(isFilledFields)")
@@ -208,18 +219,34 @@ extension CreatePostController {
 }
 
 extension CreatePostController: UITextViewDelegate {
-//    func textViewDidEndEditing(_ textView: UITextView) {
-//        if isFilledFields == [true, true, true] {
-//            print("LOG: УРААА ВСЕ ЗАПОЛНЕННО")
-//        }
-//    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-
+    
+    func textViewDidChange(_ textView: UITextView) {
+        postCreate.title = textView.text
+        postCreate.description = textView.text
+        postCreate.cost = textView.text
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = .label
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.textColor = UIColor.lightGray
+        }
+    }
     
 }
 
+
+extension CreatePostController: UITextFieldDelegate {
+    
+}
 
