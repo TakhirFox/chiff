@@ -27,6 +27,7 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         super.viewDidLoad()
                 
         collectionView.backgroundColor = .systemGroupedBackground
+        collectionView.keyboardDismissMode = .onDrag
         
         collectionView.register(CreatePostCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.register(TextfieldCell.self, forCellWithReuseIdentifier: "cell1")
@@ -66,9 +67,9 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         case .titleItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
             cell.titleLabel.text = "Наименование товара"
-            //            cell.textView.text = "Что вы продаете?"
-            //            isFilledFields[0] = !cell.textView.text.isEmpty
-            postCreate.title = cell.textField.text
+            cell.textField.text = "Что вы продаете?"
+            cell.textField.text = postCreate.title
+            cell.textField.addTarget(self, action: #selector(titleDidChange(_:)), for: .editingChanged)
             cell.textField.delegate = self
             
             return cell
@@ -76,9 +77,7 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         case .descriptionItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CreatePostCell
             cell.titleLabel.text = "Описание товара"
-            //            cell.textView.text = "Расскажите подробнее"
-            //            isFilledFields[1] = !cell.textView.text.isEmpty
-            postCreate.description = cell.textView.text
+            cell.textView.text = postCreate.description
             cell.textView.delegate = self
             
             return cell
@@ -86,9 +85,9 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         case .costItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
             cell.titleLabel.text = "Цена"
-            //            cell.textView.text = "Цена Р"
-            //            isFilledFields[2] = !cell.textView.text.isEmpty
-            postCreate.cost = cell.textField.text
+            cell.textField.text = "Цена Р"
+            cell.textField.text = postCreate.cost
+            cell.textField.addTarget(self, action: #selector(costDidChange(_:)), for: .editingChanged)
             cell.textField.delegate = self
 
             return cell
@@ -149,6 +148,20 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         return .init(width: view.frame.width - 32, height: height)
         
     }
+
+    
+    // Проверяем, заполнили мы все поля, и активируем кнопку.
+    func checkFilledFieldsAndEnableButton() {
+        publishPostButton.addTarget(self, action: #selector(goToPublish), for: .touchUpInside)
+        publishPostButton.backgroundColor = UIColor(displayP3Red: 255, green: 0, blue: 0, alpha: 1)
+    }
+    
+    
+}
+
+// Actions
+
+extension CreatePostController {
     
     // Отправляем запрос
     @objc func goToPublish() {
@@ -156,9 +169,17 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         activityIndicator.startAnimating()
         view.isUserInteractionEnabled = false
         
-        let title = postCreate.title ?? "ПУСТО"
-        let description = postCreate.description ?? "ПУСТО"
+        let title = postCreate.title ?? ""
+        let description = postCreate.description ?? ""
         print("LOG: ЗАПОЛНЕННЫЕ ДАННЫЕ \(title) И \(description)")
+        
+        if title.isEmpty || description.isEmpty {
+            print("LOG: пусто")
+            self.activityIndicator.stopAnimating()
+            self.view.isUserInteractionEnabled = true
+            return
+        }
+        
         networkService.postNewPost(title: title, content: description, status: "publish") { result in
             switch result {
             case .success(_):
@@ -174,13 +195,13 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         }
     }
     
-    // Проверяем, заполнили мы все поля, и активируем кнопку.
-    func checkFilledFieldsAndEnableButton() {
-        publishPostButton.addTarget(self, action: #selector(goToPublish), for: .touchUpInside)
-        publishPostButton.backgroundColor = UIColor(displayP3Red: 255, green: 0, blue: 0, alpha: 1)
+    @objc func titleDidChange(_ textField: UITextField) {
+        postCreate.title = textField.text ?? ""
     }
     
-    
+    @objc func costDidChange(_ textField: UITextField) {
+        postCreate.cost = textField.text ?? ""
+    }
 }
 
 extension CreatePostController {
@@ -219,15 +240,8 @@ extension CreatePostController {
 }
 
 extension CreatePostController: UITextViewDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
     func textViewDidChange(_ textView: UITextView) {
-        postCreate.title = textView.text
-        postCreate.description = textView.text
-        postCreate.cost = textView.text
+        postCreate.description = textView.text ?? ""
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -247,6 +261,6 @@ extension CreatePostController: UITextViewDelegate {
 
 
 extension CreatePostController: UITextFieldDelegate {
-    
+ 
 }
 
