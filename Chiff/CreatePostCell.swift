@@ -21,7 +21,6 @@ class CreatePostCell: UICollectionViewCell {
         textView.layer.cornerRadius = 8
         
         
-        titleLabel.text = "Описание поста, записи, чего-либо еще"
         titleLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
         
         addSubview(titleLabel)

@@ -100,7 +100,7 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
                     
                     DispatchQueue.main.async {
                         cell.nameLabel.text = username.name
-                        print(username.avatarUrls)
+//                        print(username.avatarUrls)
                     }
                     
                 case .failure(let error):

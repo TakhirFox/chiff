@@ -13,6 +13,7 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
     let publishPostButton = UIButton()
     let activityIndicator = UIActivityIndicatorView()
     var postCreate = PostCreate()
+    var imagePicker: UIImagePickerController!
     
     private enum Items: Int {
         case titleItem = 0
@@ -50,7 +51,8 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         publishPostButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 32, bottom: -100, right: 32), size: .init(width: 0, height: 50))
         activityIndicator.centerInSuperview()
         
-        
+        imagePicker =  UIImagePickerController()
+        imagePicker.delegate = self
         
         
     }
@@ -67,7 +69,7 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         case .titleItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
             cell.titleLabel.text = "Наименование товара"
-            cell.textField.text = "Что вы продаете?"
+            cell.textField.placeholder = "Что вы продаете?"
             cell.textField.text = postCreate.title
             cell.textField.addTarget(self, action: #selector(titleDidChange(_:)), for: .editingChanged)
             cell.textField.delegate = self
@@ -85,7 +87,7 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         case .costItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
             cell.titleLabel.text = "Цена"
-            cell.textField.text = "Цена Р"
+            cell.textField.placeholder = "Цена Р"
             cell.textField.text = postCreate.cost
             cell.textField.addTarget(self, action: #selector(costDidChange(_:)), for: .editingChanged)
             cell.textField.delegate = self
@@ -95,6 +97,7 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         case .imageItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! CreatePostImageButtonCell
             cell.titleLabel.text = "Фото"
+            cell.loadImageButton.addTarget(self, action: #selector(loadImage), for: .touchUpInside)
             
             return cell
             
@@ -202,6 +205,21 @@ extension CreatePostController {
     @objc func costDidChange(_ textField: UITextField) {
         postCreate.cost = textField.text ?? ""
     }
+    
+    @objc func loadImage() {
+        let alert = UIAlertController(title: "Загрузить изображение", message: nil, preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "Камера", style: .default) { _ in
+            self.imagePicker.sourceType = .camera
+        }
+        let libraryAction = UIAlertAction(title: "Галерея", style: .default) { _ in
+            self.imagePicker.sourceType = .photoLibrary
+        }
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        alert.addAction(cameraAction)
+        alert.addAction(libraryAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension CreatePostController {
@@ -262,5 +280,11 @@ extension CreatePostController: UITextViewDelegate {
 
 extension CreatePostController: UITextFieldDelegate {
  
+}
+
+extension CreatePostController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print(info)
+    }
 }
 
