@@ -19,18 +19,17 @@ class InfoAuthorCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        avatarImage.image = UIImage(named: "ads")
+        backgroundColor = .systemGray5
+        layer.cornerRadius = 10
+        
         avatarImage.layer.cornerRadius = 10
         avatarImage.clipsToBounds = true
         
-        nameLabel.text = "Юджин Благодаров"
         nameLabel.font = UIFont(name: "Arial-BoldMT", size: 16)
         
-        rateLabel.text = "5 отзывов"
         rateLabel.font = UIFont(name: "ArialMT", size: 14)
         rateLabel.textColor = .systemGray
         
-        personLabel.text = "Частое лицо"
         personLabel.font = UIFont(name: "ArialMT", size: 14)
         
         stackView.axis = .vertical

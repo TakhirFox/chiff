@@ -22,6 +22,7 @@ struct News: Codable {
     let template, format: String?
     let categories: [Int]?
     let links: Linkes?
+    let cost: String?
 
     enum CodingKeys: String, CodingKey {
         case id, date
@@ -32,6 +33,7 @@ struct News: Codable {
         case featuredMedia = "featured_media"
         case commentStatus = "comment_status"
         case pingStatus = "ping_status"
+        case cost = "cost"
         case sticky, template, format, categories
         case links = "_links"
     } 
@@ -47,6 +49,7 @@ struct Content: Codable {
 struct GUID: Codable {
     let rendered: String?
 }
+
 
 // MARK: - Links
 struct Linkes: Codable {

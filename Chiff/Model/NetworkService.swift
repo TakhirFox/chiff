@@ -15,7 +15,7 @@ enum NetworkError: Error {
 protocol NetworkServiceProtocol {
     func getData(page: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
     func getUsernamePost(id: Int, complitionHandler: @escaping (Result<User, Error>) -> Void)
-    func getPost(idPost: Int, complitionHandler: @escaping (Result<News, NetworkError>) -> Void)
+    func getPost(idPost: Int, complitionHandler: @escaping (Result<DetailNews, NetworkError>) -> Void)
     func postNewPost(title: String, content: String, status: String, complitionHandler: @escaping (Result<String, Error>) -> Void)
     func getProfileInfo(complitionHandler: @escaping (Result<User, NetworkError>) -> Void)
     func getAuth(login: String, password: String, complitionHandler: @escaping (Result<Auth, NetworkError>) -> Void)
@@ -88,7 +88,7 @@ class NetworkService: NetworkServiceProtocol {
     }
     
     // Запрашиваем пост с детальной информцией
-    func getPost(idPost: Int, complitionHandler: @escaping (Result<News, NetworkError>) -> Void) {
+    func getPost(idPost: Int, complitionHandler: @escaping (Result<DetailNews, NetworkError>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)/wp/v2/posts/\(idPost)") else { return }
         
@@ -97,7 +97,7 @@ class NetworkService: NetworkServiceProtocol {
             guard let data = data else { return }
             
             do {
-                let post = try JSONDecoder().decode(News.self, from: data)
+                let post = try JSONDecoder().decode(DetailNews.self, from: data)
                 complitionHandler(.success(post))
             } catch {
                 complitionHandler(.failure(.requestFailed))

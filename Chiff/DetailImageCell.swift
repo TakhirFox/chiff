@@ -9,6 +9,8 @@ import UIKit
 
 class DetailImageCell: UICollectionViewCell {
     
+    var images = [StatusImage]()
+    
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -29,6 +31,7 @@ class DetailImageCell: UICollectionViewCell {
         collectionView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: "cell")
         
+        
     }
     
     required init?(coder: NSCoder) {
@@ -39,12 +42,20 @@ class DetailImageCell: UICollectionViewCell {
 
 extension DetailImageCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageCell
-        cell.imageView.image = UIImage(named: "ads")
+        
+        DispatchQueue.global().async {
+            guard let imageUrl = URL(string: self.images[indexPath.row].guid ?? "") else { return }
+            guard let imageData = try? Data(contentsOf: imageUrl) else { return }
+            DispatchQueue.main.async {
+                cell.imageView.image = UIImage(data: imageData)
+            }
+        }
+        
         return cell
     }
     

@@ -14,7 +14,6 @@ class DetailDescCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        descriptionLabel.text = "TxtxtxtxttxTxtxtxtxttxTxtxtxtxttx TxtxtxtxttxTxtxtxtxttx Txtxtxtxttx TxtxtxtxttxTxtxtxtxttx TxtxtxtxttxTxtxtxtxttx TxtxtxtxttxTxtxtxtxttxTxtxtxtxttx TxtxtxtxttxTxtxtxtxttx"
         descriptionLabel.font = UIFont(name: "ArialMT", size: 16)
         descriptionLabel.numberOfLines = 0
         

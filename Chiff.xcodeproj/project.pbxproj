@@ -18,6 +18,7 @@
 		84E9C24E271EB38A004AB184 /* CreatePostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C24D271EB38A004AB184 /* CreatePostController.swift */; };
 		84E9C250271EB76A004AB184 /* CreatePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C24F271EB76A004AB184 /* CreatePostCell.swift */; };
 		AD6C9977272557C500A9FA34 /* TextfieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6C9976272557C400A9FA34 /* TextfieldCell.swift */; };
+		AD6C99792726900F00A9FA34 /* DetailNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6C99782726900F00A9FA34 /* DetailNews.swift */; };
 		AD7D627327242A950014E82E /* DetailImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7D627227242A950014E82E /* DetailImageCell.swift */; };
 		AD7D6275272432510014E82E /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7D6274272432510014E82E /* ImageCell.swift */; };
 		AD7D627727244D2B0014E82E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7D627627244D2B0014E82E /* ContactCell.swift */; };
@@ -83,6 +84,7 @@
 		911F226AFF4F13EC2E195535 /* Pods_ChiffTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChiffTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B86D80CF6F7D347389FF6A /* Pods-Chiff-ChiffUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff-ChiffUITests.release.xcconfig"; path = "Target Support Files/Pods-Chiff-ChiffUITests/Pods-Chiff-ChiffUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AD6C9976272557C400A9FA34 /* TextfieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldCell.swift; sourceTree = "<group>"; };
+		AD6C99782726900F00A9FA34 /* DetailNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNews.swift; sourceTree = "<group>"; };
 		AD7D627227242A950014E82E /* DetailImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageCell.swift; sourceTree = "<group>"; };
 		AD7D6274272432510014E82E /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		AD7D627627244D2B0014E82E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				AD8EFE66272102060056F8A8 /* PostCreate.swift */,
 				ADA7C963262F37F60067C116 /* Auth.swift */,
 				8476F82227157A5F003F15BC /* User.swift */,
+				AD6C99782726900F00A9FA34 /* DetailNews.swift */,
 				847FA2A1271D690400FF9699 /* Media.swift */,
 			);
 			path = Entity;
@@ -601,6 +604,7 @@
 				AD8EFE742723EB330056F8A8 /* PaidAdsCell.swift in Sources */,
 				AD7F12B52622E45100EB09F7 /* News.swift in Sources */,
 				84E9C250271EB76A004AB184 /* CreatePostCell.swift in Sources */,
+				AD6C99792726900F00A9FA34 /* DetailNews.swift in Sources */,
 				847FA2A2271D690400FF9699 /* Media.swift in Sources */,
 				AD8EFE63271F2B4F0056F8A8 /* UITextView+Layout.swift in Sources */,
 				8476E20F2716890E0032B909 /* FeedPresenter.swift in Sources */,

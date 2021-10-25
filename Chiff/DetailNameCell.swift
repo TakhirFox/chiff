@@ -15,10 +15,8 @@ class DetailNameCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        titleLabel.text = "Txtxtxtxttx"
         titleLabel.font = UIFont(name: "ArialMT", size: 22)
         
-        costLabel.text = "ddddddddd"
         costLabel.font = UIFont(name: "Arial-BoldMT", size: 22)
         
         addSubview(titleLabel)

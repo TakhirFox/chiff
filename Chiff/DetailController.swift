@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftyGif
 
 class DetailController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -22,7 +23,7 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
     
     let networkService = NetworkService()
     var idPost: Int?
-    var news = News(id: 0, date: nil, dateGmt: nil, guid: nil, modified: nil, modifiedGmt: nil, slug: nil, status: nil, type: nil, link: nil, title: nil, content: nil, excerpt: nil, author: nil, featuredMedia: 0, commentStatus: nil, pingStatus: nil, sticky: nil, template: nil, format: nil, categories: nil, links: nil)
+    var news = DetailNews(id: nil, date: nil, dateGmt: nil, guid: nil, modified: nil, modifiedGmt: nil, slug: nil, status: nil, type: nil, link: nil, title: nil, content: nil, excerpt: nil, author: nil, featuredMedia: nil, commentStatus: nil, pingStatus: nil, sticky: nil, template: nil, format: nil, categories: nil, images: nil, cost: nil, links: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,28 +65,20 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
         case .imageItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! DetailImageCell
             
-            networkService.getImagesFromPosts(idPost: news.featuredMedia ?? 0) { result in
-                switch result {
-                case .success(let media):
-                    
-                    DispatchQueue.global().async {
-                        guard let imageUrl = URL(string: media.guid?.rendered ?? "") else { return }
-                        guard let imageData = try? Data(contentsOf: imageUrl) else { return }
-                        DispatchQueue.main.async {
-//                            cell.imageView.image = UIImage(data: imageData)
-                        }
-                    }
-                    
-                case .failure(let error):
-                    print("Ошибка \(error.localizedDescription)")
+            if let images = news.images {
+                cell.images = images
+                
+                DispatchQueue.main.async {
+                    cell.collectionView.reloadData()
                 }
+                
             }
             
             return cell
         case .titleItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! DetailNameCell
             cell.titleLabel.text = news.title?.rendered
-            cell.costLabel.text = "70 000 рублей"
+            cell.costLabel.text = "\(news.cost ?? "") ₽"
             return cell
         case .locationItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
@@ -100,8 +93,28 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
             return cell
         case .infoAuthorItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell4", for: indexPath) as! InfoAuthorCell
-            cell.backgroundColor = .systemGray5
-            cell.layer.cornerRadius = 10
+            
+            networkService.getUsernamePost(id: news.author ?? 0) { result in
+                switch result {
+                case .success(let username):
+                    
+                    DispatchQueue.main.async {
+                        cell.nameLabel.text = username.name
+                        print(username.avatarUrls)
+                    }
+                    
+                case .failure(let error):
+                    print("Ошибка \(error.localizedDescription)")
+                }
+            }
+            
+            
+            
+            cell.avatarImage.image = UIImage(named: "ads")
+            cell.rateLabel.text = "5 отзывов"
+            cell.personLabel.text = "Частое лицо"
+            
+            
             return cell
         case .similarAdsItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
