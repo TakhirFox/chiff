@@ -10,12 +10,17 @@ import UIKit
 class ImageCell: UICollectionViewCell {
     
     let imageView = UIImageView()
+    let loadButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        loadButton.isHidden = true
                 
         addSubview(imageView)
+        addSubview(loadButton)
         
+        loadButton.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
         imageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
     }
     
