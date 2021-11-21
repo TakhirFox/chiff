@@ -9,12 +9,6 @@ import UIKit
 
 class CreatePostController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    let networkService = NetworkService()
-    let publishPostButton = UIButton()
-    let activityIndicator = UIActivityIndicatorView()
-    var postCreate = PostCreate()
-    var images = [UIImage]()
-    
     private enum Items: Int {
         case titleItem = 0
         case descriptionItem = 1
@@ -24,9 +18,22 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         case some2Item = 5
     }
     
+    let networkService = NetworkService()
+    let publishPostButton = UIButton()
+    let activityIndicator = UIActivityIndicatorView()
+    var postCreate = CreatePostModel()
+    var images = [UIImage]()
+    var imagePicker: UIImagePickerController!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        // Делегируем работу UIImagePicker на себя
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+                        
         collectionView.backgroundColor = .systemGroupedBackground
         collectionView.keyboardDismissMode = .onDrag
         
@@ -78,7 +85,7 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         case .descriptionItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CreatePostCell
             cell.titleLabel.text = "Описание товара"
-            cell.textView.text = postCreate.description
+            cell.textView.text = postCreate.content
             cell.textView.delegate = self
             
             return cell
@@ -95,13 +102,18 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
             
         case .imageItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! CreatePostImageButtonCell
+            
             cell.titleLabel.text = "Фото"
-            cell.viewController = self
+            cell.button.addTarget(self, action: #selector(loadImage), for: .touchUpInside)
+            cell.images = images
+            postCreate.images = images
+            cell.reloadCell()
             
             return cell
             
         case .someItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
+            
             cell.titleLabel.text = "Еще что-то"
             cell.textField.placeholder = "Еще что-то"
             cell.textField.delegate = self
@@ -171,18 +183,19 @@ extension CreatePostController {
         activityIndicator.startAnimating()
         view.isUserInteractionEnabled = false
         
-        let title = postCreate.title ?? ""
-        let description = postCreate.description ?? ""
-        print("LOG: ЗАПОЛНЕННЫЕ ДАННЫЕ \(title) И \(description)")
-        
-        if title.isEmpty || description.isEmpty {
-            print("LOG: пусто")
+        let title = postCreate.title
+        let description = postCreate.content
+        let cost = postCreate.cost
+        postCreate.status = "publish"
+                
+        if title == nil || description == nil || cost == nil {
+            print("LOG: данные пусты")
             self.activityIndicator.stopAnimating()
             self.view.isUserInteractionEnabled = true
             return
         }
-                
-        networkService.postNewPost(title: title, content: description, status: "publish") { result in
+        
+        networkService.createNewPost(post: postCreate) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
@@ -205,6 +218,23 @@ extension CreatePostController {
         postCreate.cost = textField.text ?? ""
     }
     
+    // Вызываем Алерт
+    @objc func loadImage() {
+        let alert = UIAlertController(title: "Загрузить изображение", message: nil, preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "Камера", style: .default) { _ in
+            self.imagePicker.sourceType = .camera
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
+        let libraryAction = UIAlertAction(title: "Галерея", style: .default) { _ in
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        alert.addAction(cameraAction)
+        alert.addAction(libraryAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
     
 }
 
@@ -245,7 +275,7 @@ extension CreatePostController {
 
 extension CreatePostController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        postCreate.description = textView.text ?? ""
+        postCreate.content = textView.text ?? ""
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -268,5 +298,24 @@ extension CreatePostController: UITextFieldDelegate {
  
 }
 
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+extension CreatePostController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else {
+            return
+        }
+        // Добавляем в начало массива картинку с помощью insert at: начало массива
+        self.images.insert(image, at: 0)
 
+        self.collectionView.reloadData()
 
+        imagePicker.dismiss(animated: true) {
+          
+          
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+}
