@@ -9,7 +9,7 @@ import UIKit
 
 class DetailImageCell: UICollectionViewCell {
     
-    var images = [StatusImage]()
+    var images = [Media]()
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -47,12 +47,13 @@ extension DetailImageCell: UICollectionViewDataSource, UICollectionViewDelegate,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageCell
-        
+
         DispatchQueue.global().async {
-            guard let imageUrl = URL(string: self.images[indexPath.row].guid ?? "") else { return }
+            guard let imageUrl = URL(string: self.images[indexPath.row].guid?.rendered ?? "") else { return }
             guard let imageData = try? Data(contentsOf: imageUrl) else { return }
             DispatchQueue.main.async {
                 cell.imageView.image = UIImage(data: imageData)
+                cell.imageViewBackground.image = UIImage(data: imageData)
             }
         }
         
