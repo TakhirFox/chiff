@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftKeychainWrapper
+import UIKit
 
 enum NetworkError: Error {
     case badURL, requestFailed, unknown, errorSignIn
@@ -15,8 +16,10 @@ enum NetworkError: Error {
 protocol NetworkServiceProtocol {
     func getData(page: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
     func getUsernamePost(id: Int, complitionHandler: @escaping (Result<User, Error>) -> Void)
-    func getPost(idPost: Int, complitionHandler: @escaping (Result<DetailNews, NetworkError>) -> Void)
-    func postNewPost(title: String, content: String, status: String, complitionHandler: @escaping (Result<String, Error>) -> Void)
+    func getPost(idPost: Int, complitionHandler: @escaping (Result<DetailNews, Error>) -> Void)
+    func createNewPost(post: CreatePostModel, complitionHandler: @escaping (Result<String, Error>) -> Void)
+    func getImagesFromPosts(idPost: Int, complitionHandler: @escaping (Result<[Media], NetworkError>) -> Void)
+    func loadImages(postId: String, images: [UIImage])
     func getProfileInfo(complitionHandler: @escaping (Result<User, NetworkError>) -> Void)
     func getAuth(login: String, password: String, complitionHandler: @escaping (Result<Auth, NetworkError>) -> Void)
     func getRegister()
@@ -42,7 +45,7 @@ class NetworkService: NetworkServiceProtocol {
             } catch {
                 complitionHandler(.failure(error))
             }
-
+            
         }.resume()
         
     }
@@ -62,25 +65,25 @@ class NetworkService: NetworkServiceProtocol {
             } catch {
                 complitionHandler(.failure(error))
             }
-
+            
         }.resume()
         
     }
     
     // Запрашиваем изображения для постов
-    func getImagesFromPosts(idPost: Int, complitionHandler: @escaping (Result<Media, NetworkError>) -> Void) {
+    func getImagesFromPosts(idPost: Int, complitionHandler: @escaping (Result<[Media], NetworkError>) -> Void) {
         
-        guard let url = URL(string: "\(baseUrl)/wp/v2/media/\(idPost)") else { return }
+        guard let url = URL(string: "\(baseUrl)/wp/v2/media?parent=\(idPost)") else { return }
         
         URLSession.shared.dataTask(with: url) { data, _, error in
-            
+
             guard let data = data else { return }
-            
+
             do {
-                let media = try JSONDecoder().decode(Media.self, from: data)
+                let media = try JSONDecoder().decode([Media].self, from: data)
                 complitionHandler(.success(media))
             } catch {
-                print("Не удалось загрузить картинки \(error.localizedDescription)")
+                complitionHandler(.failure(.requestFailed))
             }
             
         }.resume()
@@ -88,7 +91,7 @@ class NetworkService: NetworkServiceProtocol {
     }
     
     // Запрашиваем пост с детальной информцией
-    func getPost(idPost: Int, complitionHandler: @escaping (Result<DetailNews, NetworkError>) -> Void) {
+    func getPost(idPost: Int, complitionHandler: @escaping (Result<DetailNews, Error>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)/wp/v2/posts/\(idPost)") else { return }
         
@@ -100,7 +103,7 @@ class NetworkService: NetworkServiceProtocol {
                 let post = try JSONDecoder().decode(DetailNews.self, from: data)
                 complitionHandler(.success(post))
             } catch {
-                complitionHandler(.failure(.requestFailed))
+                complitionHandler(.failure(error))
             }
             
         }.resume()
@@ -108,15 +111,21 @@ class NetworkService: NetworkServiceProtocol {
     }
     
     // Отправляем POST запрос, для создания поста
-    func postNewPost(title: String, content: String, status: String, complitionHandler: @escaping (Result<String, Error>) -> Void) {
+    func createNewPost(post: CreatePostModel, complitionHandler: @escaping (Result<String, Error>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)/wp/v2/posts") else { return }
         guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
-
+        
         let headers = ["Content-Type": "application/json", "Accept": "application/json"]
-        let parameters = ["title": title, "content": content, "status": status] as [String: Any]
-        let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: [])
-
+        
+        let object = ["title": post.title ?? "",
+                      "content": post.content ?? "",
+                      "status": post.status ?? "",
+                      "cost": post.cost ?? ""
+        ] as [String: Any]
+        
+        let httpBody = try? JSONSerialization.data(withJSONObject: object, options: [])
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = httpBody
@@ -124,17 +133,79 @@ class NetworkService: NetworkServiceProtocol {
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { data, response, error in
+            
             guard let data = data, error == nil else {
                 return complitionHandler(.failure(error as! Error))
             }
+            
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            
             if let responseJSON = responseJSON as? [String: Any] {
-                print(responseJSON)
+                
+                guard let response = responseJSON["id"] as? Int else { return }
+                
+                if !(post.images?.isEmpty ?? false) {
+                    self.loadImages(postId: String(response), images: post.images ?? [UIImage()])
+                }
+                
                 complitionHandler(.success("Ok"))
             }
+            
         }.resume()
-
+        
     }
+    
+    // Отправляем изображение на сервер, получаем ссылку для поста
+    func loadImages(postId: String, images: [UIImage]) {
+        guard let url = URL(string: "\(baseUrl)/wp/v2/media") else { return }
+        guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
+        
+        for image in images {
+            print(image)
+            let filename = "avatar.png"
+            let boundary = UUID().uuidString
+            
+            let config = URLSessionConfiguration.default
+            let session = URLSession(configuration: config)
+            
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "POST"
+            urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+            urlRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+            
+            var data = Data()
+            // post - id
+            data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+            data.append("Content-Disposition: form-data; name=\"post\"\r\n\r\n".data(using: .utf8)!)
+            data.append("\(postId)".data(using: .utf8)!)
+            // file - image
+            data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+            data.append("Content-Disposition: form-data; name=\"file\"; filename=\"\(filename)\"\r\n".data(using: .utf8)!)
+            data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
+            data.append(image.jpegData(compressionQuality: 1) ?? Data())
+            data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+            
+            session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
+                
+                if(error != nil){
+                    print("\(error!.localizedDescription)")
+                }
+                
+                guard let responseData = responseData else {
+                    print("no response data")
+                    return
+                }
+                
+                if let responseString = String(data: responseData, encoding: .utf8) {
+                    print("uploaded to: \(responseString)")
+                }
+                
+            }).resume()
+        }
+        
+    }
+    
+    
     
     // Информация о пользователе
     func getProfileInfo(complitionHandler: @escaping (Result<User, NetworkError>) -> Void) {
@@ -147,10 +218,10 @@ class NetworkService: NetworkServiceProtocol {
         loginRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: loginRequest) { (data, response, error) in
-                     
+            
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
                 complitionHandler(.failure(.errorSignIn))
-                    return
+                return
             }
             
             guard let data = data else { return }
@@ -161,7 +232,7 @@ class NetworkService: NetworkServiceProtocol {
             } catch {
                 print("ошибка \(error.localizedDescription)")
             }
-
+            
         }.resume()
         
     }
@@ -188,9 +259,9 @@ class NetworkService: NetworkServiceProtocol {
             
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
                 complitionHandler(.failure(.errorSignIn))
-                    return
+                return
             }
-
+            
             
             guard let data = data else { return }
             
@@ -202,7 +273,7 @@ class NetworkService: NetworkServiceProtocol {
                 KeychainWrapper.standard.set(auth.user_email ?? "", forKey: "user_email")
                 KeychainWrapper.standard.set(auth.user_nicename ?? "", forKey: "user_nicename")
                 KeychainWrapper.standard.set(auth.user_display_name ?? "", forKey: "user_display_name")
-                                
+                
                 print("LOG: TOKEN \(String(describing: auth.token))")
                 
                 complitionHandler(.success(auth))
@@ -248,7 +319,6 @@ class NetworkService: NetworkServiceProtocol {
     }
     
     func getPosts() {
-        
         
         
     }
