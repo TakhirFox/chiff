@@ -30,7 +30,7 @@ struct DetailNews: Codable {
     let template: String?
     let format: String?
     let categories: [Int]?
-    let images: [StatusImage]?
+   
     let cost: String?
     let links: StatusLinks?
 
@@ -56,7 +56,7 @@ struct DetailNews: Codable {
         case template = "template"
         case format = "format"
         case categories = "categories"
-        case images = "images"
+      
         case cost = "cost"
         case links = "_links"
     }
