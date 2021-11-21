@@ -22,7 +22,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+        
         presenter.setViewDelegate(view: self)
         presenter.loadNews(page: currentPage)
         
@@ -56,7 +56,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         KeychainWrapper.standard.removeObject(forKey: "user_email")
         KeychainWrapper.standard.removeObject(forKey: "user_nicename")
         KeychainWrapper.standard.removeObject(forKey: "user_display_name")
-
+        
         // Переход на экран логина, если вышел
         // TODO: Под вопросом если честно.
         let authViewController = UIStoryboard(name: "Main",
@@ -64,7 +64,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             .instantiateViewController(withIdentifier: "SignInController") as! SignInController
         authViewController.modalPresentationStyle = .fullScreen
         present(authViewController, animated:true, completion:nil)
-
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -80,12 +80,14 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         cell.authorLabel.text = nil
         cell.imageView.image = UIImage(named: "no_image")
         
-        networkService.getImagesFromPosts(idPost: news.featuredMedia ?? 0) { result in
+        networkService.getImagesFromPosts(idPost: news.id ?? 0) { result in
             switch result {
             case .success(let media):
                 
+                guard !media.isEmpty else { return }
+                
                 DispatchQueue.global().async {
-                    guard let imageUrl = URL(string: media.guid?.rendered ?? "") else { return }
+                    guard let imageUrl = URL(string: media[0].guid?.rendered ?? "") else { return }
                     guard let imageData = try? Data(contentsOf: imageUrl) else { return }
                     DispatchQueue.main.async {
                         cell.imageView.image = UIImage(data: imageData)
@@ -109,7 +111,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 print("Ошибка \(error.localizedDescription)")
             }
         }
-
+        
         return cell
         
     }
@@ -119,7 +121,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let controller = DetailController(collectionViewLayout: UICollectionViewFlowLayout())
         controller.idPost = news[indexPath.row].id
         navigationController?.pushViewController(controller, animated: true)
-//        present(controller, animated: true, completion: nil)
+        //        present(controller, animated: true, completion: nil)
         
     }
     
@@ -141,7 +143,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         self.isLoadedPage = false
     }
     
-
+    
 }
 
 
