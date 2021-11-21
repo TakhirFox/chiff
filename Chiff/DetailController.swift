@@ -23,7 +23,7 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
     
     let networkService = NetworkService()
     var idPost: Int?
-    var news = DetailNews(id: nil, date: nil, dateGmt: nil, guid: nil, modified: nil, modifiedGmt: nil, slug: nil, status: nil, type: nil, link: nil, title: nil, content: nil, excerpt: nil, author: nil, featuredMedia: nil, commentStatus: nil, pingStatus: nil, sticky: nil, template: nil, format: nil, categories: nil, images: nil, cost: nil, links: nil)
+    var news = DetailNews(id: nil, date: nil, dateGmt: nil, guid: nil, modified: nil, modifiedGmt: nil, slug: nil, status: nil, type: nil, link: nil, title: nil, content: nil, excerpt: nil, author: nil, featuredMedia: nil, commentStatus: nil, pingStatus: nil, sticky: nil, template: nil, format: nil, categories: nil, cost: nil, links: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +47,8 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
                     self.news = news
                     self.collectionView.reloadData()
                 }
-            case .failure(_):
-                print("Ошибка")
+            case .failure(let error):
+                print("Ошибка получения поста \(error)")
             }
         }
     }
@@ -64,14 +64,19 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
         switch items {
         case .imageItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! DetailImageCell
-            
-            if let images = news.images {
-                cell.images = images
-                
-                DispatchQueue.main.async {
-                    cell.collectionView.reloadData()
+       
+            networkService.getImagesFromPosts(idPost: news.id ?? 0) { result in
+                switch result {
+                case .success(let media):
+                    
+                    DispatchQueue.main.async {
+                        cell.images = media
+                        cell.collectionView.reloadData()
+                    }
+                    
+                case .failure(let error):
+                    print("Ошибка получения изображения \(error.localizedDescription)")
                 }
-                
             }
             
             return cell
@@ -100,15 +105,12 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
                     
                     DispatchQueue.main.async {
                         cell.nameLabel.text = username.name
-//                        print(username.avatarUrls)
                     }
                     
                 case .failure(let error):
-                    print("Ошибка \(error.localizedDescription)")
+                    print("Ошибка получения информации о пользователе \(error.localizedDescription)")
                 }
             }
-            
-            
             
             cell.avatarImage.image = UIImage(named: "ads")
             cell.rateLabel.text = "5 отзывов"
