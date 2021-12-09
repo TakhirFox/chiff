@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-Chiff-ChiffUITests/Pods-Chiff-ChiffUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework
+${BUILT_PRODUCTS_DIR}/SwiftyGif/SwiftyGif.framework
