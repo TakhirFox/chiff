@@ -1,0 +1,20 @@
+default_platform(:ios)
+
+platform :ios do
+
+  desc "Builds, achieves and uploads ipa to TestFlight"
+  lane :testflight_lane do
+    increment_build_number
+    
+    produce(app_name: "Chiff") # Если приложение не создавалось в app store connect, не забудь закомментить
+    cert(username: "iamtheorangefox@gmail.com")
+    sigh(force: true, username: "iamtheorangefox@gmail.com", app_identifier: "ru.zakirovweb.Chiff")
+    gym(export_method: "app-store") # Собирает ipa
+
+    upload_to_testflight(
+           skip_submission: true,
+           skip_waiting_for_build_processing: true
+      )
+  end
+  
+end
