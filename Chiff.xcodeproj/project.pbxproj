@@ -13,6 +13,11 @@
 		842B2D4527B26435002E6AE8 /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D4427B26435002E6AE8 /* BasePresenter.swift */; };
 		842B2D4727B26472002E6AE8 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D4627B26472002E6AE8 /* BaseRouter.swift */; };
 		842B2D4927B264E6002E6AE8 /* BaseAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D4827B264E6002E6AE8 /* BaseAssemblyProtocol.swift */; };
+		842B2D4D27B26A3C002E6AE8 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D4C27B26A3C002E6AE8 /* AuthViewController.swift */; };
+		842B2D4F27B26AC1002E6AE8 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D4E27B26AC1002E6AE8 /* AuthPresenter.swift */; };
+		842B2D5427B26CA3002E6AE8 /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D5327B26CA3002E6AE8 /* AuthInteractor.swift */; };
+		842B2D5627B26CE5002E6AE8 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D5527B26CE5002E6AE8 /* AuthRouter.swift */; };
+		842B2D5827B26DF2002E6AE8 /* AuthAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D5727B26DF2002E6AE8 /* AuthAssembly.swift */; };
 		8476E20F2716890E0032B909 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476E20E2716890E0032B909 /* FeedPresenter.swift */; };
 		8476E2112716891D0032B909 /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476E2102716891D0032B909 /* SignInPresenter.swift */; };
 		8476F821271559EE003F15BC /* SignInController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476F820271559EE003F15BC /* SignInController2.swift */; };
@@ -84,6 +89,11 @@
 		842B2D4427B26435002E6AE8 /* BasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
 		842B2D4627B26472002E6AE8 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		842B2D4827B264E6002E6AE8 /* BaseAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAssemblyProtocol.swift; sourceTree = "<group>"; };
+		842B2D4C27B26A3C002E6AE8 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		842B2D4E27B26AC1002E6AE8 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		842B2D5327B26CA3002E6AE8 /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
+		842B2D5527B26CE5002E6AE8 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
+		842B2D5727B26DF2002E6AE8 /* AuthAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAssembly.swift; sourceTree = "<group>"; };
 		8476E20E2716890E0032B909 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
 		8476E2102716891D0032B909 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
 		8476F820271559EE003F15BC /* SignInController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController2.swift; sourceTree = "<group>"; };
@@ -222,6 +232,8 @@
 		842B2D3A27B24D95002E6AE8 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				842B2D4B27B2680C002E6AE8 /* Auth */,
+				842B2D4A27B2679A002E6AE8 /* TemplateVIPER */,
 			);
 			name = Module;
 			sourceTree = "<group>";
@@ -278,6 +290,25 @@
 				842B2D4827B264E6002E6AE8 /* BaseAssemblyProtocol.swift */,
 			);
 			name = BaseViper;
+			sourceTree = "<group>";
+		};
+		842B2D4A27B2679A002E6AE8 /* TemplateVIPER */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TemplateVIPER;
+			sourceTree = "<group>";
+		};
+		842B2D4B27B2680C002E6AE8 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				842B2D4C27B26A3C002E6AE8 /* AuthViewController.swift */,
+				842B2D4E27B26AC1002E6AE8 /* AuthPresenter.swift */,
+				842B2D5327B26CA3002E6AE8 /* AuthInteractor.swift */,
+				842B2D5527B26CE5002E6AE8 /* AuthRouter.swift */,
+				842B2D5727B26DF2002E6AE8 /* AuthAssembly.swift */,
+			);
+			name = Auth;
 			sourceTree = "<group>";
 		};
 		AD7D627127242A7B0014E82E /* Cells */ = {
@@ -683,6 +714,8 @@
 				AD7F1273261CB55E00EB09F7 /* UIView+Layout.swift in Sources */,
 				AD7F12AA2621C19E00EB09F7 /* NetworkService.swift in Sources */,
 				AD8C130C2784C0EE00AD1D20 /* Post.swift in Sources */,
+				842B2D5827B26DF2002E6AE8 /* AuthAssembly.swift in Sources */,
+				842B2D4F27B26AC1002E6AE8 /* AuthPresenter.swift in Sources */,
 				AD8EFE702723D14A0056F8A8 /* DetailDescCell.swift in Sources */,
 				AD7F1233261CAFFF00EB09F7 /* Chiff.xcdatamodeld in Sources */,
 				AD8EFE67272102060056F8A8 /* PostCreate.swift in Sources */,
@@ -698,6 +731,7 @@
 				AD7D627327242A950014E82E /* DetailImageCell.swift in Sources */,
 				AD7F122B261CAFFF00EB09F7 /* SceneDelegate.swift in Sources */,
 				AD7F1262261CB0C800EB09F7 /* FeedController.swift in Sources */,
+				842B2D4D27B26A3C002E6AE8 /* AuthViewController.swift in Sources */,
 				8476F821271559EE003F15BC /* SignInController2.swift in Sources */,
 				AD6C9977272557C500A9FA34 /* TextfieldCell.swift in Sources */,
 				AD8EFE742723EB330056F8A8 /* PaidAdsCell.swift in Sources */,
@@ -705,7 +739,9 @@
 				84E9C250271EB76A004AB184 /* CreatePostCell.swift in Sources */,
 				AD6C99792726900F00A9FA34 /* DetailNews.swift in Sources */,
 				847FA2A2271D690400FF9699 /* Media.swift in Sources */,
+				842B2D5627B26CE5002E6AE8 /* AuthRouter.swift in Sources */,
 				842B2D4927B264E6002E6AE8 /* BaseAssemblyProtocol.swift in Sources */,
+				842B2D5427B26CA3002E6AE8 /* AuthInteractor.swift in Sources */,
 				AD8EFE63271F2B4F0056F8A8 /* UITextView+Layout.swift in Sources */,
 				8476E20F2716890E0032B909 /* FeedPresenter.swift in Sources */,
 				AD7F12A52621B71C00EB09F7 /* ProfileController.swift in Sources */,

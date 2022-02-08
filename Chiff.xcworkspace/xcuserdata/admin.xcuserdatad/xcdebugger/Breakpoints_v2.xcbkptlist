@@ -16,7 +16,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "125"
             endingLineNumber = "125"
-            landmarkName = "collectionView(_:willDisplay:forItemAt:)"
+            landmarkName = "setupDataSource()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
