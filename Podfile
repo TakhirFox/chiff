@@ -9,6 +9,7 @@ target 'Chiff' do
   pod 'SwiftKeychainWrapper'
   pod 'SwiftyGif'
   pod 'Kingfisher'
+  pod 'SnapKit', '~> 4.0'
 
 
   target 'ChiffTests' do
