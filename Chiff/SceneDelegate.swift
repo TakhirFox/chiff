@@ -31,9 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window = UIWindow(frame: windowScene.coordinateSpace.bounds)
             window?.windowScene = windowScene
             
-            let authViewController = UIStoryboard(name: "Main",
-                                                  bundle: nil)
-                .instantiateViewController(withIdentifier: "SignInController") as! SignInController
+            let authViewController = SignInController()
             window?.rootViewController = authViewController
             window?.makeKeyAndVisible()
         }
