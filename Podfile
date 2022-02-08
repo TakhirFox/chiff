@@ -8,6 +8,8 @@ target 'Chiff' do
   # Pods for Chiff
   pod 'SwiftKeychainWrapper'
   pod 'SwiftyGif'
+  pod 'Kingfisher'
+
 
   target 'ChiffTests' do
     inherit! :search_paths
