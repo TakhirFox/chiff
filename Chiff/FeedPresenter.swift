@@ -9,6 +9,8 @@ import Foundation
 
 protocol FeedView: AnyObject {
     func presentNews(news: [News])
+    func presenterUsername(username: User)
+    func presentImage(image: [Media])
 }
 
 class FeedPresenter {
@@ -23,7 +25,9 @@ class FeedPresenter {
     }
     
     public func loadNews(page: Int) {
-        networkService.getData(page: page) { result in
+        networkService.getData(page: page) { [weak self] result in
+            guard let self = self else { return }
+            
             switch result {
             case .success(let news):
                 self.view?.presentNews(news: news)
@@ -31,8 +35,33 @@ class FeedPresenter {
                 print("LOG: error for controller \(error)")
             }
         }
-        
-//        networkService.getImagesFromPosts(idPost: <#T##Int#>, complitionHandler: <#T##(Result<Media, NetworkError>) -> Void#>)
+    }
+    
+    public func loadUsernameForCells(author: Int) {
+        networkService.getUsernamePost(id: author) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let username):
+                self.view?.presenterUsername(username: username)
+            case .failure(let error):
+                print("Ошибка получения имени пользователя \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    public func loadImageForCell(idPost: Int) {
+        networkService.getImagesFromPosts(idPost: idPost) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let media):
+                guard !media.isEmpty else { return }
+                self.view?.presentImage(image: media)
+            case .failure(let error):
+                print("Ошибка получения изображения \(error.localizedDescription)")
+            }
+        }
     }
     
     
