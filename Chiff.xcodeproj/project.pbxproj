@@ -8,9 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1E8DF8147F36032BDDA99892 /* Pods_Chiff_ChiffUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D635B449A75DE4298D3DAD49 /* Pods_Chiff_ChiffUITests.framework */; };
+		842B2D4127B26337002E6AE8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D4027B26337002E6AE8 /* BaseViewController.swift */; };
+		842B2D4327B263F0002E6AE8 /* BaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D4227B263F0002E6AE8 /* BaseInteractor.swift */; };
+		842B2D4527B26435002E6AE8 /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D4427B26435002E6AE8 /* BasePresenter.swift */; };
+		842B2D4727B26472002E6AE8 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D4627B26472002E6AE8 /* BaseRouter.swift */; };
+		842B2D4927B264E6002E6AE8 /* BaseAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D4827B264E6002E6AE8 /* BaseAssemblyProtocol.swift */; };
 		8476E20F2716890E0032B909 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476E20E2716890E0032B909 /* FeedPresenter.swift */; };
 		8476E2112716891D0032B909 /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476E2102716891D0032B909 /* SignInPresenter.swift */; };
-		8476F81F271559A8003F15BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8476F81E271559A8003F15BC /* Main.storyboard */; };
 		8476F821271559EE003F15BC /* SignInController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476F820271559EE003F15BC /* SignInController2.swift */; };
 		8476F82327157A5F003F15BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476F82227157A5F003F15BC /* User.swift */; };
 		847FA2A2271D690400FF9699 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FA2A1271D690400FF9699 /* Media.swift */; };
@@ -75,9 +79,13 @@
 /* Begin PBXFileReference section */
 		3DFEB1D79B390BCC75934114 /* Pods-Chiff-ChiffUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff-ChiffUITests.release.xcconfig"; path = "Target Support Files/Pods-Chiff-ChiffUITests/Pods-Chiff-ChiffUITests.release.xcconfig"; sourceTree = "<group>"; };
 		77551F287AA7E402A66D7AB5 /* Pods-ChiffTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiffTests.debug.xcconfig"; path = "Target Support Files/Pods-ChiffTests/Pods-ChiffTests.debug.xcconfig"; sourceTree = "<group>"; };
+		842B2D4027B26337002E6AE8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		842B2D4227B263F0002E6AE8 /* BaseInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInteractor.swift; sourceTree = "<group>"; };
+		842B2D4427B26435002E6AE8 /* BasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
+		842B2D4627B26472002E6AE8 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		842B2D4827B264E6002E6AE8 /* BaseAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAssemblyProtocol.swift; sourceTree = "<group>"; };
 		8476E20E2716890E0032B909 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
 		8476E2102716891D0032B909 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
-		8476F81E271559A8003F15BC /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8476F820271559EE003F15BC /* SignInController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController2.swift; sourceTree = "<group>"; };
 		8476F82227157A5F003F15BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		847FA2A1271D690400FF9699 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
@@ -109,7 +117,7 @@
 		AD7F1272261CB55E00EB09F7 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		AD7F1278261CBA2C00EB09F7 /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		AD7F12A42621B71C00EB09F7 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
-		AD7F12A92621C19E00EB09F7 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		AD7F12A92621C19E00EB09F7 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = Model/NetworkService.swift; sourceTree = "<group>"; };
 		AD7F12B42622E45100EB09F7 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		AD8C130B2784C0EE00AD1D20 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AD8EFE5D271B45640056F8A8 /* SplashAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAnimationView.swift; sourceTree = "<group>"; };
@@ -171,7 +179,71 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8476E20D271688C40032B909 /* Entity */ = {
+		842B2D3627B24995002E6AE8 /* MVP */ = {
+			isa = PBXGroup;
+			children = (
+				AD7F12BB2622F1C200EB09F7 /* View */,
+				AD7F12BA2622F17400EB09F7 /* Presenter */,
+			);
+			name = MVP;
+			sourceTree = "<group>";
+		};
+		842B2D3727B24A45002E6AE8 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				AD7F1228261CAFFF00EB09F7 /* AppDelegate.swift */,
+				AD7F122A261CAFFF00EB09F7 /* SceneDelegate.swift */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		842B2D3827B24AE7002E6AE8 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				AD7F1234261CB00000EB09F7 /* Assets.xcassets */,
+				AD7F1236261CB00000EB09F7 /* LaunchScreen.storyboard */,
+				AD8EFE5D271B45640056F8A8 /* SplashAnimationView.swift */,
+				AD7F1231261CAFFF00EB09F7 /* Chiff.xcdatamodeld */,
+				AD8EFE5F271B4DE50056F8A8 /* logoAnim.gif */,
+			);
+			name = "Supporting files";
+			sourceTree = "<group>";
+		};
+		842B2D3927B24D84002E6AE8 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				842B2D3B27B252C6002E6AE8 /* Network */,
+				842B2D3E27B257B0002E6AE8 /* Extensions */,
+				842B2D3F27B262DB002E6AE8 /* BaseViper */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		842B2D3A27B24D95002E6AE8 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Module;
+			sourceTree = "<group>";
+		};
+		842B2D3B27B252C6002E6AE8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				842B2D3C27B253B5002E6AE8 /* Services */,
+				842B2D3D27B253C3002E6AE8 /* Entity */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		842B2D3C27B253B5002E6AE8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AD7F12A92621C19E00EB09F7 /* NetworkService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		842B2D3D27B253C3002E6AE8 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				AD7F12B42622E45100EB09F7 /* News.swift */,
@@ -184,7 +256,28 @@
 				AD938958278034EB00B0D925 /* Categoryes.swift */,
 				AD8C130B2784C0EE00AD1D20 /* Post.swift */,
 			);
-			path = Entity;
+			name = Entity;
+			sourceTree = "<group>";
+		};
+		842B2D3E27B257B0002E6AE8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AD7F1272261CB55E00EB09F7 /* UIView+Layout.swift */,
+				AD8EFE62271F2B4F0056F8A8 /* UITextView+Layout.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		842B2D3F27B262DB002E6AE8 /* BaseViper */ = {
+			isa = PBXGroup;
+			children = (
+				842B2D4027B26337002E6AE8 /* BaseViewController.swift */,
+				842B2D4227B263F0002E6AE8 /* BaseInteractor.swift */,
+				842B2D4427B26435002E6AE8 /* BasePresenter.swift */,
+				842B2D4627B26472002E6AE8 /* BaseRouter.swift */,
+				842B2D4827B264E6002E6AE8 /* BaseAssemblyProtocol.swift */,
+			);
+			name = BaseViper;
 			sourceTree = "<group>";
 		};
 		AD7D627127242A7B0014E82E /* Cells */ = {
@@ -226,20 +319,13 @@
 		AD7F1227261CAFFF00EB09F7 /* Chiff */ = {
 			isa = PBXGroup;
 			children = (
-				AD7F1228261CAFFF00EB09F7 /* AppDelegate.swift */,
-				AD7F122A261CAFFF00EB09F7 /* SceneDelegate.swift */,
-				AD7F12B92622F15900EB09F7 /* Model */,
-				AD7F12BB2622F1C200EB09F7 /* View */,
-				AD7F12BA2622F17400EB09F7 /* Presenter */,
-				AD8EFE61271F2B2E0056F8A8 /* Extensions */,
-				8476F81E271559A8003F15BC /* Main.storyboard */,
 				AD7F1278261CBA2C00EB09F7 /* MainTabBar.swift */,
-				AD7F1234261CB00000EB09F7 /* Assets.xcassets */,
-				AD7F1236261CB00000EB09F7 /* LaunchScreen.storyboard */,
-				AD8EFE5D271B45640056F8A8 /* SplashAnimationView.swift */,
+				842B2D3627B24995002E6AE8 /* MVP */,
+				842B2D3727B24A45002E6AE8 /* Application */,
+				842B2D3927B24D84002E6AE8 /* Base */,
+				842B2D3A27B24D95002E6AE8 /* Module */,
+				842B2D3827B24AE7002E6AE8 /* Supporting files */,
 				AD7F1239261CB00000EB09F7 /* Info.plist */,
-				AD7F1231261CAFFF00EB09F7 /* Chiff.xcdatamodeld */,
-				AD8EFE5F271B4DE50056F8A8 /* logoAnim.gif */,
 			);
 			path = Chiff;
 			sourceTree = "<group>";
@@ -262,15 +348,6 @@
 			path = ChiffUITests;
 			sourceTree = "<group>";
 		};
-		AD7F12B92622F15900EB09F7 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				AD7F12BC2622F1DB00EB09F7 /* Networking */,
-				8476E20D271688C40032B909 /* Entity */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		AD7F12BA2622F17400EB09F7 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,23 +367,6 @@
 				AD8EFE6827231A610056F8A8 /* CreatePostScreen */,
 			);
 			name = View;
-			sourceTree = "<group>";
-		};
-		AD7F12BC2622F1DB00EB09F7 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				AD7F12A92621C19E00EB09F7 /* NetworkService.swift */,
-			);
-			name = Networking;
-			sourceTree = "<group>";
-		};
-		AD8EFE61271F2B2E0056F8A8 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				AD7F1272261CB55E00EB09F7 /* UIView+Layout.swift */,
-				AD8EFE62271F2B4F0056F8A8 /* UITextView+Layout.swift */,
-			);
-			name = Extensions;
 			sourceTree = "<group>";
 		};
 		AD8EFE6827231A610056F8A8 /* CreatePostScreen */ = {
@@ -477,7 +537,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8476F81F271559A8003F15BC /* Main.storyboard in Resources */,
 				AD8EFE60271B4DE50056F8A8 /* logoAnim.gif in Resources */,
 				AD7F1238261CB00000EB09F7 /* LaunchScreen.storyboard in Resources */,
 				AD7F1235261CB00000EB09F7 /* Assets.xcassets in Resources */,
@@ -609,12 +668,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD7D627727244D2B0014E82E /* ContactCell.swift in Sources */,
+				842B2D4527B26435002E6AE8 /* BasePresenter.swift in Sources */,
 				AD938959278034EB00B0D925 /* Categoryes.swift in Sources */,
 				AD8EFE722723D37D0056F8A8 /* InfoAuthorCell.swift in Sources */,
 				8476F82327157A5F003F15BC /* User.swift in Sources */,
 				AD8EFE5E271B45640056F8A8 /* SplashAnimationView.swift in Sources */,
 				AD7F1229261CAFFF00EB09F7 /* AppDelegate.swift in Sources */,
 				AD7F1268261CB31200EB09F7 /* FeedCell.swift in Sources */,
+				842B2D4727B26472002E6AE8 /* BaseRouter.swift in Sources */,
 				AD956226274A844C00D5FAFF /* CreatePostModel.swift in Sources */,
 				AD95622A2753C43F00D5FAFF /* SignInController.swift in Sources */,
 				8476E2112716891D0032B909 /* SignInPresenter.swift in Sources */,
@@ -625,12 +686,14 @@
 				AD8EFE702723D14A0056F8A8 /* DetailDescCell.swift in Sources */,
 				AD7F1233261CAFFF00EB09F7 /* Chiff.xcdatamodeld in Sources */,
 				AD8EFE67272102060056F8A8 /* PostCreate.swift in Sources */,
+				842B2D4327B263F0002E6AE8 /* BaseInteractor.swift in Sources */,
 				AD8EFE65271F3B3A0056F8A8 /* CreatePostImageButtonCell.swift in Sources */,
 				AD8EFE6E2723C8510056F8A8 /* DetailNameCell.swift in Sources */,
 				84E9C24E271EB38A004AB184 /* CreatePostController.swift in Sources */,
 				AD938957277F839000B0D925 /* CategoryFeedCell.swift in Sources */,
 				AD7D6275272432510014E82E /* ImageCell.swift in Sources */,
 				ADA7C964262F37F60067C116 /* Auth.swift in Sources */,
+				842B2D4127B26337002E6AE8 /* BaseViewController.swift in Sources */,
 				AD8EFE6C27231AF10056F8A8 /* DetailController.swift in Sources */,
 				AD7D627327242A950014E82E /* DetailImageCell.swift in Sources */,
 				AD7F122B261CAFFF00EB09F7 /* SceneDelegate.swift in Sources */,
@@ -642,6 +705,7 @@
 				84E9C250271EB76A004AB184 /* CreatePostCell.swift in Sources */,
 				AD6C99792726900F00A9FA34 /* DetailNews.swift in Sources */,
 				847FA2A2271D690400FF9699 /* Media.swift in Sources */,
+				842B2D4927B264E6002E6AE8 /* BaseAssemblyProtocol.swift in Sources */,
 				AD8EFE63271F2B4F0056F8A8 /* UITextView+Layout.swift in Sources */,
 				8476E20F2716890E0032B909 /* FeedPresenter.swift in Sources */,
 				AD7F12A52621B71C00EB09F7 /* ProfileController.swift in Sources */,
@@ -814,10 +878,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = J4B53B6TAD;
 				INFOPLIST_FILE = Chiff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -840,10 +902,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = J4B53B6TAD;
 				INFOPLIST_FILE = Chiff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
