@@ -278,7 +278,7 @@ class NetworkService: NetworkServiceProtocol {
                 
                 complitionHandler(.success(auth))
             } catch let error {
-                complitionHandler(.failure(error as! NetworkError))
+                complitionHandler(.failure(.errorSignIn))
             }
             
         }.resume()
