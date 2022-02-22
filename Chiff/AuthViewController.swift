@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol AuthViewControllerProtocol: AnyObject {
     var presenter: AuthPresenterProtocol? { get set }
@@ -80,5 +81,30 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
     
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
+        
+        setupSubviews()
+        setupConstraints()
+    }
+    
+    func setupSubviews() {
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(loginTextField)
+        stackView.addArrangedSubview(passwordTextField)
+        stackView.addArrangedSubview(loginButton)
+        stackView.addArrangedSubview(stackViewHorizontal)
+        stackViewHorizontal.addArrangedSubview(registerButton)
+        stackViewHorizontal.addArrangedSubview(forgetAccountButton)
+    }
+    
+    func setupConstraints() {
+        stackView.snp.makeConstraints { make in
+            make.left.equalTo(view).offset(16)
+            make.right.equalTo(view).offset(-16)
+            make.centerY.lessThanOrEqualToSuperview()
+        }
+        
+        loginTextField.snp.height.greaterThanOrEqualTo(10)
+        
+        
     }
 }

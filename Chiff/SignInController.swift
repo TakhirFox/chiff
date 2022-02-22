@@ -141,7 +141,7 @@ extension SignInController {
 //        Analytics.setDefaultEventParameters(["event_category":"Клиент?",
 //                                             "Event_Action":"profile page",
 //                                             "Event_Label":"email click",])
-//        
+//
 //        Analytics.logEvent("What", parameters: ["event_category":"Клиент?",
 //                                                "Event_Action":"profile page",
 //                                                "Event_Label":"email click",])

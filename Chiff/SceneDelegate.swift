@@ -26,8 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = MainTabBar()
             window?.makeKeyAndVisible()
         } else {
-            let authViewController = SignInController() // TODO:
-//            let authViewController = AuthAssembly.create()
+//            let authViewController = SignInController() // TODO:
+            let authViewController = AuthAssembly.create()
             window?.rootViewController = authViewController
             window?.makeKeyAndVisible()
         }
