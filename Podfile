@@ -10,7 +10,9 @@ target 'Chiff' do
   pod 'SwiftyGif'
   pod 'Kingfisher'
   pod 'SnapKit', '~> 4.0'
-
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
 
   target 'ChiffTests' do
     inherit! :search_paths

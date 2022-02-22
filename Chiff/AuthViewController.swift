@@ -39,7 +39,7 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         view.layer.cornerRadius = 8
         view.backgroundColor = .systemGreen
         view.setTitle("Войти", for: .normal)
-        view.addTarget(self, action: #selector(goToApp), for: .touchUpInside)
+//        view.addTarget(self, action: #selector(goToApp), for: .touchUpInside)
         return view
     }()
     
@@ -48,7 +48,7 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         view.setTitle("Зарегистрироваться", for: .normal)
         view.setTitleColor(.systemGray, for: .normal)
         view.titleLabel?.font = .systemFont(ofSize: 14)
-        view.addTarget(self, action: #selector(registerAction), for: .touchUpInside)
+//        view.addTarget(self, action: #selector(registerAction), for: .touchUpInside)
         return view
     }()
     
@@ -57,7 +57,7 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         view.setTitle("Зыбыл пароль", for: .normal)
         view.setTitleColor(.systemGray, for: .normal)
         view.titleLabel?.font = .systemFont(ofSize: 14)
-        view.addTarget(self, action: #selector(forgetAccountAction), for: .touchUpInside)
+//        view.addTarget(self, action: #selector(forgetAccountAction), for: .touchUpInside)
         return view
     }()
     

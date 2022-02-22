@@ -22,6 +22,7 @@
 		8476E2112716891D0032B909 /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476E2102716891D0032B909 /* SignInPresenter.swift */; };
 		8476F821271559EE003F15BC /* SignInController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476F820271559EE003F15BC /* SignInController2.swift */; };
 		8476F82327157A5F003F15BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476F82227157A5F003F15BC /* User.swift */; };
+		847D5E2D27C4DDB70031A5BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 847D5E2C27C4DDB70031A5BA /* GoogleService-Info.plist */; };
 		847FA2A2271D690400FF9699 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FA2A1271D690400FF9699 /* Media.swift */; };
 		84E9C24E271EB38A004AB184 /* CreatePostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C24D271EB38A004AB184 /* CreatePostController.swift */; };
 		84E9C250271EB76A004AB184 /* CreatePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C24F271EB76A004AB184 /* CreatePostCell.swift */; };
@@ -98,6 +99,7 @@
 		8476E2102716891D0032B909 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
 		8476F820271559EE003F15BC /* SignInController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController2.swift; sourceTree = "<group>"; };
 		8476F82227157A5F003F15BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		847D5E2C27C4DDB70031A5BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		847FA2A1271D690400FF9699 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		84E9C24D271EB38A004AB184 /* CreatePostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostController.swift; sourceTree = "<group>"; };
 		84E9C24F271EB76A004AB184 /* CreatePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostCell.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 		842B2D3827B24AE7002E6AE8 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				847D5E2C27C4DDB70031A5BA /* GoogleService-Info.plist */,
 				AD7F1234261CB00000EB09F7 /* Assets.xcassets */,
 				AD7F1236261CB00000EB09F7 /* LaunchScreen.storyboard */,
 				AD8EFE5D271B45640056F8A8 /* SplashAnimationView.swift */,
@@ -569,6 +572,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD8EFE60271B4DE50056F8A8 /* logoAnim.gif in Resources */,
+				847D5E2D27C4DDB70031A5BA /* GoogleService-Info.plist in Resources */,
 				AD7F1238261CB00000EB09F7 /* LaunchScreen.storyboard in Resources */,
 				AD7F1235261CB00000EB09F7 /* Assets.xcassets in Resources */,
 			);
@@ -922,7 +926,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.zakirovweb.Chiff2;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.zakirovweb.ChiffApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -946,7 +950,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.zakirovweb.Chiff2;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.zakirovweb.ChiffApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
