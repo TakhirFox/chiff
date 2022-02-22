@@ -8,6 +8,7 @@
 import Foundation
 import SwiftyGif
 import UIKit
+import Firebase
 
 class SignInController: UIViewController {
 
@@ -136,6 +137,14 @@ extension SignInController {
         let alert = UIAlertController(title: "Фича не готова", message: nil, preferredStyle: .alert)
         let ok = UIAlertAction(title: "Ок", style: .cancel, handler: nil)
         alert.addAction(ok)
+        
+//        Analytics.setDefaultEventParameters(["event_category":"Клиент?",
+//                                             "Event_Action":"profile page",
+//                                             "Event_Label":"email click",])
+//        
+//        Analytics.logEvent("What", parameters: ["event_category":"Клиент?",
+//                                                "Event_Action":"profile page",
+//                                                "Event_Label":"email click",])
         
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
