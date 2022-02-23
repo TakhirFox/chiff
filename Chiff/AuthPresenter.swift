@@ -34,6 +34,7 @@ extension AuthPresenter: AuthPresenterProtocol {
             return
         }
         
+        view?.animateHeader()
         authAndRoute(login: login, pass: pass)
     }
     

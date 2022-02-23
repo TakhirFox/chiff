@@ -13,13 +13,23 @@ protocol AuthViewControllerProtocol: AnyObject {
     func showLoginIsEmpty()
     func showPassIsEmpty()
     func showLoginOfPassError()
+    func animateHeader()
 }
 
 class AuthViewController: BaseViewController, AuthViewControllerProtocol {
     
+    let headerImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "675604")
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
+    
+    
     let logoImage: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "logo")
+        view.image = UIImage(named: "log2o")
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
@@ -80,16 +90,40 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         return view
     }()
     
+    var heightImageSize: CGFloat = 300
+    
     var presenter: AuthPresenterProtocol?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        headerImage.snp.makeConstraints { make in
+//            make.leading.equalTo(view)
+//            make.trailing.equalTo(view)
+//            make.top.equalTo(view)
+//            make.bottom.bottom.equalTo(stackView.snp.top).offset(-16)
+//            make.height.equalTo(view)
+//        }
+//
+//        UIView.animate(withDuration: 0.5, delay: 0.2, options: .curveEaseIn) {
+//            self.view.layoutIfNeeded()
+//        }
+    }
     
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
+        
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
         
         setupSubviews()
         setupConstraints()
     }
     
     func setupSubviews() {
+        view.addSubview(headerImage)
+        headerImage.addSubview(logoImage)
+        
         view.addSubview(stackView)
         stackView.addArrangedSubview(loginTextField)
         stackView.addArrangedSubview(passwordTextField)
@@ -100,10 +134,24 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
     }
     
     func setupConstraints() {
+        
+        headerImage.snp.makeConstraints { make in
+            make.leading.equalTo(view)
+            make.trailing.equalTo(view)
+            make.top.equalTo(view)
+            make.bottom.bottom.equalTo(stackView.snp.top).offset(-16)
+            make.height.equalTo(heightImageSize)
+        }
+        
+        logoImage.snp.makeConstraints { make in
+            make.width.equalTo(view.frame.width / 2)
+            make.height.equalTo(80)
+            make.center.equalTo(headerImage.snp_center)
+        }
+        
         stackView.snp.makeConstraints { make in
-            make.left.equalTo(view).offset(16)
-            make.right.equalTo(view).offset(-16)
-            make.centerY.lessThanOrEqualToSuperview()
+            make.leading.equalTo(view).offset(16)
+            make.trailing.equalTo(view).offset(-16)
         }
         
         loginTextField.snp.makeConstraints { make in
@@ -117,40 +165,62 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         loginButton.snp.makeConstraints { make in
             make.height.equalTo(50)
         }
+        
+        view.layoutIfNeeded()
     }
     
 }
 
 extension AuthViewController {
     // TODO: Методы в презентер:
-    // Проверить полноту текстовых полей (сперва проверяем полноту!!!)
     @objc func checkTextFieldAction(_ sender: Any) {
+        view.endEditing(true)
         presenter?.checkTextFieldEmpty(login: loginTextField.text,
                                        pass: passwordTextField.text)
     }
     
-    // Переход на экран Регистрации
     @objc func routeToSignUpAction(_ sender: Any) {
         presenter?.routeToSignUpAction()
     }
     
-    // Переход на экран Забыл пароль
     @objc func routeToForgetPasswordAction(_ sender: Any) {
         presenter?.routeToForgetPasswordAction()
     }
     
     // TODO: Методы вызывающие из презентера:
-    // Показать ошибку пустых полей (возможно логин и пароль)
+    func animateHeader() {
+        self.headerImage.snp.makeConstraints { make in
+            make.height.equalTo(self.view).offset(0) // TODO: Доработать анимацию
+        }
+        
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.2, options: .curveEaseIn) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
     func showLoginIsEmpty() {
-        print("ПУСТОЙ ЛОГИН")
+        loginTextField.layer.borderColor = UIColor.red.cgColor
+        loginTextField.layer.borderWidth = 1
+        loginTextField.layer.cornerRadius = 4
     }
     
     func showPassIsEmpty() {
-        print("ПУСТОЙ ПАРОЛЬ")
+        passwordTextField.layer.borderColor = UIColor.red.cgColor
+        passwordTextField.layer.borderWidth = 1
+        passwordTextField.layer.cornerRadius = 4
     }
     
     // Показать ошибку логина или пароля
     func showLoginOfPassError() {
-        print("НЕПРАВИЛЬНЫЙ ЛОГИН ИЛИ ПАРОЛЬ")
+        DispatchQueue.main.async {
+            self.headerImage.snp.makeConstraints { make in
+                make.height.equalTo(self.view).offset(-500)
+            }
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.2, options: .curveEaseOut) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
+    
 }

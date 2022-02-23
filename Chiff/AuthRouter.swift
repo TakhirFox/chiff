@@ -20,8 +20,6 @@ class AuthRouter: BaseRouter {
 extension AuthRouter: AuthRouterProtocol {
     func routeToSignUpAction() {
         let view = SignUpAssembly.create()
-        
-        //        viewController?.present(view, animated: true, completion: nil)
         viewController?.navigationController?.pushViewController(view, animated: true)
     }
     
