@@ -325,20 +325,21 @@ extension FeedController: FeedView {
 
 }
 
-struct FlowProvider: PreviewProvider {
-    static var previews: some View {
-        ContainterView().edgesIgnoringSafeArea(.all)
-    }
-    
-    struct ContainterView: UIViewControllerRepresentable {
-        let tabBar = MainTabBar()
-        
-        func makeUIViewController(context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) -> MainTabBar {
-            return tabBar
-        }
-        
-        func updateUIViewController(_ uiViewController: FlowProvider.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) {
-            
-        }
-    }
-}
+//struct FlowProvider: PreviewProvider {
+//    static var previews: some View {
+//        ContainterView().edgesIgnoringSafeArea(.all)
+//    }
+//    
+//    struct ContainterView: UIViewControllerRepresentable {
+//        let tabBar = TabBarAssembly()
+//
+//        
+//        func makeUIViewController(context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) -> TabBarAssembly {
+//            return tabBar.create
+//        }
+//        
+//        func updateUIViewController(_ uiViewController: FlowProvider.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) {
+//            
+//        }
+//    }
+//}

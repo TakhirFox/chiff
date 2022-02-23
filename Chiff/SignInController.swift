@@ -179,11 +179,11 @@ extension SignInController: SignInView {
     
     // Вызывается, если авторизация прошла успешно, и презентим таббар с контроллерами
     func presentSignIn(auth: Auth) {
-        DispatchQueue.main.async {
-            let mainController = MainTabBar()
-            mainController.modalPresentationStyle = .fullScreen
-            self.present(mainController, animated: true, completion: nil)
-        }
+//        DispatchQueue.main.async {
+//            let mainController = MainTabBar()
+//            mainController.modalPresentationStyle = .fullScreen
+//            self.present(mainController, animated: true, completion: nil)
+//        }
     }
     
 }

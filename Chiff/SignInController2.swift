@@ -67,9 +67,9 @@ extension SignInController2: SignInView {
 
         
         DispatchQueue.main.async {
-            let mainController = MainTabBar()
-            mainController.modalPresentationStyle = .fullScreen
-            self.present(mainController, animated: true, completion: nil)
+//            let mainController = MainTabBar()
+//            mainController.modalPresentationStyle = .fullScreen
+//            self.present(mainController, animated: true, completion: nil)
         }
         
 
