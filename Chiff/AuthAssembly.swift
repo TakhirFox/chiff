@@ -14,6 +14,8 @@ class AuthAssembly: BaseAssemblyProtocol {
         let interactor = AuthInteractor()
         let router = AuthRouter()
         
+        let networkService = NetworkService()
+        
         viewController.presenter = presenter
         
         presenter.view = viewController
@@ -21,10 +23,11 @@ class AuthAssembly: BaseAssemblyProtocol {
         presenter.router = router
         
         interactor.presenter = presenter
+        interactor.networkService = networkService
         
         router.viewController = viewController
         
-        return viewController
+        return UINavigationController(rootViewController: viewController)
     }
     
     

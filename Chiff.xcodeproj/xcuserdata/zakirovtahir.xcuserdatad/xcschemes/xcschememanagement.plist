@@ -7,7 +7,25 @@
 		<key>Chiff.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>26</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>AD7F1224261CAFFF00EB09F7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AD7F123D261CB00100EB09F7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AD7F1248261CB00100EB09F7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

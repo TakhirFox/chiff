@@ -8,7 +8,9 @@
 import UIKit
 
 protocol AuthRouterProtocol: AnyObject {
-    
+    func routeToSignUpAction()
+    func routeToForgetPasswordAction()
+    func routeToMain()
 }
 
 class AuthRouter: BaseRouter {
@@ -16,6 +18,26 @@ class AuthRouter: BaseRouter {
 }
 
 extension AuthRouter: AuthRouterProtocol {
+    func routeToSignUpAction() {
+        let view = SignUpAssembly.create()
+        
+        //        viewController?.present(view, animated: true, completion: nil)
+        viewController?.navigationController?.pushViewController(view, animated: true)
+    }
+    
+    func routeToForgetPasswordAction() {
+        
+    }
+    
+    func routeToMain() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let mainController = TabBarAssembly.create(0)
+            mainController.modalPresentationStyle = .fullScreen
+            self.viewController?.present(mainController, animated: true, completion: nil)
+        }
+    }
+    
     
 }
 

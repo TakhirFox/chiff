@@ -10,6 +10,9 @@ import SnapKit
 
 protocol AuthViewControllerProtocol: AnyObject {
     var presenter: AuthPresenterProtocol? { get set }
+    func showLoginIsEmpty()
+    func showPassIsEmpty()
+    func showLoginOfPassError()
 }
 
 class AuthViewController: BaseViewController, AuthViewControllerProtocol {
@@ -40,7 +43,7 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         view.layer.cornerRadius = 8
         view.backgroundColor = .systemGreen
         view.setTitle("Войти", for: .normal)
-//        view.addTarget(self, action: #selector(goToApp), for: .touchUpInside)
+        view.addTarget(self, action: #selector(checkTextFieldAction), for: .touchUpInside)
         return view
     }()
     
@@ -49,7 +52,7 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         view.setTitle("Зарегистрироваться", for: .normal)
         view.setTitleColor(.systemGray, for: .normal)
         view.titleLabel?.font = .systemFont(ofSize: 14)
-//        view.addTarget(self, action: #selector(registerAction), for: .touchUpInside)
+        view.addTarget(self, action: #selector(routeToSignUpAction), for: .touchUpInside)
         return view
     }()
     
@@ -58,7 +61,7 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         view.setTitle("Зыбыл пароль", for: .normal)
         view.setTitleColor(.systemGray, for: .normal)
         view.titleLabel?.font = .systemFont(ofSize: 14)
-//        view.addTarget(self, action: #selector(forgetAccountAction), for: .touchUpInside)
+        view.addTarget(self, action: #selector(routeToForgetPasswordAction), for: .touchUpInside)
         return view
     }()
     
@@ -103,8 +106,51 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
             make.centerY.lessThanOrEqualToSuperview()
         }
         
-        loginTextField.snp.height.greaterThanOrEqualTo(10)
+        loginTextField.snp.makeConstraints { make in
+            make.height.equalTo(40)
+        }
         
+        passwordTextField.snp.makeConstraints { make in
+            make.height.equalTo(40)
+        }
         
+        loginButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+        }
+    }
+    
+}
+
+extension AuthViewController {
+    // TODO: Методы в презентер:
+    // Проверить полноту текстовых полей (сперва проверяем полноту!!!)
+    @objc func checkTextFieldAction(_ sender: Any) {
+        presenter?.checkTextFieldEmpty(login: loginTextField.text,
+                                       pass: passwordTextField.text)
+    }
+    
+    // Переход на экран Регистрации
+    @objc func routeToSignUpAction(_ sender: Any) {
+        presenter?.routeToSignUpAction()
+    }
+    
+    // Переход на экран Забыл пароль
+    @objc func routeToForgetPasswordAction(_ sender: Any) {
+        presenter?.routeToForgetPasswordAction()
+    }
+    
+    // TODO: Методы вызывающие из презентера:
+    // Показать ошибку пустых полей (возможно логин и пароль)
+    func showLoginIsEmpty() {
+        print("ПУСТОЙ ЛОГИН")
+    }
+    
+    func showPassIsEmpty() {
+        print("ПУСТОЙ ПАРОЛЬ")
+    }
+    
+    // Показать ошибку логина или пароля
+    func showLoginOfPassError() {
+        print("НЕПРАВИЛЬНЫЙ ЛОГИН ИЛИ ПАРОЛЬ")
     }
 }
