@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         
         if accessToken != nil {
-            window?.rootViewController = MainTabBar()
+            window?.rootViewController = TabBarAssembly.create(0)
             window?.makeKeyAndVisible()
         } else {
 //            let authViewController = SignInController() // TODO:
