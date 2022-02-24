@@ -31,7 +31,7 @@ class TabBarViewController: UITabBarController, TabBarViewControllerProtocol {
     
     func setupTabItems() {
         viewControllers = [
-            createNavController(viewController: FeedController(), title: "Feed", image: UIImage(systemName: "rectangle.on.rectangle")!),
+            createNavController(viewController: FeedAssembly.create(), title: "Feed", image: UIImage(systemName: "rectangle.on.rectangle")!),
             createNavController(viewController: CreatePostController(collectionViewLayout: UICollectionViewFlowLayout()), title: "Добавить", image: UIImage(systemName: "plus.square")!),
             createNavController(viewController: ProfileController(), title: "Профиль", image: UIImage(systemName: "person.crop.circle")!)
         ]
