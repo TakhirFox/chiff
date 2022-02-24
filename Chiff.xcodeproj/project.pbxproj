@@ -18,7 +18,7 @@
 		842B2D5427B26CA3002E6AE8 /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D5327B26CA3002E6AE8 /* AuthInteractor.swift */; };
 		842B2D5627B26CE5002E6AE8 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D5527B26CE5002E6AE8 /* AuthRouter.swift */; };
 		842B2D5827B26DF2002E6AE8 /* AuthAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B2D5727B26DF2002E6AE8 /* AuthAssembly.swift */; };
-		8476E20F2716890E0032B909 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476E20E2716890E0032B909 /* FeedPresenter.swift */; };
+		8476E20F2716890E0032B909 /* FeedPresenter2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476E20E2716890E0032B909 /* FeedPresenter2.swift */; };
 		8476E2112716891D0032B909 /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476E2102716891D0032B909 /* SignInPresenter.swift */; };
 		8476F821271559EE003F15BC /* SignInController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476F820271559EE003F15BC /* SignInController2.swift */; };
 		8476F82327157A5F003F15BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476F82227157A5F003F15BC /* User.swift */; };
@@ -26,6 +26,16 @@
 		847FA2A2271D690400FF9699 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FA2A1271D690400FF9699 /* Media.swift */; };
 		84E9C24E271EB38A004AB184 /* CreatePostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C24D271EB38A004AB184 /* CreatePostController.swift */; };
 		84E9C250271EB76A004AB184 /* CreatePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C24F271EB76A004AB184 /* CreatePostCell.swift */; };
+		AD4CA60C27C7CB9000291AC7 /* ForgetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA60B27C7CB9000291AC7 /* ForgetPassViewController.swift */; };
+		AD4CA60E27C7CBA500291AC7 /* ForgetPassPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA60D27C7CBA500291AC7 /* ForgetPassPresenter.swift */; };
+		AD4CA61027C7CBB900291AC7 /* ForgetPassInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA60F27C7CBB900291AC7 /* ForgetPassInteractor.swift */; };
+		AD4CA61227C7CBD200291AC7 /* ForgetPassRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA61127C7CBD200291AC7 /* ForgetPassRouter.swift */; };
+		AD4CA61427C7CBED00291AC7 /* ForgetPassAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA61327C7CBED00291AC7 /* ForgetPassAssembly.swift */; };
+		AD4CA61B27C7CFED00291AC7 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA61A27C7CFED00291AC7 /* FeedViewController.swift */; };
+		AD4CA61D27C7D01F00291AC7 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA61C27C7D01F00291AC7 /* FeedPresenter.swift */; };
+		AD4CA61F27C7D04B00291AC7 /* FeedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA61E27C7D04B00291AC7 /* FeedInteractor.swift */; };
+		AD4CA62127C7D06200291AC7 /* FeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA62027C7D06200291AC7 /* FeedRouter.swift */; };
+		AD4CA62327C7D07600291AC7 /* FeedAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA62227C7D07600291AC7 /* FeedAssembly.swift */; };
 		AD6C9977272557C500A9FA34 /* TextfieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6C9976272557C400A9FA34 /* TextfieldCell.swift */; };
 		AD6C99792726900F00A9FA34 /* DetailNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6C99782726900F00A9FA34 /* DetailNews.swift */; };
 		AD7D627327242A950014E82E /* DetailImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7D627227242A950014E82E /* DetailImageCell.swift */; };
@@ -105,7 +115,7 @@
 		842B2D5327B26CA3002E6AE8 /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
 		842B2D5527B26CE5002E6AE8 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		842B2D5727B26DF2002E6AE8 /* AuthAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAssembly.swift; sourceTree = "<group>"; };
-		8476E20E2716890E0032B909 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
+		8476E20E2716890E0032B909 /* FeedPresenter2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter2.swift; sourceTree = "<group>"; };
 		8476E2102716891D0032B909 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
 		8476F820271559EE003F15BC /* SignInController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController2.swift; sourceTree = "<group>"; };
 		8476F82227157A5F003F15BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -116,6 +126,16 @@
 		8819B23643ECB9B883731DC3 /* Pods_Chiff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chiff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D52C5812F8D81F2D7C13947 /* Pods-Chiff.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff.debug.xcconfig"; path = "Target Support Files/Pods-Chiff/Pods-Chiff.debug.xcconfig"; sourceTree = "<group>"; };
 		AABE47EDB0A3D1FF5A834195 /* Pods-ChiffTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiffTests.release.xcconfig"; path = "Target Support Files/Pods-ChiffTests/Pods-ChiffTests.release.xcconfig"; sourceTree = "<group>"; };
+		AD4CA60B27C7CB9000291AC7 /* ForgetPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPassViewController.swift; sourceTree = "<group>"; };
+		AD4CA60D27C7CBA500291AC7 /* ForgetPassPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPassPresenter.swift; sourceTree = "<group>"; };
+		AD4CA60F27C7CBB900291AC7 /* ForgetPassInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPassInteractor.swift; sourceTree = "<group>"; };
+		AD4CA61127C7CBD200291AC7 /* ForgetPassRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPassRouter.swift; sourceTree = "<group>"; };
+		AD4CA61327C7CBED00291AC7 /* ForgetPassAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPassAssembly.swift; sourceTree = "<group>"; };
+		AD4CA61A27C7CFED00291AC7 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		AD4CA61C27C7D01F00291AC7 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
+		AD4CA61E27C7D04B00291AC7 /* FeedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInteractor.swift; sourceTree = "<group>"; };
+		AD4CA62027C7D06200291AC7 /* FeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRouter.swift; sourceTree = "<group>"; };
+		AD4CA62227C7D07600291AC7 /* FeedAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAssembly.swift; sourceTree = "<group>"; };
 		AD6C9976272557C400A9FA34 /* TextfieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldCell.swift; sourceTree = "<group>"; };
 		AD6C99782726900F00A9FA34 /* DetailNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNews.swift; sourceTree = "<group>"; };
 		AD7D627227242A950014E82E /* DetailImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageCell.swift; sourceTree = "<group>"; };
@@ -255,10 +275,14 @@
 		842B2D3A27B24D95002E6AE8 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				AD4CA61927C7CF5C00291AC7 /* Profile */,
+				AD4CA61727C7CF2E00291AC7 /* CreatePost */,
+				AD4CA61827C7CF4A00291AC7 /* Detail */,
+				AD4CA61627C7CF2000291AC7 /* Feed */,
 				ADE1A05727C6385400C4B74B /* TabBar */,
 				ADE1A05627C6045D00C4B74B /* ForgetPass */,
-				842B2D4B27B2680C002E6AE8 /* Auth */,
 				ADE1A04727C54B8E00C4B74B /* SignUp */,
+				842B2D4B27B2680C002E6AE8 /* Auth */,
 				842B2D4A27B2679A002E6AE8 /* TemplateVIPER */,
 			);
 			name = Module;
@@ -338,6 +362,39 @@
 			name = Auth;
 			sourceTree = "<group>";
 		};
+		AD4CA61627C7CF2000291AC7 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				AD4CA61A27C7CFED00291AC7 /* FeedViewController.swift */,
+				AD4CA61C27C7D01F00291AC7 /* FeedPresenter.swift */,
+				AD4CA61E27C7D04B00291AC7 /* FeedInteractor.swift */,
+				AD4CA62027C7D06200291AC7 /* FeedRouter.swift */,
+				AD4CA62227C7D07600291AC7 /* FeedAssembly.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		AD4CA61727C7CF2E00291AC7 /* CreatePost */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CreatePost;
+			sourceTree = "<group>";
+		};
+		AD4CA61827C7CF4A00291AC7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		AD4CA61927C7CF5C00291AC7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		AD7D627127242A7B0014E82E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,7 +465,7 @@
 		AD7F12BA2622F17400EB09F7 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				8476E20E2716890E0032B909 /* FeedPresenter.swift */,
+				8476E20E2716890E0032B909 /* FeedPresenter2.swift */,
 				8476E2102716891D0032B909 /* SignInPresenter.swift */,
 			);
 			name = Presenter;
@@ -488,6 +545,11 @@
 		ADE1A05627C6045D00C4B74B /* ForgetPass */ = {
 			isa = PBXGroup;
 			children = (
+				AD4CA60B27C7CB9000291AC7 /* ForgetPassViewController.swift */,
+				AD4CA60D27C7CBA500291AC7 /* ForgetPassPresenter.swift */,
+				AD4CA60F27C7CBB900291AC7 /* ForgetPassInteractor.swift */,
+				AD4CA61127C7CBD200291AC7 /* ForgetPassRouter.swift */,
+				AD4CA61327C7CBED00291AC7 /* ForgetPassAssembly.swift */,
 			);
 			name = ForgetPass;
 			sourceTree = "<group>";
@@ -776,17 +838,24 @@
 				AD7F1273261CB55E00EB09F7 /* UIView+Layout.swift in Sources */,
 				AD7F12AA2621C19E00EB09F7 /* NetworkService.swift in Sources */,
 				AD8C130C2784C0EE00AD1D20 /* Post.swift in Sources */,
+				AD4CA60E27C7CBA500291AC7 /* ForgetPassPresenter.swift in Sources */,
 				842B2D5827B26DF2002E6AE8 /* AuthAssembly.swift in Sources */,
+				AD4CA61027C7CBB900291AC7 /* ForgetPassInteractor.swift in Sources */,
+				AD4CA62327C7D07600291AC7 /* FeedAssembly.swift in Sources */,
+				AD4CA61227C7CBD200291AC7 /* ForgetPassRouter.swift in Sources */,
 				842B2D4F27B26AC1002E6AE8 /* AuthPresenter.swift in Sources */,
 				AD8EFE702723D14A0056F8A8 /* DetailDescCell.swift in Sources */,
+				AD4CA61D27C7D01F00291AC7 /* FeedPresenter.swift in Sources */,
 				AD7F1233261CAFFF00EB09F7 /* Chiff.xcdatamodeld in Sources */,
 				ADE1A06127C63C6900C4B74B /* TabBarAssembly.swift in Sources */,
 				AD8EFE67272102060056F8A8 /* PostCreate.swift in Sources */,
 				842B2D4327B263F0002E6AE8 /* BaseInteractor.swift in Sources */,
 				AD8EFE65271F3B3A0056F8A8 /* CreatePostImageButtonCell.swift in Sources */,
+				AD4CA60C27C7CB9000291AC7 /* ForgetPassViewController.swift in Sources */,
 				AD8EFE6E2723C8510056F8A8 /* DetailNameCell.swift in Sources */,
 				84E9C24E271EB38A004AB184 /* CreatePostController.swift in Sources */,
 				AD938957277F839000B0D925 /* CategoryFeedCell.swift in Sources */,
+				AD4CA61F27C7D04B00291AC7 /* FeedInteractor.swift in Sources */,
 				AD7D6275272432510014E82E /* ImageCell.swift in Sources */,
 				ADA7C964262F37F60067C116 /* Auth.swift in Sources */,
 				ADE1A05F27C63C5D00C4B74B /* TabBarRouter.swift in Sources */,
@@ -799,6 +868,7 @@
 				842B2D4D27B26A3C002E6AE8 /* AuthViewController.swift in Sources */,
 				ADE1A05327C54D7E00C4B74B /* SignUpAssembly.swift in Sources */,
 				8476F821271559EE003F15BC /* SignInController2.swift in Sources */,
+				AD4CA61427C7CBED00291AC7 /* ForgetPassAssembly.swift in Sources */,
 				AD6C9977272557C500A9FA34 /* TextfieldCell.swift in Sources */,
 				AD8EFE742723EB330056F8A8 /* PaidAdsCell.swift in Sources */,
 				ADE1A05527C54DAE00C4B74B /* VIPER_TEMPLATE.swift in Sources */,
@@ -806,12 +876,14 @@
 				84E9C250271EB76A004AB184 /* CreatePostCell.swift in Sources */,
 				AD6C99792726900F00A9FA34 /* DetailNews.swift in Sources */,
 				847FA2A2271D690400FF9699 /* Media.swift in Sources */,
+				AD4CA61B27C7CFED00291AC7 /* FeedViewController.swift in Sources */,
 				842B2D5627B26CE5002E6AE8 /* AuthRouter.swift in Sources */,
 				ADE1A04927C54BBB00C4B74B /* SignUpViewController.swift in Sources */,
+				AD4CA62127C7D06200291AC7 /* FeedRouter.swift in Sources */,
 				842B2D4927B264E6002E6AE8 /* BaseAssemblyProtocol.swift in Sources */,
 				842B2D5427B26CA3002E6AE8 /* AuthInteractor.swift in Sources */,
 				AD8EFE63271F2B4F0056F8A8 /* UITextView+Layout.swift in Sources */,
-				8476E20F2716890E0032B909 /* FeedPresenter.swift in Sources */,
+				8476E20F2716890E0032B909 /* FeedPresenter2.swift in Sources */,
 				AD7F12A52621B71C00EB09F7 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
