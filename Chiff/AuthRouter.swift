@@ -24,7 +24,8 @@ extension AuthRouter: AuthRouterProtocol {
     }
     
     func routeToForgetPasswordAction() {
-        
+        let view = ForgetPassAssembly.create()
+        viewController?.navigationController?.pushViewController(view, animated: true)
     }
     
     func routeToMain() {
