@@ -13,7 +13,7 @@ protocol FeedView: AnyObject {
     func presentImage(image: [Media])
 }
 
-class FeedPresenter {
+class FeedPresenter2 {
     
     weak var view: FeedView?
     let news: [News] = []
