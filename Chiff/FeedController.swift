@@ -38,7 +38,7 @@ class FeedController: UIViewController {
     var dataSource: UICollectionViewDiffableDataSource<SectionKind, AnyHashable>! = nil
     var collectionView: UICollectionView!
 
-    private let presenter = FeedPresenter()
+    private let presenter = FeedPresenter2()
 
     override func viewDidLoad() {
         super.viewDidLoad()
