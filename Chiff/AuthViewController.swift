@@ -14,6 +14,7 @@ protocol AuthViewControllerProtocol: AnyObject {
     func showPassIsEmpty()
     func showLoginOfPassError()
     func animateHeader()
+    func noNetwork()
 }
 
 class AuthViewController: BaseViewController, AuthViewControllerProtocol {
@@ -24,7 +25,6 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         view.contentMode = .scaleAspectFill
         return view
     }()
-    
     
     let logoImage: UIImageView = {
         let view = UIImageView()
@@ -75,6 +75,22 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         return view
     }()
     
+    let errorLoginLabel: UILabel = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 12)
+        view.textColor = .red
+        view.isHidden = true
+        return view
+    }()
+    
+    let errorPasswordLabel: UILabel = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 12)
+        view.textColor = .red
+        view.isHidden = true
+        return view
+    }()
+    
     let stackView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
@@ -89,6 +105,8 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         view.spacing = 16
         return view
     }()
+    
+    var activityIndicator = UIActivityIndicatorView()
     
     var heightImageSize: CGFloat = 300
     
@@ -116,6 +134,9 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        
+        
         setupSubviews()
         setupConstraints()
     }
@@ -123,10 +144,13 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
     func setupSubviews() {
         view.addSubview(headerImage)
         headerImage.addSubview(logoImage)
+        headerImage.addSubview(activityIndicator)
         
         view.addSubview(stackView)
         stackView.addArrangedSubview(loginTextField)
+        stackView.addArrangedSubview(errorLoginLabel)
         stackView.addArrangedSubview(passwordTextField)
+        stackView.addArrangedSubview(errorPasswordLabel)
         stackView.addArrangedSubview(loginButton)
         stackView.addArrangedSubview(stackViewHorizontal)
         stackViewHorizontal.addArrangedSubview(registerButton)
@@ -143,10 +167,27 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
             make.height.equalTo(heightImageSize)
         }
         
+        errorLoginLabel.snp.makeConstraints { make in
+            make.top.equalTo(loginTextField.snp.bottom).offset(2)
+            make.bottom.equalTo(passwordTextField.snp.top).inset(-10)
+            make.height.equalTo(12)
+        }
+        
+        errorPasswordLabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset(2)
+            make.bottom.equalTo(loginButton.snp.top).inset(-10)
+            make.height.equalTo(12)
+        }
+        
         logoImage.snp.makeConstraints { make in
             make.width.equalTo(view.frame.width / 2)
             make.height.equalTo(80)
             make.center.equalTo(headerImage.snp_center)
+        }
+        
+        activityIndicator.snp.makeConstraints { make in
+            make.centerX.equalTo(headerImage.snp.centerX)
+            make.bottom.equalTo(-50)
         }
         
         stackView.snp.makeConstraints { make in
@@ -171,6 +212,15 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
     
 }
 
+extension AuthViewController: UITextFieldDelegate {
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        errorLoginLabel.isHidden = true
+//        print(textField.text)
+//    }
+    // TODO: Потом нужно скрыть ошибки логина и пароля
+   
+}
+
 extension AuthViewController {
     // TODO: Методы в презентер:
     @objc func checkTextFieldAction(_ sender: Any) {
@@ -189,6 +239,8 @@ extension AuthViewController {
     
     // TODO: Методы вызывающие из презентера:
     func animateHeader() {
+        activityIndicator.startAnimating()
+        
         headerImage.snp_updateConstraints { make in
             make.height.equalTo(self.view.frame.height)
         }
@@ -202,12 +254,16 @@ extension AuthViewController {
         loginTextField.layer.borderColor = UIColor.red.cgColor
         loginTextField.layer.borderWidth = 1
         loginTextField.layer.cornerRadius = 4
+        errorLoginLabel.isHidden = false
+        errorLoginLabel.text = "Введите логин"
     }
     
     func showPassIsEmpty() {
         passwordTextField.layer.borderColor = UIColor.red.cgColor
         passwordTextField.layer.borderWidth = 1
         passwordTextField.layer.cornerRadius = 4
+        errorPasswordLabel.isHidden = false
+        errorPasswordLabel.text = "Введите пароль"
     }
     
     // Показать ошибку логина или пароля
@@ -218,6 +274,20 @@ extension AuthViewController {
             }
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.2, options: .curveEaseOut) {
+                self.activityIndicator.stopAnimating()
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    func noNetwork() {
+        DispatchQueue.main.async {
+            self.headerImage.snp_updateConstraints { make in
+                make.height.equalTo(self.heightImageSize)
+            }
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.2, options: .curveEaseOut) {
+                self.activityIndicator.stopAnimating()
                 self.view.layoutIfNeeded()
             }
         }

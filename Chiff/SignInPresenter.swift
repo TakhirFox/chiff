@@ -44,6 +44,8 @@ class SignInPresenter {
                     print("LOG: ERROR 3")
                 case .errorSignIn:
                     self.view?.wrongLoginOrPass()
+                case .noNetwork:
+                    print("LOG: NoNetwork")
                 }
             }
         }

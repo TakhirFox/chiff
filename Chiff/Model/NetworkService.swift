@@ -10,7 +10,7 @@ import SwiftKeychainWrapper
 import UIKit
 
 enum NetworkError: Error {
-    case badURL, requestFailed, unknown, errorSignIn
+    case badURL, requestFailed, unknown, errorSignIn, noNetwork
 }
 
 protocol NetworkServiceProtocol {
@@ -253,7 +253,7 @@ class NetworkService: NetworkServiceProtocol {
         
         URLSession.shared.dataTask(with: loginRequest) { (data, response, error) in
             if error != nil {
-                print("LOG: ОШИБКА ПОЛУЧЕНИЯ ДАННЫХ")
+                complitionHandler(.failure(.noNetwork))
                 return
             }
             

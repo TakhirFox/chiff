@@ -13,6 +13,7 @@ protocol AuthPresenterProtocol: AnyObject {
     func routeToForgetPasswordAction()
     func authSuccess()
     func authError()
+    func noNetwork()
 }
 
 class AuthPresenter: BasePresenter {
@@ -22,7 +23,6 @@ class AuthPresenter: BasePresenter {
 }
 
 extension AuthPresenter: AuthPresenterProtocol {
-    
     func checkTextFieldEmpty(login: String?, pass: String?) {
         guard let login = login, login.count > 0 else {
             view?.showLoginIsEmpty()
@@ -56,6 +56,10 @@ extension AuthPresenter: AuthPresenterProtocol {
     
     func authError() {
         view?.showLoginOfPassError()
+    }
+    
+    func noNetwork() {
+        view?.noNetwork()
     }
     
 }

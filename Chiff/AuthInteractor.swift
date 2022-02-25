@@ -32,6 +32,8 @@ class AuthInteractor: BaseInteractor, AuthInteractorProtocol {
                     print("LOG: ERROR 3")
                 case .errorSignIn:
                     self.presenter?.authError()
+                case .noNetwork:
+                    self.presenter?.noNetwork()
                 }
             }
         }
