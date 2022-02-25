@@ -189,8 +189,8 @@ extension AuthViewController {
     
     // TODO: Методы вызывающие из презентера:
     func animateHeader() {
-        self.headerImage.snp.makeConstraints { make in
-            make.height.equalTo(self.view).offset(0) // TODO: Доработать анимацию
+        headerImage.snp_updateConstraints { make in
+            make.height.equalTo(self.view.frame.height)
         }
         
         UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.2, options: .curveEaseIn) {
@@ -213,8 +213,8 @@ extension AuthViewController {
     // Показать ошибку логина или пароля
     func showLoginOfPassError() {
         DispatchQueue.main.async {
-            self.headerImage.snp.makeConstraints { make in
-                make.height.equalTo(self.view).offset(-500)
+            self.headerImage.snp_updateConstraints { make in
+                make.height.equalTo(self.heightImageSize)
             }
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.2, options: .curveEaseOut) {
