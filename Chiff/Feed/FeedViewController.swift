@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
+import Kingfisher
 
 protocol FeedViewControllerProtocol: AnyObject {
     var presenter: FeedPresenterProtocol? { get set }
@@ -61,6 +63,8 @@ class FeedViewController: BaseViewController, FeedViewControllerProtocol {
     }
     
     func setupCollectionView() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(logoutAction))
+
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: "cellId")
         collectionView.register(CategoryFeedCell.self, forCellWithReuseIdentifier: "categoryCell")
@@ -71,6 +75,22 @@ class FeedViewController: BaseViewController, FeedViewControllerProtocol {
 
 
 extension FeedViewController: UICollectionViewDelegateFlowLayout {
+    @objc func logoutAction() {
+        KeychainWrapper.standard.removeObject(forKey: "token")
+        KeychainWrapper.standard.removeObject(forKey: "user_email")
+        KeychainWrapper.standard.removeObject(forKey: "user_nicename")
+        KeychainWrapper.standard.removeObject(forKey: "user_display_name")
+
+        // Переход на экран логина, если вышел
+        // TODO: Под вопросом если честно.
+        let authViewController = UIStoryboard(name: "Main",
+                                              bundle: nil)
+            .instantiateViewController(withIdentifier: "SignInController") as! SignInController
+        authViewController.modalPresentationStyle = .fullScreen
+        present(authViewController, animated:true, completion:nil)
+
+    }
+    
     private func fakeData() {
         categories = [Categoryes(id: 1, title: "Личные вещи", image: "One"),
                       Categoryes(id: 2, title: "Транспорт", image: "Two"),
