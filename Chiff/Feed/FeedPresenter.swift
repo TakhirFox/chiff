@@ -11,6 +11,8 @@ protocol FeedPresenterProtocol: AnyObject {
     func getPosts()
     func getPostsError(error: String)
     func getPostsSuccess(news: [News])
+    
+    func routeToDetail(idPost: Int)
 }
 
 class FeedPresenter: BasePresenter {
@@ -30,6 +32,10 @@ extension FeedPresenter: FeedPresenterProtocol {
     
     func getPostsSuccess(news: [News]) {
         view?.newsDataReload(news: news)
+    }
+    
+    func routeToDetail(idPost: Int) {
+        router?.routeToDetail(idPost: idPost)
     }
     
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FeedRouterProtocol: AnyObject {
-    
+    func routeToDetail(idPost: Int)
 }
 
 class FeedRouter: BaseRouter {
@@ -16,5 +16,10 @@ class FeedRouter: BaseRouter {
 }
 
 extension FeedRouter: FeedRouterProtocol {
+    func routeToDetail(idPost: Int) {
+        let view = DetailFeedAssembly.create(idPost: idPost)
+        viewController?.navigationController?.pushViewController(view, animated: true)
+    }
+    
     
 }
