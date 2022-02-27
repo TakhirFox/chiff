@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CategoryFeedCell: UICollectionViewCell {
 
@@ -26,12 +27,18 @@ class CategoryFeedCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
-    }
-    
-    private func configureUI() {
+        
         configureSubviews()
         configureConstraints()
+    }
+    
+    func setupCell(_ category: Categoryes) {
+        titleLabel.text = category.title
+        
+        // TODO: тут раскомментируем, когда данные начнут приходить из сервера
+//        let url = URL(string: category.image ?? "")
+//        imageView.kf.setImage(with: url)
+        imageView.image = UIImage(named: category.image ?? "")
     }
     
     private func configureSubviews() {
@@ -44,7 +51,7 @@ class CategoryFeedCell: UICollectionViewCell {
                          leading: leadingAnchor,
                          bottom: nil,
                          trailing: trailingAnchor,
-                         padding: .init(top: 0, left: 4, bottom: 0, right: 4))
+                         padding: .init(top: 8, left: 8, bottom: 8, right: 8))
         
         
         titleLabel.anchor(top: imageView.bottomAnchor,
