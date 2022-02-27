@@ -70,6 +70,11 @@
 		AD956226274A844C00D5FAFF /* CreatePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD956225274A844B00D5FAFF /* CreatePostModel.swift */; };
 		AD95622A2753C43F00D5FAFF /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9562292753C43F00D5FAFF /* SignInController.swift */; };
 		ADA7C964262F37F60067C116 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7C963262F37F60067C116 /* Auth.swift */; };
+		ADA98D4527CA8140009C89ED /* DetailFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4427CA8140009C89ED /* DetailFeedViewController.swift */; };
+		ADA98D4727CA8151009C89ED /* DetailFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4627CA8151009C89ED /* DetailFeedPresenter.swift */; };
+		ADA98D4927CA815B009C89ED /* DetailFeedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4827CA815B009C89ED /* DetailFeedInteractor.swift */; };
+		ADA98D4B27CA8166009C89ED /* DetailFeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4A27CA8166009C89ED /* DetailFeedRouter.swift */; };
+		ADA98D4D27CA8171009C89ED /* DetailFeedAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4C27CA8171009C89ED /* DetailFeedAssembly.swift */; };
 		ADE1A04927C54BBB00C4B74B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE1A04827C54BBB00C4B74B /* SignUpViewController.swift */; };
 		ADE1A04B27C54C1B00C4B74B /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE1A04A27C54C1B00C4B74B /* SignUpPresenter.swift */; };
 		ADE1A04D27C54CB000C4B74B /* SignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE1A04C27C54CB000C4B74B /* SignUpInteractor.swift */; };
@@ -176,6 +181,11 @@
 		AD956225274A844B00D5FAFF /* CreatePostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostModel.swift; sourceTree = "<group>"; };
 		AD9562292753C43F00D5FAFF /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		ADA7C963262F37F60067C116 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		ADA98D4427CA8140009C89ED /* DetailFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedViewController.swift; sourceTree = "<group>"; };
+		ADA98D4627CA8151009C89ED /* DetailFeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedPresenter.swift; sourceTree = "<group>"; };
+		ADA98D4827CA815B009C89ED /* DetailFeedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedInteractor.swift; sourceTree = "<group>"; };
+		ADA98D4A27CA8166009C89ED /* DetailFeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedRouter.swift; sourceTree = "<group>"; };
+		ADA98D4C27CA8171009C89ED /* DetailFeedAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedAssembly.swift; sourceTree = "<group>"; };
 		ADE1A04827C54BBB00C4B74B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		ADE1A04A27C54C1B00C4B74B /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
 		ADE1A04C27C54CB000C4B74B /* SignUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInteractor.swift; sourceTree = "<group>"; };
@@ -384,6 +394,11 @@
 		AD4CA61827C7CF4A00291AC7 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				ADA98D4427CA8140009C89ED /* DetailFeedViewController.swift */,
+				ADA98D4627CA8151009C89ED /* DetailFeedPresenter.swift */,
+				ADA98D4827CA815B009C89ED /* DetailFeedInteractor.swift */,
+				ADA98D4A27CA8166009C89ED /* DetailFeedRouter.swift */,
+				ADA98D4C27CA8171009C89ED /* DetailFeedAssembly.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -825,6 +840,7 @@
 				AD8EFE722723D37D0056F8A8 /* InfoAuthorCell.swift in Sources */,
 				ADE1A05927C639F900C4B74B /* TabBarViewController.swift in Sources */,
 				8476F82327157A5F003F15BC /* User.swift in Sources */,
+				ADA98D4727CA8151009C89ED /* DetailFeedPresenter.swift in Sources */,
 				AD8EFE5E271B45640056F8A8 /* SplashAnimationView.swift in Sources */,
 				ADE1A05127C54D4900C4B74B /* SignUpRouter.swift in Sources */,
 				AD7F1229261CAFFF00EB09F7 /* AppDelegate.swift in Sources */,
@@ -833,6 +849,7 @@
 				842B2D4727B26472002E6AE8 /* BaseRouter.swift in Sources */,
 				AD956226274A844C00D5FAFF /* CreatePostModel.swift in Sources */,
 				AD95622A2753C43F00D5FAFF /* SignInController.swift in Sources */,
+				ADA98D4527CA8140009C89ED /* DetailFeedViewController.swift in Sources */,
 				8476E2112716891D0032B909 /* SignInPresenter.swift in Sources */,
 				ADE1A05B27C63C0200C4B74B /* TabBarPresenter.swift in Sources */,
 				AD7F1273261CB55E00EB09F7 /* UIView+Layout.swift in Sources */,
@@ -842,6 +859,7 @@
 				842B2D5827B26DF2002E6AE8 /* AuthAssembly.swift in Sources */,
 				AD4CA61027C7CBB900291AC7 /* ForgetPassInteractor.swift in Sources */,
 				AD4CA62327C7D07600291AC7 /* FeedAssembly.swift in Sources */,
+				ADA98D4D27CA8171009C89ED /* DetailFeedAssembly.swift in Sources */,
 				AD4CA61227C7CBD200291AC7 /* ForgetPassRouter.swift in Sources */,
 				842B2D4F27B26AC1002E6AE8 /* AuthPresenter.swift in Sources */,
 				AD8EFE702723D14A0056F8A8 /* DetailDescCell.swift in Sources */,
@@ -853,6 +871,7 @@
 				AD8EFE65271F3B3A0056F8A8 /* CreatePostImageButtonCell.swift in Sources */,
 				AD4CA60C27C7CB9000291AC7 /* ForgetPassViewController.swift in Sources */,
 				AD8EFE6E2723C8510056F8A8 /* DetailNameCell.swift in Sources */,
+				ADA98D4927CA815B009C89ED /* DetailFeedInteractor.swift in Sources */,
 				84E9C24E271EB38A004AB184 /* CreatePostController.swift in Sources */,
 				AD938957277F839000B0D925 /* CategoryFeedCell.swift in Sources */,
 				AD4CA61F27C7D04B00291AC7 /* FeedInteractor.swift in Sources */,
@@ -872,6 +891,7 @@
 				AD6C9977272557C500A9FA34 /* TextfieldCell.swift in Sources */,
 				AD8EFE742723EB330056F8A8 /* PaidAdsCell.swift in Sources */,
 				ADE1A05527C54DAE00C4B74B /* VIPER_TEMPLATE.swift in Sources */,
+				ADA98D4B27CA8166009C89ED /* DetailFeedRouter.swift in Sources */,
 				AD7F12B52622E45100EB09F7 /* News.swift in Sources */,
 				84E9C250271EB76A004AB184 /* CreatePostCell.swift in Sources */,
 				AD6C99792726900F00A9FA34 /* DetailNews.swift in Sources */,

@@ -23,6 +23,8 @@ struct News: Codable, Hashable {
     let categories: [Int]?
     let links: Linkes?
     let cost: String?
+    let authorName: String?
+    let imagesPost: [String]?
 
     enum CodingKeys: String, CodingKey {
         case id, date
@@ -36,6 +38,8 @@ struct News: Codable, Hashable {
         case cost = "cost"
         case sticky, template, format, categories
         case links = "_links"
+        case authorName
+        case imagesPost
     } 
 }
 
