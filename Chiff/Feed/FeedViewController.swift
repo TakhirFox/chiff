@@ -92,17 +92,17 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
     }
     
     private func fakeData() {
-        categories = [Categoryes(id: 1, title: "Личные вещи", image: "One"),
-                      Categoryes(id: 2, title: "Транспорт", image: "Two"),
-                      Categoryes(id: 3, title: "Работа", image: "Three"),
-                      Categoryes(id: 4, title: "Запчасти и аксессуары", image: "One"),
-                      Categoryes(id: 5, title: "Для дома и дачи", image: "Two"),
-                      Categoryes(id: 6, title: "Недвижимость", image: "Three"),
-                      Categoryes(id: 7, title: "Предложение услуг", image: "One"),
-                      Categoryes(id: 8, title: "Хобби и отдых", image: "Two"),
-                      Categoryes(id: 9, title: "Электроника", image: "Three"),
-                      Categoryes(id: 8, title: "Животные", image: "Two"),
-                      Categoryes(id: 9, title: "Готовый бизнес и оборудование", image: "Three"),]
+        categories = [Categoryes(id: 1, title: "Личные вещи", image: "1"),
+                      Categoryes(id: 2, title: "Транспорт", image: "2"),
+                      Categoryes(id: 3, title: "Работа", image: "3"),
+                      Categoryes(id: 4, title: "Запчасти и аксессуары", image: "4"),
+                      Categoryes(id: 5, title: "Для дома и дачи", image: "5"),
+                      Categoryes(id: 6, title: "Недвижимость", image: "6"),
+                      Categoryes(id: 7, title: "Предложение услуг", image: "7"),
+                      Categoryes(id: 8, title: "Хобби и отдых", image: "8"),
+                      Categoryes(id: 9, title: "Электроника", image: "9"),
+                      Categoryes(id: 8, title: "Животные", image: "10"),
+                      Categoryes(id: 9, title: "Готовый бизнес и оборудование", image: "1"),]
     }
     
     func setupDataSource() {
@@ -110,41 +110,16 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
             let section = SectionKind(rawValue: indexPath.section)
             switch section {
             case .category:
-                
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryFeedCell
-                
-                let categories = self.categories[indexPath.item]
-
-                cell.titleLabel.text = categories.title
+                cell.setupCell(categories[indexPath.item])
                 return cell
-                
-            case .products:
-                
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! FeedCell
 
-                let news = self.news[indexPath.item]
-                
-                cell.titleLabel.text = news.title?.rendered
-                cell.authorLabel.text = nil
-                cell.imageView.image = UIImage(named: "no_image")
-                cell.authorLabel.text = user?.name
-                
-//                self.presenter.loadImageForCell(idPost: news.id ?? 0)
-//                self.presenter.loadUsernameForCells(author: news.author ?? 0)
-//
-////                DispatchQueue.global().async {
-//                    let imageUrl = URL(string: media?[0].guid?.rendered ?? "")
-////                    guard let imageData = try? Data(contentsOf: imageUrl) else { return }
-////                    DispatchQueue.main.async {
-////                        cell.imageView.image = UIImage(data: imageData)
-//                        cell.imageView.kf.setImage(with: imageUrl)
-////                    }
-////                }
-                
+            case .products:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! FeedCell
+                cell.setupCell(news[indexPath.item])
                 return cell
                 
             case .none:
-            
                 return nil
                 
             }
@@ -212,16 +187,13 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("LOG: нажато")
+        presenter?.routeToDetail(idPost: news[indexPath.item].id ?? 0)
     }
     
 }
 
-
 extension FeedViewController {
     func newsDataReload(news: [News]) {
-        
-        
         DispatchQueue.main.async {
             self.news = news
             self.collectionView.reloadData()
