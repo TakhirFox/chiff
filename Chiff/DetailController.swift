@@ -23,7 +23,7 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
     
     let networkService = NetworkService()
     var idPost: Int?
-    var news = DetailNews(id: nil, date: nil, dateGmt: nil, guid: nil, modified: nil, modifiedGmt: nil, slug: nil, status: nil, type: nil, link: nil, title: nil, content: nil, excerpt: nil, author: nil, featuredMedia: nil, commentStatus: nil, pingStatus: nil, sticky: nil, template: nil, format: nil, categories: nil, cost: nil, links: nil)
+    var news: DetailNews?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,17 +40,17 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
         
         collectionView.backgroundColor = .systemGroupedBackground
         
-        networkService.getPost(idPost: idPost!) { result in
-            switch result {
-            case .success(let news):
-                DispatchQueue.main.async {
-                    self.news = news
-                    self.collectionView.reloadData()
-                }
-            case .failure(let error):
-                print("Ошибка получения поста \(error)")
-            }
-        }
+//        networkService.getPost(idPost: idPost!) { result in
+//            switch result {
+//            case .success(let news):
+//                DispatchQueue.main.async {
+//                    self.news = news
+//                    self.collectionView.reloadData()
+//                }
+//            case .failure(let error):
+//                print("Ошибка получения поста \(error)")
+//            }
+//        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -65,25 +65,25 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
         case .imageItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! DetailImageCell
        
-            networkService.getImagesFromPosts(idPost: news.id ?? 0) { result in
-                switch result {
-                case .success(let media):
-                    
-                    DispatchQueue.main.async {
-                        cell.images = media
-                        cell.collectionView.reloadData()
-                    }
-                    
-                case .failure(let error):
-                    print("Ошибка получения изображения \(error.localizedDescription)")
-                }
-            }
+//            networkService.getImagesFromPosts(idPost: news.id ?? 0) { result in
+//                switch result {
+//                case .success(let media):
+//
+//                    DispatchQueue.main.async {
+//                        cell.images = media
+//                        cell.collectionView.reloadData()
+//                    }
+//
+//                case .failure(let error):
+//                    print("Ошибка получения изображения \(error.localizedDescription)")
+//                }
+//            }
             
             return cell
         case .titleItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! DetailNameCell
-            cell.titleLabel.text = news.title?.rendered
-            cell.costLabel.text = "\(news.cost ?? "") ₽"
+//            cell.titleLabel.text = news.title?.rendered
+//            cell.costLabel.text = "\(news.cost ?? "") ₽"
             return cell
         case .locationItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
@@ -91,7 +91,7 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
             return cell
         case .descriptionItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! DetailDescCell
-            cell.descriptionLabel.text = news.content?.rendered
+//            cell.descriptionLabel.text = news.content?.rendered
             return cell
         case .contactsItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell6", for: indexPath) as! ContactCell
@@ -99,22 +99,22 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
         case .infoAuthorItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell4", for: indexPath) as! InfoAuthorCell
             
-            networkService.getUsernamePost(id: news.author ?? 0) { result in
-                switch result {
-                case .success(let username):
-                    
-                    DispatchQueue.main.async {
-                        cell.nameLabel.text = username.name
-                    }
-                    
-                case .failure(let error):
-                    print("Ошибка получения информации о пользователе \(error.localizedDescription)")
-                }
-            }
-            
-            cell.avatarImage.image = UIImage(named: "ads")
-            cell.rateLabel.text = "5 отзывов"
-            cell.personLabel.text = "Частое лицо"
+//            networkService.getUsernamePost(id: news.author ?? 0) { result in
+//                switch result {
+//                case .success(let username):
+//
+//                    DispatchQueue.main.async {
+//                        cell.nameLabel.text = username.name
+//                    }
+//
+//                case .failure(let error):
+//                    print("Ошибка получения информации о пользователе \(error.localizedDescription)")
+//                }
+//            }
+//
+//            cell.avatarImage.image = UIImage(named: "ads")
+//            cell.rateLabel.text = "5 отзывов"
+//            cell.personLabel.text = "Частое лицо"
             
             
             return cell

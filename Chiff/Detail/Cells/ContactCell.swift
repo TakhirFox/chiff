@@ -30,6 +30,10 @@ class ContactCell: UICollectionViewCell {
         
     }
     
+    func setupCell(_ news: DetailNews?) {
+       
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -53,6 +53,13 @@ class InfoAuthorCell: UICollectionViewCell {
         horizontalStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 5, left: 10, bottom: 5, right: 10) ,size: .init(width: 0, height: 0))
     }
     
+    func setupCell(_ news: News?) {
+        nameLabel.text = news?.authorName
+        avatarImage.image = UIImage(named: "ads")
+        rateLabel.text = "5 отзывов"
+        personLabel.text = "Частое лицо"
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

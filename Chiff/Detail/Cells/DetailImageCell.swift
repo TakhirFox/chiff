@@ -9,7 +9,7 @@ import UIKit
 
 class DetailImageCell: UICollectionViewCell {
     
-    var images = [Media]()
+    var images: [String]?
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -34,6 +34,11 @@ class DetailImageCell: UICollectionViewCell {
         
     }
     
+    func setupCell(_ news: News?) {
+        images = news?.imagesPost
+        collectionView.reloadData()
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -42,21 +47,16 @@ class DetailImageCell: UICollectionViewCell {
 
 extension DetailImageCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return images?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageCell
-
-        DispatchQueue.global().async {
-            guard let imageUrl = URL(string: self.images[indexPath.row].guid?.rendered ?? "") else { return }
-            guard let imageData = try? Data(contentsOf: imageUrl) else { return }
-            DispatchQueue.main.async {
-                cell.imageView.image = UIImage(data: imageData)
-                cell.imageViewBackground.image = UIImage(data: imageData)
-            }
-        }
+        cell.imageView.image = UIImage(named: "no_image")
         
+        let urlString = URL(string: images?[indexPath.row] ?? "")
+        cell.imageView.kf.setImage(with: urlString)
+        cell.imageViewBackground.kf.setImage(with: urlString)
         return cell
     }
     

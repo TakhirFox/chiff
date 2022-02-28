@@ -23,6 +23,10 @@ class DetailDescCell: UICollectionViewCell {
         
     }
     
+    func setupCell(_ news: News?) {
+        descriptionLabel.text = news?.content?.rendered
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

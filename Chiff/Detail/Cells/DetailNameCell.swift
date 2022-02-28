@@ -27,6 +27,11 @@ class DetailNameCell: UICollectionViewCell {
         
     }
     
+    func setupCell(_ news: News?) {
+        titleLabel.text = news?.title?.rendered
+        costLabel.text = "\(news?.cost ?? "") ₽"
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
