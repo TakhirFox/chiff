@@ -9,7 +9,11 @@ import Foundation
 
 protocol DetailFeedPresenterProtocol: AnyObject {
     func getDetailPostInfo()
-    func getDetailPostSuccess(post: DetailNews)
+    func getDetailPostSuccess(post: News)
+    func getSimilarPostSuccess(similar: [News])
+    
+    func showDetailPostError(_ error: String)
+    func showSimilarPostError(_ error: String)
 }
 
 class DetailFeedPresenter: BasePresenter {
@@ -24,8 +28,20 @@ extension DetailFeedPresenter: DetailFeedPresenterProtocol {
         interactor?.getDetailPostInfo(idPost!)
     }
     
-    func getDetailPostSuccess(post: DetailNews) {
+    func getDetailPostSuccess(post: News) {
         view?.setDetailPostInfo(post: post)
+    }
+    
+    func showDetailPostError(_ error: String) {
+        view?.showDetailPostError(error)
+    }
+    
+    func getSimilarPostSuccess(similar: [News]) {
+        view?.getSimilarPostSuccess(similar: similar)
+    }
+    
+    func showSimilarPostError(_ error: String) {
+        view?.showSimilarPostError(error)
     }
     
 }
