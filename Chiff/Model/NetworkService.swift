@@ -16,7 +16,8 @@ enum NetworkError: Error {
 protocol NetworkServiceProtocol {
     func getData(page: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
     func getUsernamePost(id: Int, complitionHandler: @escaping (Result<User, Error>) -> Void)
-    func getPost(idPost: Int, complitionHandler: @escaping (Result<DetailNews, Error>) -> Void)
+    func getPost(idPost: Int, complitionHandler: @escaping (Result<News, Error>) -> Void)
+    func getSimilarPost(idPost: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
     func createNewPost(post: CreatePostModel, complitionHandler: @escaping (Result<String, Error>) -> Void)
     func getImagesFromPosts(idPost: Int, complitionHandler: @escaping (Result<[Media], NetworkError>) -> Void)
     func loadImages(postId: String, images: [UIImage])
@@ -28,12 +29,12 @@ protocol NetworkServiceProtocol {
 
 class NetworkService: NetworkServiceProtocol {
     
-    private let baseUrl = "http://swiftdevs.ru/wp-json"
+    private let baseUrl = "http://swiftdevs.ru"
     
     // Запрос каких либо данных
     func getData(page: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void) {
         
-        guard let url = URL(string: "\(baseUrl)/wp/v2/posts?page=\(page)") else { return }
+        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/posts?page=\(page)") else { return }
         
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             
@@ -53,7 +54,7 @@ class NetworkService: NetworkServiceProtocol {
     // Получаем пользователя, запостивший пост ))))
     func getUsernamePost(id: Int, complitionHandler: @escaping (Result<User, Error>) -> Void) {
         
-        guard let url = URL(string: "\(baseUrl)/wp/v2/users/\(id)") else { return }
+        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/users/\(id)") else { return }
         
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             
@@ -73,7 +74,7 @@ class NetworkService: NetworkServiceProtocol {
     // Запрашиваем изображения для постов
     func getImagesFromPosts(idPost: Int, complitionHandler: @escaping (Result<[Media], NetworkError>) -> Void) {
         
-        guard let url = URL(string: "\(baseUrl)/wp/v2/media?parent=\(idPost)") else { return }
+        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/media?parent=\(idPost)") else { return }
         
         URLSession.shared.dataTask(with: url) { data, _, error in
 
@@ -91,16 +92,16 @@ class NetworkService: NetworkServiceProtocol {
     }
     
     // Запрашиваем пост с детальной информцией
-    func getPost(idPost: Int, complitionHandler: @escaping (Result<DetailNews, Error>) -> Void) {
+    func getPost(idPost: Int, complitionHandler: @escaping (Result<News, Error>) -> Void) {
         
-        guard let url = URL(string: "\(baseUrl)/wp/v2/posts/\(idPost)") else { return }
+        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/posts/\(idPost)") else { return }
         
         URLSession.shared.dataTask(with: url) { data, _, error in
             
             guard let data = data else { return }
             
             do {
-                let post = try JSONDecoder().decode(DetailNews.self, from: data)
+                let post = try JSONDecoder().decode(News.self, from: data)
                 complitionHandler(.success(post))
             } catch {
                 complitionHandler(.failure(error))
@@ -110,10 +111,26 @@ class NetworkService: NetworkServiceProtocol {
         
     }
     
+    func getSimilarPost(idPost: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void) {
+        guard let url = URL(string: "\(baseUrl)/wp-json/contextual-related-posts/v1/posts/\(idPost)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data else { return }
+            
+            do {
+                let similar = try JSONDecoder().decode([News].self, from: data)
+                complitionHandler(.success(similar))
+            } catch {
+                complitionHandler(.failure(error))
+            }
+        }.resume()
+    }
+
+    
     // Отправляем POST запрос, для создания поста
     func createNewPost(post: CreatePostModel, complitionHandler: @escaping (Result<String, Error>) -> Void) {
         
-        guard let url = URL(string: "\(baseUrl)/wp/v2/posts") else { return }
+        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/posts") else { return }
         guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
         
         let headers = ["Content-Type": "application/json", "Accept": "application/json"]
@@ -157,7 +174,7 @@ class NetworkService: NetworkServiceProtocol {
     
     // Отправляем изображение на сервер, получаем ссылку для поста
     func loadImages(postId: String, images: [UIImage]) {
-        guard let url = URL(string: "\(baseUrl)/wp/v2/media") else { return }
+        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/media") else { return }
         guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
         
         for image in images {
@@ -212,7 +229,7 @@ class NetworkService: NetworkServiceProtocol {
         
         guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
         
-        guard let url = URL(string: "\(baseUrl)/wp/v2/users/1") else { return }
+        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/users/1") else { return }
         var loginRequest = URLRequest(url: url)
         loginRequest.httpMethod = "GET"
         loginRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
@@ -240,7 +257,7 @@ class NetworkService: NetworkServiceProtocol {
     // Аутентификация и авторизация
     func getAuth(login: String, password: String, complitionHandler: @escaping (Result<Auth, NetworkError>) -> Void) {
         
-        guard let url = URL(string: "\(baseUrl)/jwt-auth/v1/token") else { return }
+        guard let url = URL(string: "\(baseUrl)/wp-json/jwt-auth/v1/token") else { return }
         
         let headers = ["Content-Type": "application/json", "cache-control": "no-cache"]
         let parameters = ["username": login, "password": password] as [String: Any]
@@ -287,7 +304,7 @@ class NetworkService: NetworkServiceProtocol {
     // Регистрация
     func getRegister() {
         
-        guard let url = URL(string: "\(baseUrl)/wp/v2/users/register") else { return }
+        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/users/register") else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

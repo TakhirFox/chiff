@@ -75,6 +75,7 @@
 		ADA98D4927CA815B009C89ED /* DetailFeedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4827CA815B009C89ED /* DetailFeedInteractor.swift */; };
 		ADA98D4B27CA8166009C89ED /* DetailFeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4A27CA8166009C89ED /* DetailFeedRouter.swift */; };
 		ADA98D4D27CA8171009C89ED /* DetailFeedAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4C27CA8171009C89ED /* DetailFeedAssembly.swift */; };
+		ADA98D5127CBC89E009C89ED /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D5027CBC89E009C89ED /* HeaderCell.swift */; };
 		ADE1A04927C54BBB00C4B74B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE1A04827C54BBB00C4B74B /* SignUpViewController.swift */; };
 		ADE1A04B27C54C1B00C4B74B /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE1A04A27C54C1B00C4B74B /* SignUpPresenter.swift */; };
 		ADE1A04D27C54CB000C4B74B /* SignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE1A04C27C54CB000C4B74B /* SignUpInteractor.swift */; };
@@ -186,6 +187,7 @@
 		ADA98D4827CA815B009C89ED /* DetailFeedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedInteractor.swift; sourceTree = "<group>"; };
 		ADA98D4A27CA8166009C89ED /* DetailFeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedRouter.swift; sourceTree = "<group>"; };
 		ADA98D4C27CA8171009C89ED /* DetailFeedAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedAssembly.swift; sourceTree = "<group>"; };
+		ADA98D5027CBC89E009C89ED /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		ADE1A04827C54BBB00C4B74B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		ADE1A04A27C54C1B00C4B74B /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
 		ADE1A04C27C54CB000C4B74B /* SignUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInteractor.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				AD4CA61E27C7D04B00291AC7 /* FeedInteractor.swift */,
 				AD4CA62027C7D06200291AC7 /* FeedRouter.swift */,
 				AD4CA62227C7D07600291AC7 /* FeedAssembly.swift */,
+				ADA98D4E27CB6E2A009C89ED /* Cells */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				ADA98D4827CA815B009C89ED /* DetailFeedInteractor.swift */,
 				ADA98D4A27CA8166009C89ED /* DetailFeedRouter.swift */,
 				ADA98D4C27CA8171009C89ED /* DetailFeedAssembly.swift */,
+				ADA98D4F27CB6E5B009C89ED /* Cells */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -413,13 +417,6 @@
 		AD7D627127242A7B0014E82E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				AD8EFE6F2723D14A0056F8A8 /* DetailDescCell.swift */,
-				AD8EFE732723EB330056F8A8 /* PaidAdsCell.swift */,
-				AD7D627227242A950014E82E /* DetailImageCell.swift */,
-				AD7D627627244D2B0014E82E /* ContactCell.swift */,
-				AD7D6274272432510014E82E /* ImageCell.swift */,
-				AD8EFE712723D37D0056F8A8 /* InfoAuthorCell.swift */,
-				AD8EFE6D2723C8510056F8A8 /* DetailNameCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -512,9 +509,7 @@
 		AD8EFE6927231AA70056F8A8 /* FeedScreen */ = {
 			isa = PBXGroup;
 			children = (
-				AD7F1267261CB31200EB09F7 /* FeedCell.swift */,
 				AD7F1261261CB0C800EB09F7 /* FeedController.swift */,
-				AD938956277F839000B0D925 /* CategoryFeedCell.swift */,
 			);
 			name = FeedScreen;
 			sourceTree = "<group>";
@@ -543,6 +538,30 @@
 				AD9562292753C43F00D5FAFF /* SignInController.swift */,
 			);
 			name = SignInScreen;
+			sourceTree = "<group>";
+		};
+		ADA98D4E27CB6E2A009C89ED /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AD7F1267261CB31200EB09F7 /* FeedCell.swift */,
+				AD938956277F839000B0D925 /* CategoryFeedCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		ADA98D4F27CB6E5B009C89ED /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AD8EFE6F2723D14A0056F8A8 /* DetailDescCell.swift */,
+				AD8EFE732723EB330056F8A8 /* PaidAdsCell.swift */,
+				ADA98D5027CBC89E009C89ED /* HeaderCell.swift */,
+				AD7D627227242A950014E82E /* DetailImageCell.swift */,
+				AD7D627627244D2B0014E82E /* ContactCell.swift */,
+				AD7D6274272432510014E82E /* ImageCell.swift */,
+				AD8EFE712723D37D0056F8A8 /* InfoAuthorCell.swift */,
+				AD8EFE6D2723C8510056F8A8 /* DetailNameCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		ADE1A04727C54B8E00C4B74B /* SignUp */ = {
@@ -871,6 +890,7 @@
 				AD8EFE65271F3B3A0056F8A8 /* CreatePostImageButtonCell.swift in Sources */,
 				AD4CA60C27C7CB9000291AC7 /* ForgetPassViewController.swift in Sources */,
 				AD8EFE6E2723C8510056F8A8 /* DetailNameCell.swift in Sources */,
+				ADA98D5127CBC89E009C89ED /* HeaderCell.swift in Sources */,
 				ADA98D4927CA815B009C89ED /* DetailFeedInteractor.swift in Sources */,
 				84E9C24E271EB38A004AB184 /* CreatePostController.swift in Sources */,
 				AD938957277F839000B0D925 /* CategoryFeedCell.swift in Sources */,
