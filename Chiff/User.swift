@@ -14,27 +14,21 @@ struct User: Decodable {
     let welcomeDescription: String?
     let link: String?
     let slug: String?
-    let avatarUrls: [Avatars: String]?
     let links: Links?
+    let avatarimage: Avatarimage?
+    let numberphone, lastname, firstname: String?
 }
 
-struct Avatars: Decodable, Hashable {
-    let littleImage: String?
-    let middleImage: String?
-    let bigImage: String?
-    
-    enum CodingKeys: Int, CodingKey {
-        case littleImage = 24
-        case middleImage = 48
-        case bigImage = 64
-    }
-    
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        littleImage = try values.decodeIfPresent(String.self, forKey: .littleImage)
-        middleImage = try values.decodeIfPresent(String.self, forKey: .middleImage)
-        bigImage = try values.decodeIfPresent(String.self, forKey: .bigImage)
-    }
+// MARK: - Avatarimage
+struct Avatarimage: Decodable {
+    let id, postAuthor, postDate, postDateGmt: String?
+    let postContent, postTitle, postExcerpt, postStatus: String?
+    let commentStatus, pingStatus, postPassword, postName: String?
+    let toPing, pinged, postModified, postModifiedGmt: String?
+    let postContentFiltered, postParent: String?
+    let guid: String?
+    let menuOrder, postType, postMIMEType, commentCount: String?
+    let podItemID: String?
 }
 
 // MARK: - Links
