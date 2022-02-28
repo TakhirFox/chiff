@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DetailFeedRouterProtocol: AnyObject {
-    
+    func routeToProfile(id: Int)
 }
 
 class DetailFeedRouter: BaseRouter {
@@ -16,6 +16,10 @@ class DetailFeedRouter: BaseRouter {
 }
 
 extension DetailFeedRouter: DetailFeedRouterProtocol {
+    func routeToProfile(id: Int) {
+        let view = ProfileAssembly.create(id: id)
+        viewController?.navigationController?.pushViewController(view, animated: true)
+    }
     
 }
 
