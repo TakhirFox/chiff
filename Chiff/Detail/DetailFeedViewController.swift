@@ -11,9 +11,11 @@ protocol DetailFeedViewControllerProtocol: AnyObject {
     var presenter: DetailFeedPresenterProtocol? { get set }
     func setDetailPostInfo(post: News)
     func getSimilarPostSuccess(similar: [News])
+    func setUsernamePost(user: User)
     
     func showDetailPostError(_ error: String)
     func showSimilarPostError(_ error: String)
+    func showSUsernamePostError(_ error: String)
 }
 
 class DetailFeedViewController: BaseViewController, DetailFeedViewControllerProtocol {
@@ -33,6 +35,7 @@ class DetailFeedViewController: BaseViewController, DetailFeedViewControllerProt
     
     var news: News?
     var similarNews: [News]?
+    var user: User?
     var presenter: DetailFeedPresenterProtocol?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,7 +45,7 @@ class DetailFeedViewController: BaseViewController, DetailFeedViewControllerProt
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
         
-        setupTableView()
+        setupCollectionView()
         setupSubviews()
         setupConstraints()
     }
@@ -57,7 +60,7 @@ class DetailFeedViewController: BaseViewController, DetailFeedViewControllerProt
         }
     }
     
-    func setupTableView() {
+    func setupCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -118,7 +121,7 @@ extension DetailFeedViewController: UICollectionViewDelegate, UICollectionViewDa
                 
             case .infoAuthorItem:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell4", for: indexPath) as! InfoAuthorCell
-                cell.setupCell(news)
+                cell.setupCell(user)
                 return cell
                 
             case .paidAdsItem:
@@ -199,6 +202,35 @@ extension DetailFeedViewController: UICollectionViewDelegate, UICollectionViewDa
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let items = Items(rawValue: indexPath.item)
+            
+            switch items {
+            case .imageItem:
+                print("LOG: Увеличить изображение")
+            case .titleItem:
+                print("LOG: Ничего")
+            case .locationItem:
+                print("LOG: Возможно показать карту")
+            case .descriptionItem:
+                print("LOG: ХЗ. Увеличить повысоту блока для текста?")
+            case .contactsItem:
+                print("LOG: Скорее сделаем эддТаргет по кнопкам")
+            case .infoAuthorItem:
+                presenter?.routeToProfile(id: news?.author ?? 0)
+            case .paidAdsItem:
+                print("LOG: Переход к рекламе")
+            case .similarTitle:
+                print("LOG: Ничего, а может show/hide блок похожих")
+            case .none:
+                print("LOG: хех")
+            }
+        } else {
+            
+        }
+    }
+    
 }
 
 extension DetailFeedViewController {
@@ -216,6 +248,13 @@ extension DetailFeedViewController {
         }
     }
     
+    func setUsernamePost(user: User) {
+        DispatchQueue.main.async {
+            self.user = user
+            self.collectionView.reloadData()
+        }
+    }
+    
     func showSimilarPostError(_ error: String) {
         DispatchQueue.main.async {
             print("ОШИБКА ДЕТАЛЬНЫЙ ПОСТ ПОХОЖИХ ВЬЮ: \(error)")
@@ -225,6 +264,12 @@ extension DetailFeedViewController {
     func showDetailPostError(_ error: String) {
         DispatchQueue.main.async {
             print("ОШИБКА ДЕТАЛЬНЫЙ ПОСТ ВЬЮ: \(error)")
+        }
+    }
+    
+    func showSUsernamePostError(_ error: String) {
+        DispatchQueue.main.async {
+            print("ОШИБКА USERNAME ПОСТ ВЬЮ: \(error)")
         }
     }
     

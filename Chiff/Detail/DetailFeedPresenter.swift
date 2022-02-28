@@ -11,9 +11,13 @@ protocol DetailFeedPresenterProtocol: AnyObject {
     func getDetailPostInfo()
     func getDetailPostSuccess(post: News)
     func getSimilarPostSuccess(similar: [News])
+    func showUsernamePostSuccess(user: User)
+    
+    func routeToProfile(id: Int)
     
     func showDetailPostError(_ error: String)
     func showSimilarPostError(_ error: String)
+    func showUsernamePostError(_ error: String)
 }
 
 class DetailFeedPresenter: BasePresenter {
@@ -32,16 +36,28 @@ extension DetailFeedPresenter: DetailFeedPresenterProtocol {
         view?.setDetailPostInfo(post: post)
     }
     
-    func showDetailPostError(_ error: String) {
-        view?.showDetailPostError(error)
+    func routeToProfile(id: Int) {
+        router?.routeToProfile(id: id)
     }
     
     func getSimilarPostSuccess(similar: [News]) {
         view?.getSimilarPostSuccess(similar: similar)
     }
     
+    func showUsernamePostSuccess(user: User) {
+        view?.setUsernamePost(user: user)
+    }
+    
+    func showDetailPostError(_ error: String) {
+        view?.showDetailPostError(error)
+    }
+    
     func showSimilarPostError(_ error: String) {
         view?.showSimilarPostError(error)
+    }
+    
+    func showUsernamePostError(_ error: String) {
+        view?.showSUsernamePostError(error)
     }
     
 }
