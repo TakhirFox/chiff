@@ -203,6 +203,8 @@ extension FeedViewController {
     }
     
     func showError(error: String) {
-        print("LOG: \(error)")
+        DispatchQueue.main.async {
+            print("ОШИБКА ПОСТЫ ВЬЮ: \(error)")
+        }
     }
 }
