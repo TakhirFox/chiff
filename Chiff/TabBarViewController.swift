@@ -33,7 +33,7 @@ class TabBarViewController: UITabBarController, TabBarViewControllerProtocol {
         viewControllers = [
             createNavController(viewController: FeedAssembly.create(), title: "Feed", image: UIImage(systemName: "rectangle.on.rectangle")!),
             createNavController(viewController: CreatePostController(collectionViewLayout: UICollectionViewFlowLayout()), title: "Добавить", image: UIImage(systemName: "plus.square")!),
-            createNavController(viewController: ProfileController(), title: "Профиль", image: UIImage(systemName: "person.crop.circle")!)
+            createNavController(viewController: ProfileAssembly.create(id: 0), title: "Профиль", image: UIImage(systemName: "person.crop.circle")!)
         ]
     }
 
