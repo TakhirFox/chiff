@@ -69,6 +69,11 @@
 		AD938959278034EB00B0D925 /* Categoryes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD938958278034EB00B0D925 /* Categoryes.swift */; };
 		AD956226274A844C00D5FAFF /* CreatePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD956225274A844B00D5FAFF /* CreatePostModel.swift */; };
 		AD95622A2753C43F00D5FAFF /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9562292753C43F00D5FAFF /* SignInController.swift */; };
+		ADA25DC227D3C4FD00DFD875 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DC127D3C4FD00DFD875 /* EditProfileViewController.swift */; };
+		ADA25DC427D3C50900DFD875 /* EditProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DC327D3C50900DFD875 /* EditProfilePresenter.swift */; };
+		ADA25DC627D3C51400DFD875 /* EditProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DC527D3C51400DFD875 /* EditProfileInteractor.swift */; };
+		ADA25DC827D3C52100DFD875 /* EditProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DC727D3C52100DFD875 /* EditProfileRouter.swift */; };
+		ADA25DCA27D3C52E00DFD875 /* EditProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DC927D3C52E00DFD875 /* EditProfileAssembly.swift */; };
 		ADA7C964262F37F60067C116 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7C963262F37F60067C116 /* Auth.swift */; };
 		ADA98D4527CA8140009C89ED /* DetailFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4427CA8140009C89ED /* DetailFeedViewController.swift */; };
 		ADA98D4727CA8151009C89ED /* DetailFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4627CA8151009C89ED /* DetailFeedPresenter.swift */; };
@@ -187,6 +192,11 @@
 		AD938958278034EB00B0D925 /* Categoryes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categoryes.swift; sourceTree = "<group>"; };
 		AD956225274A844B00D5FAFF /* CreatePostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostModel.swift; sourceTree = "<group>"; };
 		AD9562292753C43F00D5FAFF /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
+		ADA25DC127D3C4FD00DFD875 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		ADA25DC327D3C50900DFD875 /* EditProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
+		ADA25DC527D3C51400DFD875 /* EditProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileInteractor.swift; sourceTree = "<group>"; };
+		ADA25DC727D3C52100DFD875 /* EditProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRouter.swift; sourceTree = "<group>"; };
+		ADA25DC927D3C52E00DFD875 /* EditProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileAssembly.swift; sourceTree = "<group>"; };
 		ADA7C963262F37F60067C116 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		ADA98D4427CA8140009C89ED /* DetailFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedViewController.swift; sourceTree = "<group>"; };
 		ADA98D4627CA8151009C89ED /* DetailFeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedPresenter.swift; sourceTree = "<group>"; };
@@ -299,7 +309,7 @@
 		842B2D3A27B24D95002E6AE8 /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				AD4CA61927C7CF5C00291AC7 /* Profile */,
+				AD4CA61927C7CF5C00291AC7 /* ProfileModules */,
 				AD4CA61727C7CF2E00291AC7 /* CreatePost */,
 				AD4CA61827C7CF4A00291AC7 /* Detail */,
 				AD4CA61627C7CF2000291AC7 /* Feed */,
@@ -419,17 +429,13 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		AD4CA61927C7CF5C00291AC7 /* Profile */ = {
+		AD4CA61927C7CF5C00291AC7 /* ProfileModules */ = {
 			isa = PBXGroup;
 			children = (
-				ADA98D5227CC9677009C89ED /* ProfileViewController.swift */,
-				ADA98D5627CC968E009C89ED /* ProfilePresenter.swift */,
-				ADA98D5427CC9685009C89ED /* ProfileInteractor.swift */,
-				ADA98D5827CC9697009C89ED /* ProfileRouter.swift */,
-				ADA98D5A27CC96B0009C89ED /* ProfileAssembly.swift */,
-				ADA98D5C27CC9704009C89ED /* Cells */,
+				ADA25DBE27D3C46700DFD875 /* EditProfile */,
+				ADA25DC027D3C4C600DFD875 /* Profile */,
 			);
-			path = Profile;
+			path = ProfileModules;
 			sourceTree = "<group>";
 		};
 		AD7D627127242A7B0014E82E /* Cells */ = {
@@ -556,6 +562,31 @@
 				AD9562292753C43F00D5FAFF /* SignInController.swift */,
 			);
 			name = SignInScreen;
+			sourceTree = "<group>";
+		};
+		ADA25DBE27D3C46700DFD875 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				ADA25DC127D3C4FD00DFD875 /* EditProfileViewController.swift */,
+				ADA25DC327D3C50900DFD875 /* EditProfilePresenter.swift */,
+				ADA25DC527D3C51400DFD875 /* EditProfileInteractor.swift */,
+				ADA25DC727D3C52100DFD875 /* EditProfileRouter.swift */,
+				ADA25DC927D3C52E00DFD875 /* EditProfileAssembly.swift */,
+			);
+			name = EditProfile;
+			sourceTree = "<group>";
+		};
+		ADA25DC027D3C4C600DFD875 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				ADA98D5227CC9677009C89ED /* ProfileViewController.swift */,
+				ADA98D5627CC968E009C89ED /* ProfilePresenter.swift */,
+				ADA98D5427CC9685009C89ED /* ProfileInteractor.swift */,
+				ADA98D5827CC9697009C89ED /* ProfileRouter.swift */,
+				ADA98D5A27CC96B0009C89ED /* ProfileAssembly.swift */,
+				ADA98D5C27CC9704009C89ED /* Cells */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		ADA98D4E27CB6E2A009C89ED /* Cells */ = {
@@ -904,6 +935,7 @@
 				AD4CA60E27C7CBA500291AC7 /* ForgetPassPresenter.swift in Sources */,
 				842B2D5827B26DF2002E6AE8 /* AuthAssembly.swift in Sources */,
 				AD4CA61027C7CBB900291AC7 /* ForgetPassInteractor.swift in Sources */,
+				ADA25DC827D3C52100DFD875 /* EditProfileRouter.swift in Sources */,
 				AD4CA62327C7D07600291AC7 /* FeedAssembly.swift in Sources */,
 				ADA98D4D27CA8171009C89ED /* DetailFeedAssembly.swift in Sources */,
 				AD4CA61227C7CBD200291AC7 /* ForgetPassRouter.swift in Sources */,
@@ -916,6 +948,7 @@
 				AD8EFE67272102060056F8A8 /* PostCreate.swift in Sources */,
 				ADA98D5327CC9677009C89ED /* ProfileViewController.swift in Sources */,
 				842B2D4327B263F0002E6AE8 /* BaseInteractor.swift in Sources */,
+				ADA25DC627D3C51400DFD875 /* EditProfileInteractor.swift in Sources */,
 				AD8EFE65271F3B3A0056F8A8 /* CreatePostImageButtonCell.swift in Sources */,
 				AD4CA60C27C7CB9000291AC7 /* ForgetPassViewController.swift in Sources */,
 				AD8EFE6E2723C8510056F8A8 /* DetailNameCell.swift in Sources */,
@@ -926,6 +959,7 @@
 				AD4CA61F27C7D04B00291AC7 /* FeedInteractor.swift in Sources */,
 				AD7D6275272432510014E82E /* ImageCell.swift in Sources */,
 				ADA7C964262F37F60067C116 /* Auth.swift in Sources */,
+				ADA25DC227D3C4FD00DFD875 /* EditProfileViewController.swift in Sources */,
 				ADE1A05F27C63C5D00C4B74B /* TabBarRouter.swift in Sources */,
 				842B2D4127B26337002E6AE8 /* BaseViewController.swift in Sources */,
 				AD8EFE6C27231AF10056F8A8 /* DetailController.swift in Sources */,
@@ -951,12 +985,14 @@
 				842B2D5627B26CE5002E6AE8 /* AuthRouter.swift in Sources */,
 				ADE1A04927C54BBB00C4B74B /* SignUpViewController.swift in Sources */,
 				AD4CA62127C7D06200291AC7 /* FeedRouter.swift in Sources */,
+				ADA25DC427D3C50900DFD875 /* EditProfilePresenter.swift in Sources */,
 				842B2D4927B264E6002E6AE8 /* BaseAssemblyProtocol.swift in Sources */,
 				842B2D5427B26CA3002E6AE8 /* AuthInteractor.swift in Sources */,
 				AD8EFE63271F2B4F0056F8A8 /* UITextView+Layout.swift in Sources */,
 				8476E20F2716890E0032B909 /* FeedPresenter2.swift in Sources */,
 				AD7F12A52621B71C00EB09F7 /* ProfileController.swift in Sources */,
 				ADA98D5927CC9697009C89ED /* ProfileRouter.swift in Sources */,
+				ADA25DCA27D3C52E00DFD875 /* EditProfileAssembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

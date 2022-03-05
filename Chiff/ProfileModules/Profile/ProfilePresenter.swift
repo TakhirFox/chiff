@@ -17,6 +17,7 @@ protocol ProfilePresenterProtocol: AnyObject {
     func showPostsForProfileError(_ error: String)
     
     func routeToDetail(idPost: Int)
+    func routeToEditProfile(idUser: Int)
 }
 
 class ProfilePresenter: BasePresenter {
@@ -49,6 +50,10 @@ extension ProfilePresenter: ProfilePresenterProtocol {
     
     func routeToDetail(idPost: Int) {
         router?.routeToDetail(idPost: idPost)
+    }
+    
+    func routeToEditProfile(idUser: Int) {
+        router?.routeToEditProfile(idUser: idUser)
     }
     
 }

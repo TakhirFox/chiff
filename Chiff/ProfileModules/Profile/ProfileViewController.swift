@@ -31,8 +31,10 @@ class ProfileViewController: BaseViewController, ProfileViewControllerProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .systemBackground
         activityIndicator.startAnimating()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .plain, target: self, action: #selector(openSettings))
         
         setupCollectionView()
         setupSubviews()
@@ -123,6 +125,10 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
 }
 
 extension ProfileViewController {
+    @objc func openSettings() {
+        presenter?.routeToEditProfile(idUser: user?.id ?? 0)
+    }
+    
     func setProfileInfo(user: User) {
         DispatchQueue.main.async {
             self.user = user
