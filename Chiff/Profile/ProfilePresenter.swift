@@ -11,7 +11,12 @@ protocol ProfilePresenterProtocol: AnyObject {
     func getUsernameInfo()
     
     func showProfileSuccess(user: User)
+    func showPostsForProfileSuccess(posts: [News])
+    
     func showProfileError(_ error: String)
+    func showPostsForProfileError(_ error: String)
+    
+    func routeToDetail(idPost: Int)
 }
 
 class ProfilePresenter: BasePresenter {
@@ -32,6 +37,18 @@ extension ProfilePresenter: ProfilePresenterProtocol {
     
     func showProfileError(_ error: String) {
         view?.showErrorProfileInfo(error)
+    }
+    
+    func showPostsForProfileSuccess(posts: [News]) {
+        view?.setPostsForProfile(posts: posts)
+    }
+    
+    func showPostsForProfileError(_ error: String) {
+        view?.showErrorPostsForProfile(error)
+    }
+    
+    func routeToDetail(idPost: Int) {
+        router?.routeToDetail(idPost: idPost)
     }
     
 }

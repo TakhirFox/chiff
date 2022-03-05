@@ -22,6 +22,7 @@ protocol NetworkServiceProtocol {
     func getImagesFromPosts(idPost: Int, complitionHandler: @escaping (Result<[Media], NetworkError>) -> Void)
     func loadImages(postId: String, images: [UIImage])
     func getProfileInfo(complitionHandler: @escaping (Result<User, NetworkError>) -> Void)
+    func getPostsForProfile(userId: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
     func getAuth(login: String, password: String, complitionHandler: @escaping (Result<Auth, NetworkError>) -> Void)
     func getRegister()
     func getPosts()
@@ -339,6 +340,25 @@ class NetworkService: NetworkServiceProtocol {
         
         
     }
+    
+    // Получить все посты связанные с пользователем по айди
+    func getPostsForProfile(userId: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void) {
+        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/posts?author=\(userId)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
+            
+            guard let data = data else { return }
+            
+            do {
+                let news = try JSONDecoder().decode([News].self, from: data)
+                complitionHandler(.success(news))
+            } catch {
+                complitionHandler(.failure(error))
+            }
+            
+        }.resume()
+    }
+
     
     
 }
