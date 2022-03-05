@@ -198,7 +198,9 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter?.routeToDetail(idPost: news[indexPath.item].id ?? 0)
+        if indexPath.section == 1 {
+            presenter?.routeToDetail(idPost: news[indexPath.item].id ?? 0)
+        }
     }
     
 }

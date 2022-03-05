@@ -14,6 +14,7 @@ protocol DetailFeedPresenterProtocol: AnyObject {
     func showUsernamePostSuccess(user: User)
     
     func routeToProfile(id: Int)
+    func routeToDetail(idPost: Int)
     
     func showDetailPostError(_ error: String)
     func showSimilarPostError(_ error: String)
@@ -58,6 +59,10 @@ extension DetailFeedPresenter: DetailFeedPresenterProtocol {
     
     func showUsernamePostError(_ error: String) {
         view?.showSUsernamePostError(error)
+    }
+    
+    func routeToDetail(idPost: Int) {
+        router?.routeToDetail(idPost: idPost)
     }
     
 }

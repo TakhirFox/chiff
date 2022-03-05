@@ -236,7 +236,7 @@ extension DetailFeedViewController: UICollectionViewDelegate, UICollectionViewDa
                 print("LOG: хех")
             }
         } else {
-            
+            presenter?.routeToDetail(idPost: similarNews?[indexPath.item].id ?? 0)
         }
     }
     
