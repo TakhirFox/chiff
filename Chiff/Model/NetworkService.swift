@@ -55,7 +55,7 @@ class NetworkService: NetworkServiceProtocol {
     func getUsernamePost(id: Int, complitionHandler: @escaping (Result<User, Error>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/users/\(id)") else { return }
-        
+
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             
             guard let data = data else { return }
@@ -229,7 +229,7 @@ class NetworkService: NetworkServiceProtocol {
         
         guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
         
-        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/users/1") else { return }
+        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/users/me") else { return }
         var loginRequest = URLRequest(url: url)
         loginRequest.httpMethod = "GET"
         loginRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
