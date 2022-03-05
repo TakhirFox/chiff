@@ -12,6 +12,7 @@ class TabBarAssembly {
         let presenter = TabBarPresenter()
         let interactor = TabBarInteractor()
         let router = TabBarRouter()
+        let networkService = NetworkService()
         
         let viewController = TabBarViewController(presenter: presenter)
         
@@ -22,6 +23,7 @@ class TabBarAssembly {
         presenter.router = router
         
         interactor.presenter = presenter
+        interactor.networkService = networkService
         
         router.viewController = viewController
         

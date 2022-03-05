@@ -8,7 +8,10 @@
 import Foundation
 
 protocol TabBarPresenterProtocol: AnyObject {
-
+    func getMyUsernameInfo()
+    
+    func showMyProfileSuccess(user: User)
+    func showMyProfileError(_ error: String)
 }
 
 class TabBarPresenter: BasePresenter {
@@ -18,5 +21,15 @@ class TabBarPresenter: BasePresenter {
 }
 
 extension TabBarPresenter: TabBarPresenterProtocol {
+    func getMyUsernameInfo() {
+        interactor?.getMyProfile()
+    }
     
+    func showMyProfileSuccess(user: User) {
+        view?.setMyProfileInfo(user: user)
+    }
+    
+    func showMyProfileError(_ error: String) {
+        view?.showMyErrorProfileInfo(error)
+    }
 }

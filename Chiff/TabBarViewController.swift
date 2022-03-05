@@ -9,15 +9,24 @@ import UIKit
 
 protocol TabBarViewControllerProtocol: AnyObject {
     var presenter: TabBarPresenterProtocol? { get set }
+    
+    func setMyProfileInfo(user: User)
+    
+    func showMyErrorProfileInfo(_ error: String)
 }
 
 class TabBarViewController: UITabBarController, TabBarViewControllerProtocol {
     
+    var user: User?
     var presenter: TabBarPresenterProtocol?
     var index: Int?
     
+    override func viewWillAppear(_ animated: Bool) {
+        presenter?.getMyUsernameInfo()
+    }
+    
     override func viewDidLoad() {
-        setupTabItems()
+//        setupTabItems()
     }
     
     init(presenter: TabBarPresenterProtocol) {
@@ -33,7 +42,7 @@ class TabBarViewController: UITabBarController, TabBarViewControllerProtocol {
         viewControllers = [
             createNavController(viewController: FeedAssembly.create(), title: "Feed", image: UIImage(systemName: "rectangle.on.rectangle")!),
             createNavController(viewController: CreatePostController(collectionViewLayout: UICollectionViewFlowLayout()), title: "Добавить", image: UIImage(systemName: "plus.square")!),
-            createNavController(viewController: ProfileAssembly.create(id: 0), title: "Профиль", image: UIImage(systemName: "person.crop.circle")!)
+            createNavController(viewController: ProfileAssembly.create(id: user?.id ?? 0), title: "Профиль", image: UIImage(systemName: "person.crop.circle")!)
         ]
     }
 
@@ -49,5 +58,18 @@ extension TabBarViewController {
         viewController.navigationItem.title = title
         navConroller.tabBarItem.title = title
         return navConroller
+    }
+    
+    func setMyProfileInfo(user: User) {
+        DispatchQueue.main.async {
+            self.user = user
+            self.setupTabItems()
+        }
+    }
+    
+    func showMyErrorProfileInfo(_ error: String) {
+        DispatchQueue.main.async {
+            print("ОШИБКА ПОЛУЧЕКНИЯ ПРОФИЛЯ ВЬЮ: \(error)")
+        }
     }
 }
