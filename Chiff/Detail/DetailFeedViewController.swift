@@ -44,19 +44,28 @@ class DetailFeedViewController: BaseViewController, DetailFeedViewControllerProt
     
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
+        activityIndicator.startAnimating()
         
         setupCollectionView()
         setupSubviews()
         setupConstraints()
+        
+        collectionView.isHidden = true
     }
     
     func setupSubviews() {
         view.addSubview(collectionView)
+        view.addSubview(activityIndicator)
     }
     
     func setupConstraints() {
         collectionView.snp.makeConstraints { make in
             make.top.leading.bottom.trailing.equalToSuperview()
+        }
+        
+        activityIndicator.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
         }
     }
     
@@ -238,6 +247,8 @@ extension DetailFeedViewController {
         DispatchQueue.main.async {
             self.news = post
             self.collectionView.reloadData()
+            self.collectionView.isHidden = false
+            self.activityIndicator.stopAnimating()
         }
     }
     

@@ -39,7 +39,10 @@ class FeedViewController: BaseViewController, FeedViewControllerProtocol {
     var presenter: FeedPresenterProtocol?
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         view.backgroundColor = .systemBackground
+        activityIndicator.startAnimating()
         
         presenter?.getPosts()
         
@@ -48,23 +51,31 @@ class FeedViewController: BaseViewController, FeedViewControllerProtocol {
         setupSubviews()
         setupConstraints()
         
+        collectionView.isHidden = true
+        
         reloadData()
         fakeData()
     }
     
     func setupSubviews() {
         view.addSubview(collectionView)
+        view.addSubview(activityIndicator)
     }
     
     func setupConstraints() {
         collectionView.snp.makeConstraints { make in
             make.top.leading.bottom.trailing.equalToSuperview()
         }
+        
+        activityIndicator.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
     }
     
     func setupCollectionView() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(logoutAction))
-
+        
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: "cellId")
         collectionView.register(CategoryFeedCell.self, forCellWithReuseIdentifier: "categoryCell")
@@ -80,7 +91,7 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
         KeychainWrapper.standard.removeObject(forKey: "user_email")
         KeychainWrapper.standard.removeObject(forKey: "user_nicename")
         KeychainWrapper.standard.removeObject(forKey: "user_display_name")
-
+        
         // Переход на экран логина, если вышел
         // TODO: Под вопросом если честно.
         let authViewController = UIStoryboard(name: "Main",
@@ -88,7 +99,7 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
             .instantiateViewController(withIdentifier: "SignInController") as! SignInController
         authViewController.modalPresentationStyle = .fullScreen
         present(authViewController, animated:true, completion:nil)
-
+        
     }
     
     private func fakeData() {
@@ -113,7 +124,7 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryFeedCell
                 cell.setupCell(categories[indexPath.item])
                 return cell
-
+                
             case .products:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! FeedCell
                 cell.setupCell(news[indexPath.item])
@@ -197,6 +208,8 @@ extension FeedViewController {
         DispatchQueue.main.async {
             self.news = news
             self.collectionView.reloadData()
+            self.collectionView.isHidden = false
+            self.activityIndicator.stopAnimating()
         }
         
         reloadData()

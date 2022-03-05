@@ -106,7 +106,7 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         return view
     }()
     
-    var activityIndicator = UIActivityIndicatorView()
+    var activityIndicatorLocal = UIActivityIndicatorView()
     
     var heightImageSize: CGFloat = 300
     
@@ -134,7 +134,7 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
-        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicatorLocal = UIActivityIndicatorView(style: .large)
         
         
         setupSubviews()
@@ -144,7 +144,7 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
     func setupSubviews() {
         view.addSubview(headerImage)
         headerImage.addSubview(logoImage)
-        headerImage.addSubview(activityIndicator)
+        headerImage.addSubview(activityIndicatorLocal)
         
         view.addSubview(stackView)
         stackView.addArrangedSubview(loginTextField)
@@ -185,7 +185,7 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
             make.center.equalTo(headerImage.snp_center)
         }
         
-        activityIndicator.snp.makeConstraints { make in
+        activityIndicatorLocal.snp.makeConstraints { make in
             make.centerX.equalTo(headerImage.snp.centerX)
             make.bottom.equalTo(-50)
         }
@@ -239,7 +239,7 @@ extension AuthViewController {
     
     // TODO: Методы вызывающие из презентера:
     func animateHeader() {
-        activityIndicator.startAnimating()
+        activityIndicatorLocal.startAnimating()
         
         headerImage.snp_updateConstraints { make in
             make.height.equalTo(self.view.frame.height)
@@ -274,7 +274,7 @@ extension AuthViewController {
             }
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.2, options: .curveEaseOut) {
-                self.activityIndicator.stopAnimating()
+                self.activityIndicatorLocal.stopAnimating()
                 self.view.layoutIfNeeded()
             }
         }
@@ -287,7 +287,7 @@ extension AuthViewController {
             }
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.2, options: .curveEaseOut) {
-                self.activityIndicator.stopAnimating()
+                self.activityIndicatorLocal.stopAnimating()
                 self.view.layoutIfNeeded()
             }
         }

@@ -6,12 +6,16 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol BaseViewControllerProtocol: NSObject {
     func viewDidLoad()
 }
 
 class BaseViewController: UIViewController, BaseViewControllerProtocol {
+    
+    var activityIndicator = UIActivityIndicatorView(style: .medium)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
