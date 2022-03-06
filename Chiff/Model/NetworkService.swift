@@ -16,6 +16,7 @@ enum NetworkError: Error {
 protocol NetworkServiceProtocol {
     func getData(page: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
     func getCategories(complitionHandler: @escaping (Result<[Categories], Error>) -> Void)
+    func getPostFromCategory(id: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
     func getUsernamePost(id: Int, complitionHandler: @escaping (Result<User, Error>) -> Void)
     func getPost(idPost: Int, complitionHandler: @escaping (Result<News, Error>) -> Void)
     func getSimilarPost(idPost: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
@@ -53,6 +54,7 @@ class NetworkService: NetworkServiceProtocol {
         
     }
     
+    // Получить все категории
     func getCategories(complitionHandler: @escaping (Result<[Categories], Error>) -> Void) {
         guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/categories?per_page=20") else { return }
         
@@ -63,6 +65,24 @@ class NetworkService: NetworkServiceProtocol {
             do {
                 let categories = try JSONDecoder().decode([Categories].self, from: data)
                 complitionHandler(.success(categories))
+            } catch {
+                complitionHandler(.failure(error))
+            }
+            
+        }.resume()
+    }
+    
+    // Получить посты выбранной категории
+    func getPostFromCategory(id: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void) {
+        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/posts?categories=\(id)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            guard let data = data else { return }
+            
+            do {
+                let posts = try JSONDecoder().decode([News].self, from: data)
+                complitionHandler(.success(posts))
             } catch {
                 complitionHandler(.failure(error))
             }

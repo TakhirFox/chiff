@@ -13,9 +13,11 @@ protocol FeedViewControllerProtocol: AnyObject {
     var presenter: FeedPresenterProtocol? { get set }
     func newsDataReload(news: [News])
     func setCategories(cat: [Categories])
+    func setPostsFromCategory(posts: [News])
     
     func showCategoriesError(error: String)
     func showError(error: String)
+    func showPostsFromCategoryError(error: String)
 }
 
 class FeedViewController: BaseViewController, FeedViewControllerProtocol {
@@ -60,7 +62,7 @@ class FeedViewController: BaseViewController, FeedViewControllerProtocol {
         
         collectionView.isHidden = true
         
-        reloadData()
+//        reloadData()
     }
     
     func setupSubviews() {
@@ -190,8 +192,20 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 1 {
+        if indexPath.section == 0 {
+            presenter?.getFilterCategory(id: categories[indexPath.item].id ?? 0)
+            
+            // TODO: Сделать по умному
+            self.news = []
+            self.reloadData()
+            self.collectionView.reloadData()
+            self.activityIndicator.startAnimating()
+            // Конец тупости
+            
+        } else if indexPath.section == 1 {
             presenter?.routeToDetail(idPost: news[indexPath.item].id ?? 0)
+        } else {
+            
         }
     }
     
@@ -201,30 +215,45 @@ extension FeedViewController {
     func newsDataReload(news: [News]) {
         DispatchQueue.main.async {
             self.news = news
+            self.reloadData()
             self.collectionView.reloadData()
-            self.collectionView.isHidden = false
-            self.activityIndicator.stopAnimating()
         }
-        
-        reloadData()
     }
     
     func setCategories(cat: [Categories]) {
         DispatchQueue.main.async {
             self.categories = cat
             self.collectionView.reloadData()
+            self.collectionView.isHidden = false
+            self.activityIndicator.stopAnimating()
         }
     }
     
+    func setPostsFromCategory(posts: [News]) {
+        DispatchQueue.main.async {
+            self.news = posts
+            self.reloadData()
+            self.collectionView.reloadData()
+            self.activityIndicator.stopAnimating()
+        }
+    }
+
     func showCategoriesError(error: String) {
         DispatchQueue.main.async {
-            print("ОШИБКА КАТЕГОРИИ ВЬЮ: \(error)")
+            print("LOG: ОШИБКА КАТЕГОРИИ ВЬЮ: \(error)")
         }
     }
     
     func showError(error: String) {
         DispatchQueue.main.async {
-            print("ОШИБКА ПОСТЫ ВЬЮ: \(error)")
+            print("LOG: ОШИБКА ПОСТЫ ВЬЮ: \(error)")
         }
     }
+    
+    func showPostsFromCategoryError(error: String) {
+        DispatchQueue.main.async {
+            print("LOG: ОШИБКА ПОКАЗА ПОСТОВ ИЗ КАТЕГОРИИ ВЬЮ: \(error)")
+        }
+    }
+    
 }
