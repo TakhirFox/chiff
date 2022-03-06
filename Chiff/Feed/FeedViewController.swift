@@ -12,6 +12,9 @@ import Kingfisher
 protocol FeedViewControllerProtocol: AnyObject {
     var presenter: FeedPresenterProtocol? { get set }
     func newsDataReload(news: [News])
+    func setCategories(cat: [Categories])
+    
+    func showCategoriesError(error: String)
     func showError(error: String)
 }
 
@@ -29,22 +32,26 @@ class FeedViewController: BaseViewController, FeedViewControllerProtocol {
     }
     
     var news: [News] = []
-    var categories: [Categoryes] = []
+    var categories: [Categories] = []
     var media: [Media] = []
-    var user: User?
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<SectionKind, AnyHashable>! = nil
     
     var presenter: FeedPresenterProtocol?
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        presenter?.getCategories()
+        presenter?.getPosts()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
         activityIndicator.startAnimating()
-        
-        presenter?.getPosts()
         
         setupCollectionView()
         setupDataSource()
@@ -54,7 +61,6 @@ class FeedViewController: BaseViewController, FeedViewControllerProtocol {
         collectionView.isHidden = true
         
         reloadData()
-        fakeData()
     }
     
     func setupSubviews() {
@@ -100,20 +106,6 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
         authViewController.modalPresentationStyle = .fullScreen
         present(authViewController, animated:true, completion:nil)
         
-    }
-    
-    private func fakeData() {
-        categories = [Categoryes(id: 1, title: "Личные вещи", image: "1"),
-                      Categoryes(id: 2, title: "Транспорт", image: "2"),
-                      Categoryes(id: 3, title: "Работа", image: "3"),
-                      Categoryes(id: 4, title: "Запчасти и аксессуары", image: "4"),
-                      Categoryes(id: 5, title: "Для дома и дачи", image: "5"),
-                      Categoryes(id: 6, title: "Недвижимость", image: "6"),
-                      Categoryes(id: 7, title: "Предложение услуг", image: "7"),
-                      Categoryes(id: 8, title: "Хобби и отдых", image: "8"),
-                      Categoryes(id: 9, title: "Электроника", image: "9"),
-                      Categoryes(id: 8, title: "Животные", image: "10"),
-                      Categoryes(id: 9, title: "Готовый бизнес и оборудование", image: "1"),]
     }
     
     func setupDataSource() {
@@ -170,7 +162,7 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(100), heightDimension: .absolute(130))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(100), heightDimension: .absolute(120))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
@@ -215,6 +207,19 @@ extension FeedViewController {
         }
         
         reloadData()
+    }
+    
+    func setCategories(cat: [Categories]) {
+        DispatchQueue.main.async {
+            self.categories = cat
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func showCategoriesError(error: String) {
+        DispatchQueue.main.async {
+            print("ОШИБКА КАТЕГОРИИ ВЬЮ: \(error)")
+        }
     }
     
     func showError(error: String) {

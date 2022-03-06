@@ -9,6 +9,7 @@ import Foundation
 
 protocol FeedInteractorProtocol {
     func getPosts()
+    func getCategories()
 }
 
 class FeedInteractor: BaseInteractor {
@@ -26,6 +27,19 @@ extension FeedInteractor: FeedInteractorProtocol {
                 self.presenter?.getPostsSuccess(news: news)
             case .failure(let error):
                 self.presenter?.getPostsError(error: "\(error)")
+            }
+        }
+    }
+    
+    func getCategories() {
+        networkService.getCategories { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let categories):
+                self.presenter?.showCategorySuccess(cat: categories)
+            case .failure(let error):
+                self.presenter?.getCategoryError(error: "\(error)")
             }
         }
     }

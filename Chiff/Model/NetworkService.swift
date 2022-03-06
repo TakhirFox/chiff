@@ -15,6 +15,7 @@ enum NetworkError: Error {
 
 protocol NetworkServiceProtocol {
     func getData(page: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
+    func getCategories(complitionHandler: @escaping (Result<[Categories], Error>) -> Void)
     func getUsernamePost(id: Int, complitionHandler: @escaping (Result<User, Error>) -> Void)
     func getPost(idPost: Int, complitionHandler: @escaping (Result<News, Error>) -> Void)
     func getSimilarPost(idPost: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
@@ -50,6 +51,23 @@ class NetworkService: NetworkServiceProtocol {
             
         }.resume()
         
+    }
+    
+    func getCategories(complitionHandler: @escaping (Result<[Categories], Error>) -> Void) {
+        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/categories?per_page=20") else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
+            
+            guard let data = data else { return }
+            
+            do {
+                let categories = try JSONDecoder().decode([Categories].self, from: data)
+                complitionHandler(.success(categories))
+            } catch {
+                complitionHandler(.failure(error))
+            }
+            
+        }.resume()
     }
     
     // Получаем пользователя, запостивший пост ))))
