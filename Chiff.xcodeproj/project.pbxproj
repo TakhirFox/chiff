@@ -74,6 +74,7 @@
 		ADA25DC627D3C51400DFD875 /* EditProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DC527D3C51400DFD875 /* EditProfileInteractor.swift */; };
 		ADA25DC827D3C52100DFD875 /* EditProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DC727D3C52100DFD875 /* EditProfileRouter.swift */; };
 		ADA25DCA27D3C52E00DFD875 /* EditProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DC927D3C52E00DFD875 /* EditProfileAssembly.swift */; };
+		ADA25DCC27D48B0F00DFD875 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DCB27D48B0F00DFD875 /* Categories.swift */; };
 		ADA7C964262F37F60067C116 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7C963262F37F60067C116 /* Auth.swift */; };
 		ADA98D4527CA8140009C89ED /* DetailFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4427CA8140009C89ED /* DetailFeedViewController.swift */; };
 		ADA98D4727CA8151009C89ED /* DetailFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4627CA8151009C89ED /* DetailFeedPresenter.swift */; };
@@ -197,6 +198,7 @@
 		ADA25DC527D3C51400DFD875 /* EditProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileInteractor.swift; sourceTree = "<group>"; };
 		ADA25DC727D3C52100DFD875 /* EditProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRouter.swift; sourceTree = "<group>"; };
 		ADA25DC927D3C52E00DFD875 /* EditProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileAssembly.swift; sourceTree = "<group>"; };
+		ADA25DCB27D48B0F00DFD875 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		ADA7C963262F37F60067C116 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		ADA98D4427CA8140009C89ED /* DetailFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedViewController.swift; sourceTree = "<group>"; };
 		ADA98D4627CA8151009C89ED /* DetailFeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedPresenter.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				AD956225274A844B00D5FAFF /* CreatePostModel.swift */,
 				AD938958278034EB00B0D925 /* Categoryes.swift */,
 				AD8C130B2784C0EE00AD1D20 /* Post.swift */,
+				ADA25DCB27D48B0F00DFD875 /* Categories.swift */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -981,6 +984,7 @@
 				84E9C250271EB76A004AB184 /* CreatePostCell.swift in Sources */,
 				AD6C99792726900F00A9FA34 /* DetailNews.swift in Sources */,
 				847FA2A2271D690400FF9699 /* Media.swift in Sources */,
+				ADA25DCC27D48B0F00DFD875 /* Categories.swift in Sources */,
 				AD4CA61B27C7CFED00291AC7 /* FeedViewController.swift in Sources */,
 				842B2D5627B26CE5002E6AE8 /* AuthRouter.swift in Sources */,
 				ADE1A04927C54BBB00C4B74B /* SignUpViewController.swift in Sources */,
