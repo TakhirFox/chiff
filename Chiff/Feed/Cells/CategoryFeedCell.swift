@@ -14,7 +14,7 @@ class CategoryFeedCell: UICollectionViewCell {
         let view = UILabel()
         view.text = "Категория"
         view.textAlignment = .center
-        view.font = .systemFont(ofSize: 13)
+        view.font = .systemFont(ofSize: 12)
         view.numberOfLines = 2
         return view
     }()
@@ -32,13 +32,11 @@ class CategoryFeedCell: UICollectionViewCell {
         configureConstraints()
     }
     
-    func setupCell(_ category: Categoryes) {
-        titleLabel.text = category.title
+    func setupCell(_ category: Categories) {
+        titleLabel.text = category.name
         
-        // TODO: тут раскомментируем, когда данные начнут приходить из сервера
-//        let url = URL(string: category.image ?? "")
-//        imageView.kf.setImage(with: url)
-        imageView.image = UIImage(named: category.image ?? "")
+        let url = URL(string: category.iconcats?.guid ?? "")
+        imageView.kf.setImage(with: url)
     }
     
     private func configureSubviews() {
@@ -58,7 +56,7 @@ class CategoryFeedCell: UICollectionViewCell {
                           leading: leadingAnchor,
                           bottom: bottomAnchor,
                           trailing: trailingAnchor,
-                          size: .init(width: 0, height: 40))
+                          size: .init(width: 30, height: 30))
     }
     
     required init?(coder: NSCoder) {
