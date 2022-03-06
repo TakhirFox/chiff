@@ -13,6 +13,7 @@ class CreatePostAssembly: BaseAssemblyProtocol {
         let presenter = CreatePostPresenter()
         let interactor = CreatePostInteractor()
         let router = CreatePostRouter()
+        let networkService = NetworkService()
         
         viewController.presenter = presenter
         
@@ -21,6 +22,7 @@ class CreatePostAssembly: BaseAssemblyProtocol {
         presenter.router = router
         
         interactor.presenter = presenter
+        interactor.networkService = networkService
         
         router.viewController = viewController
         

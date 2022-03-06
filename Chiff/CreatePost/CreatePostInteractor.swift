@@ -13,4 +13,9 @@ protocol CreatePostInteractorProtocol {
 
 class CreatePostInteractor: BaseInteractor, CreatePostInteractorProtocol {
     weak var presenter: CreatePostPresenterProtocol?
+    var networkService: NetworkService?
+}
+
+extension CreatePostInteractor {
+    
 }
