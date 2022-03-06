@@ -11,6 +11,7 @@ import Kingfisher
 class FeedCell: UICollectionViewCell {
     
     let titleLabel = UILabel()
+    let costLabel = UILabel()
     let imageView = UIImageView()
     let authorLabel = UILabel()
     
@@ -34,6 +35,8 @@ class FeedCell: UICollectionViewCell {
         
         titleLabel.numberOfLines = 0
         titleLabel.font = UIFont(name: "ArialMT", size: 15)
+        
+        costLabel.font = .boldSystemFont(ofSize: 15)
 
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -50,6 +53,10 @@ class FeedCell: UICollectionViewCell {
         imageView.image = UIImage(named: "no_image")
         authorLabel.text = post?.authorName
         
+        if let cost = post?.cost {
+            costLabel.text = cost + " ₽"
+        }
+        
         if let imageUrl = post?.imagesPost, !imageUrl.isEmpty {
             let urlString = URL(string: imageUrl[0])
             imageView.kf.setImage(with: urlString)
@@ -60,12 +67,36 @@ class FeedCell: UICollectionViewCell {
         addSubview(imageView)
         addSubview(titleLabel)
         addSubview(authorLabel)
+        addSubview(costLabel)
     }
     
     func configureConstraints() {
-        imageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
-        titleLabel.anchor(top: imageView.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 4, left: 4, bottom: 4, right: 4), size: .init(width: 0, height: 40))
-        authorLabel.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 4, left: 4, bottom: 4, right: 4), size: .init(width: 0, height: 40))
+        imageView.anchor(top: topAnchor,
+                         leading: leadingAnchor,
+                         bottom: nil,
+                         trailing: trailingAnchor,
+                         padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+        
+        titleLabel.anchor(top: imageView.bottomAnchor,
+                          leading: leadingAnchor,
+                          bottom: nil,
+                          trailing: trailingAnchor,
+                          padding: .init(top: 4, left: 4, bottom: 4, right: 4),
+                          size: .init(width: 0, height: 40))
+        
+        costLabel.anchor(top: titleLabel.bottomAnchor,
+                         leading: leadingAnchor,
+                         bottom: nil,
+                         trailing: trailingAnchor,
+                         padding: .init(top: 2, left: 4, bottom: 4, right: 4),
+                         size: .init(width: 0, height: 20))
+        
+        authorLabel.anchor(top: costLabel.bottomAnchor,
+                           leading: leadingAnchor,
+                           bottom: bottomAnchor,
+                           trailing: trailingAnchor,
+                           padding: .init(top: 4, left: 4, bottom: 4, right: 4),
+                           size: .init(width: 0, height: 40))
     }
     
     required init?(coder: NSCoder) {
