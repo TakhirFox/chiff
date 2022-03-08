@@ -8,23 +8,23 @@
 import Foundation
 
 struct News: Codable, Hashable {
-    let id: Int?
-    let date, dateGmt: String?
-    let guid: GUID?
-    let modified, modifiedGmt, slug, status: String?
-    let type: String?
-    let link: String?
-    let title: GUID?
-    let content, excerpt: Content?
-    let author, featuredMedia: Int?
-    let commentStatus, pingStatus: String?
-    let sticky: Bool?
-    let template, format: String?
-    let categories: [Int]?
-    let links: Linkes?
-    let cost: String?
-    let authorName: String?
-    let imagesPost: [String]?
+    var id: Int?
+    var date, dateGmt: String?
+    var guid: GUID?
+    var modified, modifiedGmt, slug, status: String?
+    var type: String?
+    var link: String?
+    var title: GUID?
+    var content, excerpt: Content?
+    var author, featuredMedia: Int?
+    var commentStatus, pingStatus: String?
+    var sticky: Bool?
+    var template, format: String?
+    var categories: [Int]?
+    var links: Linkes?
+    var cost: String?
+    var authorName: String?
+    var imagesPost: [String]?
 
     enum CodingKeys: String, CodingKey {
         case id, date
@@ -45,25 +45,25 @@ struct News: Codable, Hashable {
 
 // MARK: - Content
 struct Content: Codable, Hashable {
-    let rendered: String?
-    let protected: Bool?
+    var rendered: String?
+    var protected: Bool?
 }
 
 // MARK: - GUID
 struct GUID: Codable, Hashable {
-    let rendered: String?
+    var rendered: String?
 }
 
 
 // MARK: - Links
 struct Linkes: Codable, Hashable {
-    let linksSelf, collection, about: [About]?
-    let replies: [Reply]?
-    let versionHistory: [VersionHistory]?
-    let wpFeaturedmedia: [Reply]?
-    let wpAttachment: [About]?
-    let wpTerm: [WpTerm]?
-    let curies: [Cury]?
+    var linksSelf, collection, about: [About]?
+    var replies: [Reply]?
+    var versionHistory: [VersionHistory]?
+    var wpFeaturedmedia: [Reply]?
+    var wpAttachment: [About]?
+    var wpTerm: [WpTerm]?
+    var curies: [Cury]?
 
     enum CodingKeys: String, CodingKey {
         case linksSelf = "self"
@@ -78,30 +78,30 @@ struct Linkes: Codable, Hashable {
 
 // MARK: - About
 struct About: Codable, Hashable {
-    let href: String?
+    var href: String?
 }
 
 // MARK: - Cury
 struct Cury: Codable, Hashable {
-    let name, href: String?
-    let templated: Bool?
+    var name, href: String?
+    var templated: Bool?
 }
 
 // MARK: - Reply
 struct Reply: Codable, Hashable {
-    let embeddable: Bool?
-    let href: String?
+    var embeddable: Bool?
+    var href: String?
 }
 
 // MARK: - VersionHistory
 struct VersionHistory: Codable, Hashable {
-    let count: Int?
-    let href: String?
+    var count: Int?
+    var href: String?
 }
 
 // MARK: - WpTerm
 struct WpTerm: Codable, Hashable {
-    let taxonomy: String?
-    let embeddable: Bool?
-    let href: String?
+    var taxonomy: String?
+    var embeddable: Bool?
+    var href: String?
 }

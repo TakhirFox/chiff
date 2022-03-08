@@ -9,8 +9,9 @@ import UIKit
 
 struct CreatePostModel {
     var title: String?
-    var content: String?
+    var description: String?
     var status: String?
-    var images: [UIImage]?
     var cost: String?
+    var category: Int?
+    var images: [UIImage]?
 }

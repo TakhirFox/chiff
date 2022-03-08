@@ -10,7 +10,7 @@ import UIKit
 struct PostCreate {
     var image: UIImage?
     var title: String?
-    var description: String?
+    var category: String?
     var cost: String?
-//    var isFilledFields = [Bool(), Bool, Bool]
+    var description: String?
 }
