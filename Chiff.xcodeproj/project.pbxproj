@@ -25,7 +25,7 @@
 		847D5E2D27C4DDB70031A5BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 847D5E2C27C4DDB70031A5BA /* GoogleService-Info.plist */; };
 		847FA2A2271D690400FF9699 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FA2A1271D690400FF9699 /* Media.swift */; };
 		84E9C24E271EB38A004AB184 /* CreatePostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C24D271EB38A004AB184 /* CreatePostController.swift */; };
-		84E9C250271EB76A004AB184 /* CreatePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C24F271EB76A004AB184 /* CreatePostCell.swift */; };
+		84E9C250271EB76A004AB184 /* DescriptionPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C24F271EB76A004AB184 /* DescriptionPostCell.swift */; };
 		AD4CA60C27C7CB9000291AC7 /* ForgetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA60B27C7CB9000291AC7 /* ForgetPassViewController.swift */; };
 		AD4CA60E27C7CBA500291AC7 /* ForgetPassPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA60D27C7CBA500291AC7 /* ForgetPassPresenter.swift */; };
 		AD4CA61027C7CBB900291AC7 /* ForgetPassInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA60F27C7CBB900291AC7 /* ForgetPassInteractor.swift */; };
@@ -145,7 +145,7 @@
 		847D5E2C27C4DDB70031A5BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		847FA2A1271D690400FF9699 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		84E9C24D271EB38A004AB184 /* CreatePostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostController.swift; sourceTree = "<group>"; };
-		84E9C24F271EB76A004AB184 /* CreatePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostCell.swift; sourceTree = "<group>"; };
+		84E9C24F271EB76A004AB184 /* DescriptionPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPostCell.swift; sourceTree = "<group>"; };
 		8819B23643ECB9B883731DC3 /* Pods_Chiff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chiff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D52C5812F8D81F2D7C13947 /* Pods-Chiff.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff.debug.xcconfig"; path = "Target Support Files/Pods-Chiff/Pods-Chiff.debug.xcconfig"; sourceTree = "<group>"; };
 		AABE47EDB0A3D1FF5A834195 /* Pods-ChiffTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiffTests.release.xcconfig"; path = "Target Support Files/Pods-ChiffTests/Pods-ChiffTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -608,8 +608,8 @@
 		ADA25DD727D4D2B200DFD875 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				84E9C24F271EB76A004AB184 /* CreatePostCell.swift */,
 				AD6C9976272557C400A9FA34 /* TextfieldCell.swift */,
+				84E9C24F271EB76A004AB184 /* DescriptionPostCell.swift */,
 				AD8EFE64271F3B3A0056F8A8 /* CreatePostImageButtonCell.swift */,
 			);
 			name = Cells;
@@ -1008,7 +1008,7 @@
 				ADE1A05527C54DAE00C4B74B /* VIPER_TEMPLATE.swift in Sources */,
 				ADA98D4B27CA8166009C89ED /* DetailFeedRouter.swift in Sources */,
 				AD7F12B52622E45100EB09F7 /* News.swift in Sources */,
-				84E9C250271EB76A004AB184 /* CreatePostCell.swift in Sources */,
+				84E9C250271EB76A004AB184 /* DescriptionPostCell.swift in Sources */,
 				AD6C99792726900F00A9FA34 /* DetailNews.swift in Sources */,
 				847FA2A2271D690400FF9699 /* Media.swift in Sources */,
 				ADA25DD427D4D17700DFD875 /* CreatePostRouter.swift in Sources */,
