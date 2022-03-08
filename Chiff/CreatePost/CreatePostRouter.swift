@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CreatePostRouterProtocol: AnyObject {
-    
+    func routeToCreatePost(idPost: Int)
 }
 
 class CreatePostRouter: BaseRouter {
@@ -16,5 +16,8 @@ class CreatePostRouter: BaseRouter {
 }
 
 extension CreatePostRouter: CreatePostRouterProtocol {
-    
+    func routeToCreatePost(idPost: Int) {
+        let view = DetailFeedAssembly.create(idPost: idPost)
+        viewController?.navigationController?.pushViewController(view, animated: true)
+    }
 }
