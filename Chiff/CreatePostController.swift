@@ -37,7 +37,7 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
         collectionView.backgroundColor = .systemGroupedBackground
         collectionView.keyboardDismissMode = .onDrag
         
-        collectionView.register(CreatePostCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(DescriptionPostCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.register(TextfieldCell.self, forCellWithReuseIdentifier: "cell1")
         collectionView.register(CreatePostImageButtonCell.self, forCellWithReuseIdentifier: "cell2")
         
@@ -83,9 +83,9 @@ class CreatePostController: UICollectionViewController, UICollectionViewDelegate
             return cell
             
         case .descriptionItem:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CreatePostCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! DescriptionPostCell
             cell.titleLabel.text = "Описание товара"
-            cell.textView.text = postCreate.content
+            cell.textView.text = postCreate.description
             cell.textView.delegate = self
             
             return cell
@@ -184,7 +184,7 @@ extension CreatePostController {
         view.isUserInteractionEnabled = false
         
         let title = postCreate.title
-        let description = postCreate.content
+        let description = postCreate.description
         let cost = postCreate.cost
         postCreate.status = "publish"
                 
@@ -195,19 +195,19 @@ extension CreatePostController {
             return
         }
         
-        networkService.createNewPost(post: postCreate) { result in
-            switch result {
-            case .success(_):
-                DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
-                    self.view.isUserInteractionEnabled = true
-                    // TODO Показать что пост был загружен в алерте,
-                    // В алерте после кнопки ОК, пересоздать пустой экран, либо перевести пользователя в объявление.
-                }
-            case .failure(let error):
-                print("LOG: ERROR CREATING POST: \(error)")
-            }
-        }
+//        networkService.createNewPost(post: postCreate) { result in
+//            switch result {
+//            case .success(_):
+//                DispatchQueue.main.async {
+//                    self.activityIndicator.stopAnimating()
+//                    self.view.isUserInteractionEnabled = true
+//                    // TODO Показать что пост был загружен в алерте,
+//                    // В алерте после кнопки ОК, пересоздать пустой экран, либо перевести пользователя в объявление.
+//                }
+//            case .failure(let error):
+//                print("LOG: ERROR CREATING POST: \(error)")
+//            }
+//        }
     }
     
     @objc func titleDidChange(_ textField: UITextField) {
@@ -275,7 +275,7 @@ extension CreatePostController {
 
 extension CreatePostController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        postCreate.content = textView.text ?? ""
+//        postCreate.content = textView.text ?? ""
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
