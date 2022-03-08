@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class CreatePostImageButtonCell: UICollectionViewCell {
     
@@ -25,27 +26,52 @@ class CreatePostImageButtonCell: UICollectionViewCell {
         super.init(frame: frame)
 
         button.backgroundColor = .red
+        button.layer.cornerRadius = 8
+        button.setTitle("Загрузить фотографию", for: .normal)
+        titleLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
         
-        // Тут думаю и так понятно
+        setupCollectionView()
+        setupSubviews()
+        setupConstraints()
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isPagingEnabled = true // чтобы листалось
         collectionView.showsHorizontalScrollIndicator = false // горизонтальный скролл убирем
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: "cell1")
-        
-        titleLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
-        
+    }
+    
+    func setupSubviews() {
         addSubview(titleLabel)
         addSubview(collectionView)
         addSubview(button)
-        
-        titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 20))
-        collectionView.anchor(top: titleLabel.bottomAnchor, leading: button.trailingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, size: .init(width: 0, height: 0))
-        button.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: collectionView.leadingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 100, height: 0))
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func setupConstraints() {
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(10)
+            make.leading.trailing.equalTo(0)
+            make.height.equalTo(20)
+        }
+        
+        button.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.trailing.leading.equalTo(0)
+            make.height.equalTo(50)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(button.snp.bottom).offset(8)
+            make.leading.trailing.bottom.equalTo(0)
+            make.height.equalTo(100)
+        }
     }
     
 }
@@ -56,7 +82,6 @@ extension CreatePostImageButtonCell {
     
     func reloadCell() {
         DispatchQueue.main.async() {
-            print("XXXASSXSXSX \(self.images)")
             self.collectionView.reloadData()
         }
     }
@@ -70,7 +95,6 @@ extension CreatePostImageButtonCell: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        // Тут загруженные картинки
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! ImageCell
         cell.loadButton.isHidden = true
         cell.imageView.isHidden = false
