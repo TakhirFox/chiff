@@ -20,7 +20,7 @@ protocol NetworkServiceProtocol {
     func getUsernamePost(id: Int, complitionHandler: @escaping (Result<User, Error>) -> Void)
     func getPost(idPost: Int, complitionHandler: @escaping (Result<News, Error>) -> Void)
     func getSimilarPost(idPost: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
-    func createNewPost(post: CreatePostModel, complitionHandler: @escaping (Result<String, Error>) -> Void)
+    func createNewPost(post: CreatePostModel, complitionHandler: @escaping (Result<Int, Error>) -> Void)
     func getImagesFromPosts(idPost: Int, complitionHandler: @escaping (Result<[Media], NetworkError>) -> Void)
     func loadImages(postId: String, images: [UIImage])
     func getProfileInfo(complitionHandler: @escaping (Result<User, NetworkError>) -> Void)
@@ -167,7 +167,7 @@ class NetworkService: NetworkServiceProtocol {
 
     
     // Отправляем POST запрос, для создания поста
-    func createNewPost(post: CreatePostModel, complitionHandler: @escaping (Result<String, Error>) -> Void) {
+    func createNewPost(post: CreatePostModel, complitionHandler: @escaping (Result<Int, Error>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/posts") else { return }
         guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
@@ -175,9 +175,10 @@ class NetworkService: NetworkServiceProtocol {
         let headers = ["Content-Type": "application/json", "Accept": "application/json"]
         
         let object = ["title": post.title ?? "",
-                      "content": post.content ?? "",
-                      "status": post.status ?? "",
-                      "cost": post.cost ?? ""
+                      "categories": [post.category],
+                      "cost": post.cost ?? "",
+                      "content": post.description ?? "",
+                      "status": "publish"
         ] as [String: Any]
         
         let httpBody = try? JSONSerialization.data(withJSONObject: object, options: [])
@@ -198,13 +199,13 @@ class NetworkService: NetworkServiceProtocol {
             
             if let responseJSON = responseJSON as? [String: Any] {
                 
-                guard let response = responseJSON["id"] as? Int else { return }
+                guard let responseID = responseJSON["id"] as? Int else { return }
                 
                 if !(post.images?.isEmpty ?? false) {
-                    self.loadImages(postId: String(response), images: post.images ?? [UIImage()])
+                    self.loadImages(postId: String(responseID), images: post.images ?? [UIImage()])
                 }
                 
-                complitionHandler(.success("Ok"))
+                complitionHandler(.success(responseID))
             }
             
         }.resume()
