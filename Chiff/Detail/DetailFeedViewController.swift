@@ -49,8 +49,6 @@ class DetailFeedViewController: BaseViewController, DetailFeedViewControllerProt
         setupCollectionView()
         setupSubviews()
         setupConstraints()
-        
-        collectionView.isHidden = true
     }
     
     func setupSubviews() {
@@ -73,6 +71,7 @@ class DetailFeedViewController: BaseViewController, DetailFeedViewControllerProt
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.isHidden = true
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.register(DetailImageCell.self, forCellWithReuseIdentifier: "cell1")
         collectionView.register(DetailNameCell.self, forCellWithReuseIdentifier: "cell2")
