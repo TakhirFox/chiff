@@ -80,6 +80,7 @@
 		ADA25DD227D4D16F00DFD875 /* CreatePostInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DD127D4D16F00DFD875 /* CreatePostInteractor.swift */; };
 		ADA25DD427D4D17700DFD875 /* CreatePostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DD327D4D17700DFD875 /* CreatePostRouter.swift */; };
 		ADA25DD627D4D18900DFD875 /* CreatePostAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DD527D4D18900DFD875 /* CreatePostAssembly.swift */; };
+		ADA25DDD27D9173400DFD875 /* EditTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DDC27D9173200DFD875 /* EditTextFieldCell.swift */; };
 		ADA7C964262F37F60067C116 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7C963262F37F60067C116 /* Auth.swift */; };
 		ADA98D4527CA8140009C89ED /* DetailFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4427CA8140009C89ED /* DetailFeedViewController.swift */; };
 		ADA98D4727CA8151009C89ED /* DetailFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4627CA8151009C89ED /* DetailFeedPresenter.swift */; };
@@ -209,6 +210,7 @@
 		ADA25DD127D4D16F00DFD875 /* CreatePostInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostInteractor.swift; sourceTree = "<group>"; };
 		ADA25DD327D4D17700DFD875 /* CreatePostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostRouter.swift; sourceTree = "<group>"; };
 		ADA25DD527D4D18900DFD875 /* CreatePostAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostAssembly.swift; sourceTree = "<group>"; };
+		ADA25DDC27D9173200DFD875 /* EditTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextFieldCell.swift; sourceTree = "<group>"; };
 		ADA7C963262F37F60067C116 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		ADA98D4427CA8140009C89ED /* DetailFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedViewController.swift; sourceTree = "<group>"; };
 		ADA98D4627CA8151009C89ED /* DetailFeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedPresenter.swift; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 				ADA25DC527D3C51400DFD875 /* EditProfileInteractor.swift */,
 				ADA25DC727D3C52100DFD875 /* EditProfileRouter.swift */,
 				ADA25DC927D3C52E00DFD875 /* EditProfileAssembly.swift */,
+				ADA25DDB27D916E100DFD875 /* Cells */,
 			);
 			name = EditProfile;
 			sourceTree = "<group>";
@@ -614,6 +617,14 @@
 			);
 			name = Cells;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		ADA25DDB27D916E100DFD875 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				ADA25DDC27D9173200DFD875 /* EditTextFieldCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		ADA98D4E27CB6E2A009C89ED /* Cells */ = {
@@ -1018,6 +1029,7 @@
 				842B2D5627B26CE5002E6AE8 /* AuthRouter.swift in Sources */,
 				ADE1A04927C54BBB00C4B74B /* SignUpViewController.swift in Sources */,
 				AD4CA62127C7D06200291AC7 /* FeedRouter.swift in Sources */,
+				ADA25DDD27D9173400DFD875 /* EditTextFieldCell.swift in Sources */,
 				ADA25DC427D3C50900DFD875 /* EditProfilePresenter.swift in Sources */,
 				842B2D4927B264E6002E6AE8 /* BaseAssemblyProtocol.swift in Sources */,
 				842B2D5427B26CA3002E6AE8 /* AuthInteractor.swift in Sources */,
