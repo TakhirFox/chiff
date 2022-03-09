@@ -24,6 +24,7 @@ protocol NetworkServiceProtocol {
     func getImagesFromPosts(idPost: Int, complitionHandler: @escaping (Result<[Media], NetworkError>) -> Void)
     func loadImages(postId: String, images: [UIImage])
     func getProfileInfo(complitionHandler: @escaping (Result<User, NetworkError>) -> Void)
+    func editProfile(userId: Int, complitionHandler: @escaping (Result<User, NetworkError>) -> Void)
     func getPostsForProfile(userId: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
     func getAuth(login: String, password: String, complitionHandler: @escaping (Result<Auth, NetworkError>) -> Void)
     func getRegister()
@@ -245,16 +246,16 @@ class NetworkService: NetworkServiceProtocol {
             session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
                 
                 if(error != nil){
-                    print("\(error!.localizedDescription)")
+                    print("LOG: \(error!.localizedDescription)")
                 }
                 
                 guard let responseData = responseData else {
-                    print("no response data")
+                    print("LOG: no response data")
                     return
                 }
                 
                 if let responseString = String(data: responseData, encoding: .utf8) {
-                    print("uploaded to: \(responseString)")
+                    print("LOG: uploaded to: \(responseString)")
                 }
                 
             }).resume()
@@ -262,6 +263,34 @@ class NetworkService: NetworkServiceProtocol {
         
     }
     
+    
+    func editProfile(userId: Int, complitionHandler: @escaping (Result<User, NetworkError>) -> Void) {
+        guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
+        
+        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/users/\(userId)") else { return }
+        var loginRequest = URLRequest(url: url)
+        loginRequest.httpMethod = "PUT"
+        loginRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: loginRequest) { (data, response, error) in
+            
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                complitionHandler(.failure(.errorSignIn))
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let editUser = try JSONDecoder().decode(User.self, from: data)
+                complitionHandler(.success(editUser))
+            } catch {
+                print("LOG: ошибка \(error.localizedDescription)")
+            }
+            
+        }.resume()
+        
+    }
     
     
     // Информация о пользователе
@@ -287,7 +316,7 @@ class NetworkService: NetworkServiceProtocol {
                 let user = try JSONDecoder().decode(User.self, from: data)
                 complitionHandler(.success(user))
             } catch {
-                print("ошибка \(error.localizedDescription)")
+                print("LOG: ошибка \(error.localizedDescription)")
             }
             
         }.resume()
@@ -356,14 +385,14 @@ class NetworkService: NetworkServiceProtocol {
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
         } catch let error {
-            print("не получилось создать пользователя: \(error.localizedDescription)")
+            print("LOG: не получилось создать пользователя: \(error.localizedDescription)")
             return
         }
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             if error != nil {
-                print("Error two")
+                print("LOG: Error two")
                 return
             }
             
