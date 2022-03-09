@@ -24,18 +24,19 @@ class AuthPresenter: BasePresenter {
 
 extension AuthPresenter: AuthPresenterProtocol {
     func checkTextFieldEmpty(login: String?, pass: String?) {
-        guard let login = login, login.count > 0 else {
+        if let login = login, login == ""  {
             view?.showLoginIsEmpty()
-            return
         }
         
-        guard let pass = pass, pass.count > 0 else {
+        if let pass = pass, pass == ""  {
             view?.showPassIsEmpty()
-            return
+            
         }
         
-        view?.animateHeader()
-        authAndRoute(login: login, pass: pass)
+        if let login = login, login != "", let pass = pass, pass != "" {
+            view?.animateHeader()
+            authAndRoute(login: login, pass: pass)
+        }
     }
     
     func routeToSignUpAction() {
