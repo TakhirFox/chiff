@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "log2o.png",
+      "filename" : "logozsh@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "logozsh@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "logozsh@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
