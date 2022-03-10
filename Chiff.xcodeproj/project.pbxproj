@@ -81,6 +81,8 @@
 		ADA25DD427D4D17700DFD875 /* CreatePostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DD327D4D17700DFD875 /* CreatePostRouter.swift */; };
 		ADA25DD627D4D18900DFD875 /* CreatePostAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DD527D4D18900DFD875 /* CreatePostAssembly.swift */; };
 		ADA25DDD27D9173400DFD875 /* EditTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DDC27D9173200DFD875 /* EditTextFieldCell.swift */; };
+		ADA25DDF27DA46C100DFD875 /* EditAvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DDE27DA46C100DFD875 /* EditAvatarCell.swift */; };
+		ADA25DE127DA4E4800DFD875 /* EditButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA25DE027DA4E4800DFD875 /* EditButtonCell.swift */; };
 		ADA7C964262F37F60067C116 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7C963262F37F60067C116 /* Auth.swift */; };
 		ADA98D4527CA8140009C89ED /* DetailFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4427CA8140009C89ED /* DetailFeedViewController.swift */; };
 		ADA98D4727CA8151009C89ED /* DetailFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA98D4627CA8151009C89ED /* DetailFeedPresenter.swift */; };
@@ -211,6 +213,8 @@
 		ADA25DD327D4D17700DFD875 /* CreatePostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostRouter.swift; sourceTree = "<group>"; };
 		ADA25DD527D4D18900DFD875 /* CreatePostAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostAssembly.swift; sourceTree = "<group>"; };
 		ADA25DDC27D9173200DFD875 /* EditTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextFieldCell.swift; sourceTree = "<group>"; };
+		ADA25DDE27DA46C100DFD875 /* EditAvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAvatarCell.swift; sourceTree = "<group>"; };
+		ADA25DE027DA4E4800DFD875 /* EditButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonCell.swift; sourceTree = "<group>"; };
 		ADA7C963262F37F60067C116 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		ADA98D4427CA8140009C89ED /* DetailFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedViewController.swift; sourceTree = "<group>"; };
 		ADA98D4627CA8151009C89ED /* DetailFeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeedPresenter.swift; sourceTree = "<group>"; };
@@ -623,6 +627,8 @@
 			isa = PBXGroup;
 			children = (
 				ADA25DDC27D9173200DFD875 /* EditTextFieldCell.swift */,
+				ADA25DDE27DA46C100DFD875 /* EditAvatarCell.swift */,
+				ADA25DE027DA4E4800DFD875 /* EditButtonCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -961,6 +967,7 @@
 				AD7F1268261CB31200EB09F7 /* FeedCell.swift in Sources */,
 				ADE1A04D27C54CB000C4B74B /* SignUpInteractor.swift in Sources */,
 				842B2D4727B26472002E6AE8 /* BaseRouter.swift in Sources */,
+				ADA25DE127DA4E4800DFD875 /* EditButtonCell.swift in Sources */,
 				AD956226274A844C00D5FAFF /* CreatePostModel.swift in Sources */,
 				AD95622A2753C43F00D5FAFF /* SignInController.swift in Sources */,
 				ADA98D4527CA8140009C89ED /* DetailFeedViewController.swift in Sources */,
@@ -979,6 +986,7 @@
 				AD4CA61227C7CBD200291AC7 /* ForgetPassRouter.swift in Sources */,
 				ADA25DCE27D4D14F00DFD875 /* CreatePostViewController.swift in Sources */,
 				842B2D4F27B26AC1002E6AE8 /* AuthPresenter.swift in Sources */,
+				ADA25DDF27DA46C100DFD875 /* EditAvatarCell.swift in Sources */,
 				ADA98D5727CC968E009C89ED /* ProfilePresenter.swift in Sources */,
 				AD8EFE702723D14A0056F8A8 /* DetailDescCell.swift in Sources */,
 				AD4CA61D27C7D01F00291AC7 /* FeedPresenter.swift in Sources */,
