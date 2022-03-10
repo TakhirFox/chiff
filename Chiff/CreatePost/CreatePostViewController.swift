@@ -214,7 +214,7 @@ extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDa
         case .categoryItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
             cell.titleLabel.text = "Категории"
-//            cell.textField.text = "\(post.category)"
+//            cell.textField.text = "\(post.category)" // TODO: сделать вывод категории в поле
             cell.textField.inputView = pickerView
             cell.textField.delegate = self
             return cell
