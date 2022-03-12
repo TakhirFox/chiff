@@ -19,7 +19,7 @@ class EditTextFieldCell: UITableViewCell {
         let view = UITextField()
         view.backgroundColor = .systemGray5
         view.borderStyle = .roundedRect
-        view.text = "asd"
+        view.text = ""
         return view
     }()
     
@@ -33,8 +33,8 @@ class EditTextFieldCell: UITableViewCell {
     }
     
     func configureSubviews() {
-        addSubview(titleLabel)
-        addSubview(textField)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(textField)
     }
     
     func configureConstraints() {
