@@ -24,7 +24,7 @@ protocol NetworkServiceProtocol {
     func getImagesFromPosts(idPost: Int, complitionHandler: @escaping (Result<[Media], NetworkError>) -> Void)
     func loadImages(postId: String, images: [UIImage])
     func getProfileInfo(complitionHandler: @escaping (Result<User, NetworkError>) -> Void)
-    func editProfile(userId: Int, complitionHandler: @escaping (Result<User, NetworkError>) -> Void)
+    func editProfile(userId: Int, params: String, complitionHandler: @escaping (Result<User, NetworkError>) -> Void)
     func getPostsForProfile(userId: Int, complitionHandler: @escaping (Result<[News], Error>) -> Void)
     func getAuth(login: String, password: String, complitionHandler: @escaping (Result<Auth, NetworkError>) -> Void)
     func getRegister()
@@ -264,30 +264,36 @@ class NetworkService: NetworkServiceProtocol {
     }
     
     
-    func editProfile(userId: Int, complitionHandler: @escaping (Result<User, NetworkError>) -> Void) {
+    func editProfile(userId: Int, params: String, complitionHandler: @escaping (Result<User, NetworkError>) -> Void) {
         guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
+
+        guard let urlString = "\(baseUrl)/wp-json/wp/v2/users/\(userId)?\(params)".addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) else {
+            return
+        }
         
-        guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/users/\(userId)") else { return }
+        guard let url = URL(string: urlString) else { return }
+
         var loginRequest = URLRequest(url: url)
         loginRequest.httpMethod = "PUT"
         loginRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        
+
         URLSession.shared.dataTask(with: loginRequest) { (data, response, error) in
-            
+
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                print("LOG: statusCode \(response)")
                 complitionHandler(.failure(.errorSignIn))
                 return
             }
-            
+
             guard let data = data else { return }
-            
+
             do {
                 let editUser = try JSONDecoder().decode(User.self, from: data)
                 complitionHandler(.success(editUser))
             } catch {
                 print("LOG: ошибка \(error.localizedDescription)")
             }
-            
+
         }.resume()
         
     }
