@@ -102,11 +102,11 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
         
         // Переход на экран логина, если вышел
         // TODO: Под вопросом если честно.
-        let authViewController = UIStoryboard(name: "Main",
-                                              bundle: nil)
-            .instantiateViewController(withIdentifier: "SignInController") as! SignInController
-        authViewController.modalPresentationStyle = .fullScreen
-        present(authViewController, animated:true, completion:nil)
+//        let authViewController = UIStoryboard(name: "Main",
+//                                              bundle: nil)
+//            .instantiateViewController(withIdentifier: "SignInController") as! SignInController
+//        authViewController.modalPresentationStyle = .fullScreen
+//        present(authViewController, animated:true, completion:nil)
         
     }
     
