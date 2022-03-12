@@ -182,7 +182,7 @@ extension EditProfileViewController {
             }
         }
         
-        presenter?.saveChangesProfile(user: editUser)
+        presenter?.saveChangesProfile(user: editUser, oldUserInfo: user)
     }
     
     func setProfileInfo(user: User) {
@@ -195,8 +195,15 @@ extension EditProfileViewController {
     }
     
     func showEditProfileSuccess(user: User) {
+        let alertController = UIAlertController(title: "Сохранено", message: "", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel) { _ in
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        alertController.addAction(okAction)
+        
         DispatchQueue.main.async {
-            print("LOG: ОБНОВЛЕНИЕ СДЕЛАНО")
+            self.present(alertController, animated: true)
         }
     }
     
