@@ -158,7 +158,6 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
     }
     
     func setupConstraints() {
-        
         headerImage.snp.makeConstraints { make in
             make.leading.equalTo(view)
             make.trailing.equalTo(view)
@@ -180,9 +179,8 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
         }
         
         logoImage.snp.makeConstraints { make in
-            make.width.equalTo(view.frame.width / 2)
-            make.height.equalTo(80)
-            make.center.equalTo(headerImage.snp_center)
+            make.leading.trailing.equalTo(headerImage).inset(32)
+            make.centerY.equalTo(headerImage.snp.centerY)
         }
         
         activityIndicatorLocal.snp.makeConstraints { make in
