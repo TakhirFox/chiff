@@ -13,14 +13,18 @@ class EditProfileAssembly {
         let presenter = EditProfilePresenter()
         let interactor = EditProfileInteractor()
         let router = EditProfileRouter()
+        let networkService = NetworkService()
+
         
         viewController.presenter = presenter
         
         presenter.view = viewController
         presenter.interactor = interactor
         presenter.router = router
+        presenter.idUser = idUser
         
         interactor.presenter = presenter
+        interactor.networkService = networkService
         
         router.viewController = viewController
         
