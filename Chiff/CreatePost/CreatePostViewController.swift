@@ -223,6 +223,7 @@ extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDa
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
             cell.titleLabel.text = "Цена"
             cell.textField.addTarget(self, action: #selector(costDidChange(_:)), for: .editingChanged)
+            cell.textField.keyboardType = .numberPad
             cell.textField.delegate = self
             return cell
             
