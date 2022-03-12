@@ -9,7 +9,7 @@ import Foundation
 
 protocol EditProfilePresenterProtocol: AnyObject {
     func getUsernameInfo()
-    func saveChangesProfile(user: User?)
+    func saveChangesProfile(user: User?, oldUserInfo: User?)
     
     func showProfileSuccess(user: User)
     func showEditProfileSuccess(user: User)
@@ -31,23 +31,27 @@ extension EditProfilePresenter: EditProfilePresenterProtocol {
         interactor?.getUsernameInfo(idUser ?? 0)
     }
     
-    func saveChangesProfile(user: User?) {
+    func saveChangesProfile(user: User?, oldUserInfo: User?) {
         // TODO: Добавить изменение аватарки и пароля
         var parameters = ""
         
-        if let firstname = user?.firstname, firstname.count > 0 {
+        if let firstname = user?.firstname, firstname.count > 0, // Проверяем, содержимое больше нуля?
+           firstname != oldUserInfo?.firstname { // Сравниваем старые значения, с новыми. Зачем старые значения сохранять?
             parameters += "firstname=\(firstname)&"
         }
         
-        if let lastname = user?.lastname, lastname.count > 0 {
+        if let lastname = user?.lastname, lastname.count > 0,
+           lastname != oldUserInfo?.lastname {
             parameters += "lastname=\(lastname)&"
         }
         
-        if let numberphone = user?.numberphone, numberphone.count > 0 {
+        if let numberphone = user?.numberphone, numberphone.count > 0,
+           numberphone != oldUserInfo?.numberphone {
             parameters += "numberphone=\(numberphone)&"
         }
         
-        if let description = user?.welcomeDescription, description.count > 0 {
+        if let description = user?.welcomeDescription, description.count > 0,
+           description != oldUserInfo?.welcomeDescription {
             parameters += "description=\(description)&"
         }
         
