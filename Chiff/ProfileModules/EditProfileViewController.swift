@@ -77,6 +77,7 @@ class EditProfileViewController: BaseViewController, EditProfileViewControllerPr
             make.centerY.equalToSuperview()
         }
     }
+    
 }
 
 extension EditProfileViewController: UITableViewDataSource, UITableViewDelegate {
@@ -152,6 +153,7 @@ extension EditProfileViewController: UITableViewDataSource, UITableViewDelegate 
             return UITableViewCell()
         }
     }
+    
 }
 
 extension EditProfileViewController: UITextFieldDelegate {
