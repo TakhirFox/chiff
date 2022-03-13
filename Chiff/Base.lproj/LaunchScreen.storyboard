@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,19 +16,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgimage" translatesAutoresizingMaskIntoConstraints="NO" id="cGm-br-UpD">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="n7N-Mt-ENO">
-                                <rect key="frame" x="47" y="378" width="320" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="D1n-4o-uhC"/>
-                                </constraints>
+                                <rect key="frame" x="16" y="422" width="398" height="62.5"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.96854597330000003" green="0.96868139509999995" blue="0.96850329639999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n7N-Mt-ENO" secondAttribute="trailing" constant="47" id="CMI-ah-A0X"/>
-                            <constraint firstItem="n7N-Mt-ENO" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Xdg-BZ-HUg"/>
-                            <constraint firstItem="n7N-Mt-ENO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="47" id="xpn-hh-5TF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n7N-Mt-ENO" secondAttribute="trailing" id="CMI-ah-A0X"/>
+                            <constraint firstAttribute="bottom" secondItem="cGm-br-UpD" secondAttribute="bottom" id="G2c-TZ-Bev"/>
+                            <constraint firstItem="n7N-Mt-ENO" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="IwX-ez-3Qi"/>
+                            <constraint firstItem="cGm-br-UpD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="RWX-XJ-2mP"/>
+                            <constraint firstItem="cGm-br-UpD" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="dKx-WQ-aUk"/>
+                            <constraint firstItem="cGm-br-UpD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wCT-W8-ZHc"/>
+                            <constraint firstItem="n7N-Mt-ENO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="xpn-hh-5TF"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,6 +42,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="390" height="150"/>
+        <image name="bgimage" width="750" height="750"/>
+        <image name="logo" width="315" height="62.5"/>
     </resources>
 </document>
