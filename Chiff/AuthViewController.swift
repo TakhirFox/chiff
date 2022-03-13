@@ -21,7 +21,7 @@ class AuthViewController: BaseViewController, AuthViewControllerProtocol {
     
     let headerImage: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "675604")
+        view.image = UIImage(named: "bgimage")
         view.contentMode = .scaleAspectFill
         return view
     }()
