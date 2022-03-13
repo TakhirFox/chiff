@@ -22,6 +22,12 @@
 		847D5E2D27C4DDB70031A5BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 847D5E2C27C4DDB70031A5BA /* GoogleService-Info.plist */; };
 		847FA2A2271D690400FF9699 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FA2A1271D690400FF9699 /* Media.swift */; };
 		84E9C250271EB76A004AB184 /* DescriptionPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C24F271EB76A004AB184 /* DescriptionPostCell.swift */; };
+		AD47BDD427DE3E8800EDCDCE /* PersonalSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD47BDD327DE3E8800EDCDCE /* PersonalSignUpViewController.swift */; };
+		AD47BDD627DE3EBA00EDCDCE /* PersonalSignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD47BDD527DE3EBA00EDCDCE /* PersonalSignUpPresenter.swift */; };
+		AD47BDD827DE401100EDCDCE /* PersonalSignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD47BDD727DE401100EDCDCE /* PersonalSignUpInteractor.swift */; };
+		AD47BDDA27DE401A00EDCDCE /* PersonalSignUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD47BDD927DE401A00EDCDCE /* PersonalSignUpRouter.swift */; };
+		AD47BDDC27DE402C00EDCDCE /* PersonalSignUpAssemby.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD47BDDB27DE402C00EDCDCE /* PersonalSignUpAssemby.swift */; };
+		AD47BDDE27DE558800EDCDCE /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD47BDDD27DE558800EDCDCE /* TitleCell.swift */; };
 		AD4CA60C27C7CB9000291AC7 /* ForgetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA60B27C7CB9000291AC7 /* ForgetPassViewController.swift */; };
 		AD4CA60E27C7CBA500291AC7 /* ForgetPassPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA60D27C7CBA500291AC7 /* ForgetPassPresenter.swift */; };
 		AD4CA61027C7CBB900291AC7 /* ForgetPassInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CA60F27C7CBB900291AC7 /* ForgetPassInteractor.swift */; };
@@ -138,6 +144,12 @@
 		8819B23643ECB9B883731DC3 /* Pods_Chiff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chiff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D52C5812F8D81F2D7C13947 /* Pods-Chiff.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff.debug.xcconfig"; path = "Target Support Files/Pods-Chiff/Pods-Chiff.debug.xcconfig"; sourceTree = "<group>"; };
 		AABE47EDB0A3D1FF5A834195 /* Pods-ChiffTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiffTests.release.xcconfig"; path = "Target Support Files/Pods-ChiffTests/Pods-ChiffTests.release.xcconfig"; sourceTree = "<group>"; };
+		AD47BDD327DE3E8800EDCDCE /* PersonalSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalSignUpViewController.swift; sourceTree = "<group>"; };
+		AD47BDD527DE3EBA00EDCDCE /* PersonalSignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalSignUpPresenter.swift; sourceTree = "<group>"; };
+		AD47BDD727DE401100EDCDCE /* PersonalSignUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalSignUpInteractor.swift; sourceTree = "<group>"; };
+		AD47BDD927DE401A00EDCDCE /* PersonalSignUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalSignUpRouter.swift; sourceTree = "<group>"; };
+		AD47BDDB27DE402C00EDCDCE /* PersonalSignUpAssemby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalSignUpAssemby.swift; sourceTree = "<group>"; };
+		AD47BDDD27DE558800EDCDCE /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		AD4CA60B27C7CB9000291AC7 /* ForgetPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPassViewController.swift; sourceTree = "<group>"; };
 		AD4CA60D27C7CBA500291AC7 /* ForgetPassPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPassPresenter.swift; sourceTree = "<group>"; };
 		AD4CA60F27C7CBB900291AC7 /* ForgetPassInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPassInteractor.swift; sourceTree = "<group>"; };
@@ -384,6 +396,31 @@
 			name = Auth;
 			sourceTree = "<group>";
 		};
+		AD47BDD127DE3DF800EDCDCE /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				ADE1A04827C54BBB00C4B74B /* SignUpViewController.swift */,
+				ADE1A04A27C54C1B00C4B74B /* SignUpPresenter.swift */,
+				ADE1A04C27C54CB000C4B74B /* SignUpInteractor.swift */,
+				ADE1A05027C54D4900C4B74B /* SignUpRouter.swift */,
+				ADE1A05227C54D7E00C4B74B /* SignUpAssembly.swift */,
+				AD47BDDD27DE558800EDCDCE /* TitleCell.swift */,
+			);
+			name = SignUp;
+			sourceTree = "<group>";
+		};
+		AD47BDD227DE3E3B00EDCDCE /* PersonalSignUp */ = {
+			isa = PBXGroup;
+			children = (
+				AD47BDD327DE3E8800EDCDCE /* PersonalSignUpViewController.swift */,
+				AD47BDD527DE3EBA00EDCDCE /* PersonalSignUpPresenter.swift */,
+				AD47BDD727DE401100EDCDCE /* PersonalSignUpInteractor.swift */,
+				AD47BDD927DE401A00EDCDCE /* PersonalSignUpRouter.swift */,
+				AD47BDDB27DE402C00EDCDCE /* PersonalSignUpAssemby.swift */,
+			);
+			path = PersonalSignUp;
+			sourceTree = "<group>";
+		};
 		AD4CA61627C7CF2000291AC7 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -566,11 +603,8 @@
 		ADE1A04727C54B8E00C4B74B /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				ADE1A04827C54BBB00C4B74B /* SignUpViewController.swift */,
-				ADE1A04A27C54C1B00C4B74B /* SignUpPresenter.swift */,
-				ADE1A04C27C54CB000C4B74B /* SignUpInteractor.swift */,
-				ADE1A05027C54D4900C4B74B /* SignUpRouter.swift */,
-				ADE1A05227C54D7E00C4B74B /* SignUpAssembly.swift */,
+				AD47BDD127DE3DF800EDCDCE /* SignUp */,
+				AD47BDD227DE3E3B00EDCDCE /* PersonalSignUp */,
 			);
 			name = SignUp;
 			sourceTree = "<group>";
@@ -862,6 +896,7 @@
 				AD7F1229261CAFFF00EB09F7 /* AppDelegate.swift in Sources */,
 				AD7F1268261CB31200EB09F7 /* FeedCell.swift in Sources */,
 				ADE1A04D27C54CB000C4B74B /* SignUpInteractor.swift in Sources */,
+				AD47BDDE27DE558800EDCDCE /* TitleCell.swift in Sources */,
 				842B2D4727B26472002E6AE8 /* BaseRouter.swift in Sources */,
 				ADA25DE127DA4E4800DFD875 /* EditButtonCell.swift in Sources */,
 				AD956226274A844C00D5FAFF /* CreatePostModel.swift in Sources */,
@@ -878,11 +913,13 @@
 				AD4CA62327C7D07600291AC7 /* FeedAssembly.swift in Sources */,
 				ADA98D4D27CA8171009C89ED /* DetailFeedAssembly.swift in Sources */,
 				AD4CA61227C7CBD200291AC7 /* ForgetPassRouter.swift in Sources */,
+				AD47BDD827DE401100EDCDCE /* PersonalSignUpInteractor.swift in Sources */,
 				ADA25DCE27D4D14F00DFD875 /* CreatePostViewController.swift in Sources */,
 				842B2D4F27B26AC1002E6AE8 /* AuthPresenter.swift in Sources */,
 				ADA25DDF27DA46C100DFD875 /* EditAvatarCell.swift in Sources */,
 				ADA98D5727CC968E009C89ED /* ProfilePresenter.swift in Sources */,
 				AD8EFE702723D14A0056F8A8 /* DetailDescCell.swift in Sources */,
+				AD47BDD427DE3E8800EDCDCE /* PersonalSignUpViewController.swift in Sources */,
 				AD4CA61D27C7D01F00291AC7 /* FeedPresenter.swift in Sources */,
 				AD7F1233261CAFFF00EB09F7 /* Chiff.xcdatamodeld in Sources */,
 				ADE1A06127C63C6900C4B74B /* TabBarAssembly.swift in Sources */,
@@ -897,6 +934,7 @@
 				ADA98D5127CBC89E009C89ED /* HeaderCell.swift in Sources */,
 				ADA98D4927CA815B009C89ED /* DetailFeedInteractor.swift in Sources */,
 				AD938957277F839000B0D925 /* CategoryFeedCell.swift in Sources */,
+				AD47BDD627DE3EBA00EDCDCE /* PersonalSignUpPresenter.swift in Sources */,
 				AD4CA61F27C7D04B00291AC7 /* FeedInteractor.swift in Sources */,
 				AD7D6275272432510014E82E /* ImageCell.swift in Sources */,
 				ADA7C964262F37F60067C116 /* Auth.swift in Sources */,
@@ -918,6 +956,7 @@
 				ADA98D4B27CA8166009C89ED /* DetailFeedRouter.swift in Sources */,
 				AD7F12B52622E45100EB09F7 /* News.swift in Sources */,
 				84E9C250271EB76A004AB184 /* DescriptionPostCell.swift in Sources */,
+				AD47BDDC27DE402C00EDCDCE /* PersonalSignUpAssemby.swift in Sources */,
 				AD6C99792726900F00A9FA34 /* DetailNews.swift in Sources */,
 				847FA2A2271D690400FF9699 /* Media.swift in Sources */,
 				ADA25DD427D4D17700DFD875 /* CreatePostRouter.swift in Sources */,
@@ -927,6 +966,7 @@
 				842B2D5627B26CE5002E6AE8 /* AuthRouter.swift in Sources */,
 				ADE1A04927C54BBB00C4B74B /* SignUpViewController.swift in Sources */,
 				AD4CA62127C7D06200291AC7 /* FeedRouter.swift in Sources */,
+				AD47BDDA27DE401A00EDCDCE /* PersonalSignUpRouter.swift in Sources */,
 				ADA25DDD27D9173400DFD875 /* EditTextFieldCell.swift in Sources */,
 				ADA25DC427D3C50900DFD875 /* EditProfilePresenter.swift in Sources */,
 				842B2D4927B264E6002E6AE8 /* BaseAssemblyProtocol.swift in Sources */,
