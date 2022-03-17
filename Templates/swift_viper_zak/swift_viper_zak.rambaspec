@@ -1,0 +1,42 @@
+# Template information section
+name: "swift_viper_zal"
+summary: "Swift VIPER module template with UIViewController playing as a View."
+author: "Takhir Zakirov"
+version: "0.1.0"
+license: "MIT"
+
+# The declarations for code files
+
+code_files:
+# View layer
+- {name: ViewController.swift, path: Code/viewcontroller.swift.liquid}
+
+# Presenter layer
+- {name: Presenter.swift, path: Code/presenter.swift.liquid}
+
+# Interactor layer
+- {name: Interactor.swift, path: Code/interactor.swift.liquid}
+
+# Router layer
+- {name: Router.swift, path: Code/router.swift.liquid}
+
+# Assembly
+- {name: Assembly.swift, path: Code/assembly.swift.liquid}
+
+# The declarations for test files
+# test_files:
+
+# # Configurators tests
+# - {name: Configurator/ConfiguratorTests.swift, path: Tests/Configurator/configurator_tests.swift.liquid}
+
+# # View tests
+# - {name: View/ViewTests.swift, path: Tests/View/view_tests.swift.liquid}
+
+# # Interactor tests
+# - {name: Interactor/InteractorTests.swift, path: Tests/Interactor/interactor_tests.swift.liquid}
+
+# # Presenter tests
+# - {name: Presenter/PresenterTests.swift, path: Tests/Presenter/presenter_tests.swift.liquid}
+
+# # Router tests
+# - {name: Router/RouterTests.swift, path: Tests/Router/router_tests.swift.liquid}
