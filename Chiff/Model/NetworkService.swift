@@ -386,7 +386,11 @@ class NetworkService: NetworkServiceProtocol {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let parameters = ["username": "1newpers", "email": "aaa1@mail.ru", "password": "zasazasa"] as [String: Any]
+        let parameters = ["username": "d1newPers",
+                          "email": "1qaada1@mail.ru",
+                          "password": "zasazasa",
+                          "firstname": "1IadmSkatman"
+        ] as [String: Any]
         
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
@@ -404,8 +408,8 @@ class NetworkService: NetworkServiceProtocol {
             
             guard let data = data else { return }
             // доработать
-            print(data)
-            print(response ?? "РЕСПОНСА НЕТ")
+            print("LOG: success sign up \(data)")
+            print("LOG: responce sign up \(response)")
             
         }.resume()
     }
