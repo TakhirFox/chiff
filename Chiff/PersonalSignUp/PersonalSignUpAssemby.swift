@@ -7,14 +7,15 @@
 
 import UIKit
 
-class PersonalSignUpAssembly: BaseAssemblyProtocol {
-    static func create() -> UIViewController {
+class PersonalSignUpAssembly {
+    static func create(user: NewUser) -> UIViewController {
         let viewController = PersonalSignUpViewController()
         let presenter = PersonalSignUpPresenter()
         let interactor = PersonalSignUpInteractor()
         let router = PersonalSignUpRouter()
         
         viewController.presenter = presenter
+        viewController.newUser = user
         
         presenter.view = viewController
         presenter.interactor = interactor

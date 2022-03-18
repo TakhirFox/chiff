@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SignUpRouterProtocol: AnyObject {
-    func routeToPersonalSignUpAction()
+    func routeToPersonalSignUpAction(user: NewUser)
     
 }
 
@@ -18,8 +18,8 @@ class SignUpRouter: BaseRouter {
 }
 
 extension SignUpRouter: SignUpRouterProtocol {
-    func routeToPersonalSignUpAction() {
-        let view = PersonalSignUpAssembly.create()
+    func routeToPersonalSignUpAction(user: NewUser) {
+        let view = PersonalSignUpAssembly.create(user: user)
         viewController?.navigationController?.pushViewController(view, animated: true)
     }
     

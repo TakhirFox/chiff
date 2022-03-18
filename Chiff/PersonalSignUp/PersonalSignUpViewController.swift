@@ -25,6 +25,7 @@ class PersonalSignUpViewController: BaseViewController, PersonalSignUpViewContro
     
     var tableView: UITableView!
     
+    var newUser: NewUser?
     var presenter: PersonalSignUpPresenterProtocol?
     
     override func viewDidLoad() {
@@ -81,7 +82,7 @@ extension PersonalSignUpViewController: UITableViewDelegate, UITableViewDataSour
         switch items {
         case .titleItem:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell0", for: indexPath) as! TitleCell
-            cell.titleLabel.text = "Давай знакомиться?)"
+            cell.titleLabel.text = "О себе"
             return cell
             
         case .firstnameItem:
@@ -112,7 +113,7 @@ extension PersonalSignUpViewController: UITableViewDelegate, UITableViewDataSour
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! EditTextFieldCell
             cell.titleLabel.text = "О себе"
 //            cell.textField.text = user?.lastname
-            cell.textField.tag = 2
+            cell.textField.tag = 3
             cell.textField.delegate = self
             return cell
             
@@ -135,6 +136,26 @@ extension PersonalSignUpViewController: UITextFieldDelegate {
 
 extension PersonalSignUpViewController {
     @objc func nextStepButtonAction() {
-//        presenter?.routeToPersonalSignUpAction() // TODO: Не забыть передать заготовленные данные для последующей регистраии.
+        
+        for i in 0..<tableView.numberOfRows(inSection: 0) {
+            if let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as? EditTextFieldCell {
+                let items = cell.textField.tag
+                switch items {
+                case 0:
+                    newUser?.firstname = cell.textField.text
+                case 1:
+                    newUser?.lastname = cell.textField.text
+                case 2:
+                    newUser?.numberphone = cell.textField.text
+                case 3:
+                    newUser?.userBio = cell.textField.text
+                default:
+                    print("LOG: none")
+                }
+            }
+        }
+        
+        presenter?.createUsername(user: newUser)
     }
+    
 }

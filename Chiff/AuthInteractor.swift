@@ -38,4 +38,5 @@ class AuthInteractor: BaseInteractor, AuthInteractorProtocol {
             }
         }
     }
+    
 }

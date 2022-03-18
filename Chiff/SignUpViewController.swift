@@ -16,14 +16,16 @@ class SignUpViewController: BaseViewController, SignUpViewControllerProtocol {
     
     private enum Items: Int {
         case titleItem = 0
-        case emailItem = 1
-        case passwordItem = 2
-        case repeatPassItem = 3
-        case nextStepItem = 4
+        case username = 1
+        case emailItem = 2
+        case passwordItem = 3
+        case repeatPassItem = 4
+        case nextStepItem = 5
     }
     
     var tableView: UITableView!
     
+    var newUser = NewUser()
     var presenter: SignUpPresenterProtocol?
     
     override func viewDidLoad() {
@@ -72,7 +74,7 @@ class SignUpViewController: BaseViewController, SignUpViewControllerProtocol {
 
 extension SignUpViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -83,27 +85,31 @@ extension SignUpViewController: UITableViewDataSource, UITableViewDelegate {
             cell.titleLabel.text = "Создаем аккаунт"
             return cell
             
+        case .username:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! EditTextFieldCell
+            cell.titleLabel.text = "Username"
+            cell.textField.tag = 0
+            cell.textField.delegate = self
+            return cell
+            
         case .emailItem:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! EditTextFieldCell
             cell.titleLabel.text = "Email"
-//            cell.textField.text = user?.firstname
-            cell.textField.tag = 0
+            cell.textField.tag = 1
             cell.textField.delegate = self
             return cell
             
         case .passwordItem:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! EditTextFieldCell
             cell.titleLabel.text = "Пароль"
-//            cell.textField.text = user?.firstname
-            cell.textField.tag = 1
+            cell.textField.tag = 2
             cell.textField.delegate = self
             return cell
             
         case .repeatPassItem:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! EditTextFieldCell
             cell.titleLabel.text = "Повторите пароль"
-//            cell.textField.text = user?.lastname
-            cell.textField.tag = 2
+            cell.textField.tag = 3
             cell.textField.delegate = self
             return cell
             
@@ -127,7 +133,26 @@ extension SignUpViewController: UITextFieldDelegate {
 
 extension SignUpViewController {
     @objc func nextStepButtonAction() {
-        presenter?.routeToPersonalSignUpAction() // TODO: Не забыть передать заготовленные данные для последующей регистраии.
+        
+        for i in 0..<tableView.numberOfRows(inSection: 0) {
+            if let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as? EditTextFieldCell {
+                let items = cell.textField.tag
+                switch items {
+                case 0:
+                    newUser.username = cell.textField.text
+                case 1:
+                    newUser.email = cell.textField.text
+                case 2:
+                    newUser.password = cell.textField.text
+                case 3:
+                    newUser.confirmPassword = cell.textField.text
+                default:
+                    print("LOG: none")
+                }
+            }
+        }
+        
+        presenter?.routeToPersonalSignUpAction(user: newUser)
     }
     
 }
