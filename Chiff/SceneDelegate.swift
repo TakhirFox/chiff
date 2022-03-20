@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if accessToken != nil {
             window?.rootViewController = TabBarAssembly.create(0)
             window?.makeKeyAndVisible()
+            print("LOG: TOKEN \(accessToken)")
         } else {
 //            let authViewController = SignInController() // TODO:
             let authViewController = AuthAssembly.create()
