@@ -42,6 +42,7 @@ class TabBarViewController: UITabBarController, TabBarViewControllerProtocol {
         viewControllers = [
             createNavController(viewController: FeedAssembly.create(), title: "Feed", image: UIImage(systemName: "rectangle.on.rectangle")!),
             createNavController(viewController: CreatePostAssembly.create(), title: "Добавить", image: UIImage(systemName: "plus.square")!),
+            createNavController(viewController: ChatListAssembly.create(id: user?.id ?? 0), title: "Сообщения", image: UIImage(systemName: "bubble.left.and.bubble.right")!),
             createNavController(viewController: ProfileAssembly.create(id: user?.id ?? 0), title: "Профиль", image: UIImage(systemName: "person.crop.circle")!)
         ]
     }
