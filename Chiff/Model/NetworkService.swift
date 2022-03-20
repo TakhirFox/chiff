@@ -29,6 +29,11 @@ protocol NetworkServiceProtocol {
     func getAuth(login: String, password: String, complitionHandler: @escaping (Result<Auth, NetworkError>) -> Void)
     func getRegister()
     func getPosts()
+    
+    // Messages
+    func getChatList(complitionHandler: @escaping (Result<[ChatList], NetworkError>) -> Void)
+    func getMessages(id: Int, complitionHandler: @escaping (Result<[ChatList], NetworkError>) -> Void)
+    func sendMessageTo(id: Int, message: String, recipients: Int, complitionHandler: @escaping (Result<[ChatList], NetworkError>) -> Void)
 }
 
 class NetworkService: NetworkServiceProtocol {
@@ -437,6 +442,98 @@ class NetworkService: NetworkServiceProtocol {
         }.resume()
     }
 
+    // MARK: - Messages
     
+    func getChatList(complitionHandler: @escaping (Result<[ChatList], NetworkError>) -> Void) {
+        guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
+        
+        guard let url = URL(string: "\(baseUrl)/wp-json/buddypress/v1/messages") else { return }
+        var loginRequest = URLRequest(url: url)
+        loginRequest.httpMethod = "GET"
+        loginRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: loginRequest) { (data, response, error) in
+            
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                complitionHandler(.failure(.requestFailed))
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let chatList = try JSONDecoder().decode([ChatList].self, from: data)
+                complitionHandler(.success(chatList))
+            } catch {
+                print("LOG: ошибка chatList \(error.localizedDescription)")
+            }
+            
+        }.resume()
+    }
+    
+    func getMessages(id: Int, complitionHandler: @escaping (Result<[ChatList], NetworkError>) -> Void) {
+        guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
+        
+        guard let url = URL(string: "\(baseUrl)/wp-json/buddypress/v1/messages/\(id)") else { return }
+        var loginRequest = URLRequest(url: url)
+        loginRequest.httpMethod = "GET"
+        loginRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: loginRequest) { (data, response, error) in
+            
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                complitionHandler(.failure(.requestFailed))
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let chatList = try JSONDecoder().decode([ChatList].self, from: data)
+                complitionHandler(.success(chatList))
+            } catch {
+                print("LOG: ошибка chatList \(error.localizedDescription)")
+            }
+            
+        }.resume()
+    }
+    
+    func sendMessageTo(id: Int, message: String, recipients: Int, complitionHandler: @escaping (Result<[ChatList], NetworkError>) -> Void) {
+        guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
+        
+        guard let url = URL(string: "\(baseUrl)/wp-json/buddypress/v1/messages") else { return }
+        
+        let parameters = ["id": id,
+                          "message": message,
+                          "recipients": recipients
+        ] as [String: Any]
+        
+        let headers = ["Content-Type": "application/json", "Accept": "application/json"]
+        let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        request.httpBody = postData
+        request.allHTTPHeaderFields = headers
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                complitionHandler(.failure(.requestFailed))
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let chatList = try JSONDecoder().decode([ChatList].self, from: data)
+                complitionHandler(.success(chatList))
+            } catch {
+                print("LOG: ошибка chatList \(error.localizedDescription)")
+            }
+            
+        }.resume()
+    }
     
 }
