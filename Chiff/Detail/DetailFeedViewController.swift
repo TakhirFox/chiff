@@ -125,6 +125,7 @@ extension DetailFeedViewController: UICollectionViewDelegate, UICollectionViewDa
                 
             case .contactsItem:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell6", for: indexPath) as! ContactCell
+                cell.messageButton.addTarget(self, action: #selector(openMessageAction), for: .touchUpInside)
                 return cell
                 
             case .infoAuthorItem:
@@ -242,6 +243,11 @@ extension DetailFeedViewController: UICollectionViewDelegate, UICollectionViewDa
 }
 
 extension DetailFeedViewController {
+    
+    @objc func openMessageAction() {
+        presenter?.routeToChat()
+    }
+    
     func setDetailPostInfo(post: News) {
         DispatchQueue.main.async {
             self.news = post
