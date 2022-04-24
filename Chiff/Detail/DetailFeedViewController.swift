@@ -245,7 +245,7 @@ extension DetailFeedViewController: UICollectionViewDelegate, UICollectionViewDa
 extension DetailFeedViewController {
     
     @objc func openMessageAction() {
-        presenter?.routeToChat()
+        presenter?.routeToMessage(id: 4) // TODO: fake id
     }
     
     func setDetailPostInfo(post: News) {
