@@ -8,20 +8,23 @@
 
 import UIKit
 
-class ChatMessagesAssembly: BaseAssemblyProtocol {
-    static func create() -> UIViewController {
+class ChatMessagesAssembly {
+    static func create(id: Int) -> UIViewController {
         let viewController = ChatMessagesViewController()
         let presenter = ChatMessagesPresenter()
         let interactor = ChatMessagesInteractor()
         let router = ChatMessagesRouter()
+        let networkService = NetworkService()
         
         viewController.presenter = presenter
         
         presenter.view = viewController
         presenter.interactor = interactor
         presenter.router = router
+        presenter.id = id
         
         interactor.presenter = presenter
+        interactor.networkService = networkService
         
         router.viewController = viewController
         

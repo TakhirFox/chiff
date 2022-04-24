@@ -13,7 +13,8 @@ protocol ChatMessagesViewControllerProtocol: AnyObject {
     
     func setMessages(messages: [ChatList])
     
-    func showMessagesError(_ error: String)
+    func showGetMessageError(_ error: String)
+    func showSendMessageError(_ error: String)
 }
 
 class ChatMessagesViewController: BaseViewController, ChatMessagesViewControllerProtocol {
@@ -23,10 +24,10 @@ class ChatMessagesViewController: BaseViewController, ChatMessagesViewController
         view.backgroundColor = .init(red: 143/255, green: 206/255, blue: 0/255, alpha: 0.5)
         view.layer.cornerRadius = 20
         
-//        let blurEffect = UIBlurEffect(style: .dark)
-//        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurredEffectView.frame = view.bounds
-//        view.addSubview(blurredEffectView)
+        //        let blurEffect = UIBlurEffect(style: .dark)
+        //        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        //        blurredEffectView.frame = view.bounds
+        //        view.addSubview(blurredEffectView)
         
         return view
     }()
@@ -36,7 +37,7 @@ class ChatMessagesViewController: BaseViewController, ChatMessagesViewController
         view.backgroundColor = .clear
         return view
     }()
-
+    
     let sendButton: UIButton = {
         let view = UIButton()
         view.layer.cornerRadius = 16
@@ -49,13 +50,33 @@ class ChatMessagesViewController: BaseViewController, ChatMessagesViewController
     
     let blurEffect = UIBlurEffect(style: .dark)
     var blurredEffectView = UIVisualEffectView()
-   
+    
     var tableView: UITableView!
     
     var messageContent = String()
     var messages: [ChatList]?
     var presenter: ChatMessagesPresenterProtocol?
-    let networkService = NetworkService() // TODO: Временная херня
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        presenter?.getMessages(id: 4)
+        
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut) {
+            self.tabBarController?.tabBar.frame.origin.y += 100
+        }
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseIn) {
+            self.tabBarController?.tabBar.frame.origin.y -= 100
+        }
+        
+    }
+    
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
         
@@ -70,23 +91,6 @@ class ChatMessagesViewController: BaseViewController, ChatMessagesViewController
         blurredEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         blurredEffectView.translatesAutoresizingMaskIntoConstraints = false
         
-        // TODO: Временная херня
-        networkService.getMessages(id: 4, complitionHandler: { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let messages):
-                DispatchQueue.main.async {
-                    self.messages = messages
-                    self.tableView.reloadData()
-                    //            self.collectionView.isHidden = false
-                    //            self.activityIndicator.stopAnimating()
-                    self.goToBottomCell()
-                }
-            case .failure(let error):
-                print("LOG: ОШИБКА ПОЛУЧЕНИЯ ДАННЫХ")
-            }
-        })
     }
     
     func setupTableView() {
@@ -98,7 +102,6 @@ class ChatMessagesViewController: BaseViewController, ChatMessagesViewController
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
         tableView.contentInset.bottom = 60
-        tabBarController?.tabBar.isHidden = true // TODO: Красивее будет сделать анимацию смещения таббара вниз
         tableView.register(SentChatCell.self, forCellReuseIdentifier: "cell")
         tableView.register(ReceivedChatCell.self, forCellReuseIdentifier: "cell1")
         
@@ -162,9 +165,7 @@ class ChatMessagesViewController: BaseViewController, ChatMessagesViewController
                 make.height.equalTo(self.view.frame.height - keyboardHeight)
             }
         }
-        
-        
-        
+         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
             self.view.layoutIfNeeded()
         }
@@ -186,30 +187,21 @@ class ChatMessagesViewController: BaseViewController, ChatMessagesViewController
     }
     
     private func goToBottomCell() {
-        let lastRow = self.tableView.numberOfRows(inSection: 0) - 1
-        let indexPath = IndexPath(row: lastRow, section: 0);
-        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+        guard let messages = messages else {
+            return
+        }
+
+        if messages.count > 0 {
+            let lastRow = self.tableView.numberOfRows(inSection: 0) - 1
+            let indexPath = IndexPath(row: lastRow, section: 0);
+            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+        }
     }
     
     @objc func sendMessageAction() {
         textView.text = ""
         
-        networkService.sendMessageTo(id: 4, message: messageContent, recipients: 1) { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let messages):
-                DispatchQueue.main.async {
-                    self.messages = messages
-                    self.tableView.reloadData()
-                    //            self.collectionView.isHidden = false
-                    //            self.activityIndicator.stopAnimating()
-                    self.goToBottomCell()
-                }
-            case .failure(let error):
-                print("LOG: ОШИБКА ПОЛУЧЕНИЯ ДАННЫХ")
-            }
-        }
+        presenter?.sendMessageTo(id: 4, message: messageContent, recipients: 1)
     }
     
 }
@@ -246,9 +238,9 @@ extension ChatMessagesViewController: UITextViewDelegate {
         messageContent = textView.text
     }
     
-//    func textViewDidEndEditing(_ textView: UITextView) {
-//        print("LOG: text \(textView.text)")
-//    }
+    //    func textViewDidEndEditing(_ textView: UITextView) {
+    //        print("LOG: text \(textView.text)")
+    //    }
     
 }
 
@@ -259,12 +251,19 @@ extension ChatMessagesViewController {
             self.tableView.reloadData()
             //            self.collectionView.isHidden = false
             //            self.activityIndicator.stopAnimating()
+            self.goToBottomCell()
         }
     }
     
-    func showMessagesError(_ error: String) {
+    func showGetMessageError(_ error: String) {
         DispatchQueue.main.async {
-            print("ОШИБКА ПОЛУЧЕКНИЯ СООБЩЕНИЙ ВЬЮ: \(error)")
+            print("LOG: ОШИБКА ПОЛУЧЕКНИЯ СООБЩЕНИЙ ВЬЮ: \(error)")
+        }
+    }
+    
+    func showSendMessageError(_ error: String) {
+        DispatchQueue.main.async {
+            print("LOG: ОШИБКА ОТПРАВКИ СООБЩЕНИЙ ВЬЮ: \(error)")
         }
     }
     
