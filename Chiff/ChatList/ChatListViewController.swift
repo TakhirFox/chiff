@@ -76,7 +76,7 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(ChatMessagesViewController(), animated: true)
+        presenter?.routeToMessage(id: 4) // TODO: fake id
     }
     
 }

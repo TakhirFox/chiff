@@ -9,6 +9,8 @@
 protocol ChatListPresenterProtocol: AnyObject {
     func getChatList()
     
+    func routeToMessage(id: Int)
+    
     func showChatListSuccess(chatList: [ChatList])
     
     func showChatListError(_ error: String)
@@ -26,6 +28,10 @@ class ChatListPresenter: BasePresenter {
 extension ChatListPresenter: ChatListPresenterProtocol {
     func getChatList() {
         interactor?.getChatList(id: id ?? 0)
+    }
+    
+    func routeToMessage(id: Int) {
+        router?.routeToMessage(id: id)
     }
     
     func showChatListSuccess(chatList: [ChatList]) {
