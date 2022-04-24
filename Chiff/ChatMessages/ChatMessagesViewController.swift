@@ -60,7 +60,7 @@ class ChatMessagesViewController: BaseViewController, ChatMessagesViewController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presenter?.getMessages(id: 4)
+        presenter?.getMessages()
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut) {
             self.tabBarController?.tabBar.frame.origin.y += 100
@@ -201,7 +201,7 @@ class ChatMessagesViewController: BaseViewController, ChatMessagesViewController
     @objc func sendMessageAction() {
         textView.text = ""
         
-        presenter?.sendMessageTo(id: 4, message: messageContent, recipients: 1)
+        presenter?.sendMessageTo(message: messageContent)
     }
     
 }

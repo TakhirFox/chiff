@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ChatListRouterProtocol: AnyObject {
-    func routeToMessage(id: Int)
+    func routeToMessage(fromId: Int, toId: Int)
     
 }
 
@@ -19,8 +19,8 @@ class ChatListRouter: BaseRouter {
 }
 
 extension ChatListRouter: ChatListRouterProtocol {
-    func routeToMessage(id: Int) {
-        let view = ChatMessagesAssembly.create(id: id)
+    func routeToMessage(fromId: Int, toId: Int) {
+        let view = ChatMessagesAssembly.create(fromId: fromId, toId: toId)
         viewController?.navigationController?.pushViewController(view, animated: true)
     }
     

@@ -7,8 +7,8 @@
 //
 
 protocol ChatMessagesPresenterProtocol: AnyObject {
-    func getMessages(id: Int)
-    func sendMessageTo(id: Int, message: String, recipients: Int)
+    func getMessages()
+    func sendMessageTo(message: String)
     
     func showMessages(message: [ChatList])
     
@@ -21,17 +21,24 @@ class ChatMessagesPresenter: BasePresenter {
     weak var view: ChatMessagesViewControllerProtocol?
     var interactor: ChatMessagesInteractorProtocol?
     var router: ChatMessagesRouterProtocol?
-    var id: Int?
+    var fromId: Int?
+    var toId: Int?
     
 }
 
 extension ChatMessagesPresenter: ChatMessagesPresenterProtocol {
-    func getMessages(id: Int) {
-        interactor?.getMessages(id: id)
+    func getMessages() {
+        guard let fromId = fromId,
+        let toId = toId else { return }
+        
+        interactor?.getMessages(id: fromId)
     }
     
-    func sendMessageTo(id: Int, message: String, recipients: Int) {
-        interactor?.sendMessageTo(id: id, message: message, recipients: recipients)
+    func sendMessageTo(message: String) {
+        guard let fromId = fromId,
+        let toId = toId else { return }
+        
+        interactor?.sendMessageTo(id: fromId, message: message, recipients: toId)
     }
     
     func showMessages(message: [ChatList]) {

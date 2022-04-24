@@ -9,7 +9,7 @@
 import UIKit
 
 class ChatMessagesAssembly {
-    static func create(id: Int) -> UIViewController {
+    static func create(fromId: Int, toId: Int) -> UIViewController {
         let viewController = ChatMessagesViewController()
         let presenter = ChatMessagesPresenter()
         let interactor = ChatMessagesInteractor()
@@ -21,7 +21,8 @@ class ChatMessagesAssembly {
         presenter.view = viewController
         presenter.interactor = interactor
         presenter.router = router
-        presenter.id = id
+        presenter.fromId = fromId
+        presenter.toId = toId
         
         interactor.presenter = presenter
         interactor.networkService = networkService

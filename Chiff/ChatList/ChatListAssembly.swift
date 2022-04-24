@@ -21,7 +21,7 @@ class ChatListAssembly {
         presenter.view = viewController
         presenter.interactor = interactor
         presenter.router = router
-        presenter.id = id
+        presenter.fromId = id
         
         interactor.presenter = presenter
         interactor.networkService = networkService

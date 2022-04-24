@@ -26,7 +26,7 @@ class TabBarViewController: UITabBarController, TabBarViewControllerProtocol {
     }
     
     override func viewDidLoad() {
-//        setupTabItems()
+        setupTabItems()
     }
     
     init(presenter: TabBarPresenterProtocol) {

@@ -72,11 +72,16 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
 //        cell.usernameLabel.text = chatList?[indexPath.row].
         cell.productNameLabel.text = chatList?[indexPath.row].subject?.rendered
         cell.messageLabel.text = chatList?[indexPath.row].excerpt?.rendered
+        print("LOG: info cell \(chatList?[indexPath.row])")
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.routeToMessage(id: 4) // TODO: fake id
+        guard let fromId = chatList?[indexPath.row].id else { return }
+        guard let toId = chatList?[indexPath.row].recipients else { return }
+        
+        presenter?.routeToMessage(fromId: fromId,
+                                  toId: toId)
     }
     
 }
