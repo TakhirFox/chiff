@@ -65,11 +65,20 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AD7F1224261CAFFF00EB09F7"
+            BuildableName = "Zakshop.app"
+            BlueprintName = "Zakshop"
+            ReferencedContainer = "container:Zakshop.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "AD7F1224261CAFFF00EB09F7"
             BuildableName = "Chiff.app"
             BlueprintName = "Chiff"
             ReferencedContainer = "container:Chiff.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
