@@ -12,4 +12,5 @@ struct Auth: Decodable {
     let user_email: String?
     let user_nicename: String?
     let user_display_name: String?
+    let user_id: String?
 }
