@@ -98,10 +98,15 @@ class NetworkService: NetworkServiceProtocol {
     
     // Получаем пользователя, запостивший пост ))))
     func getUsernamePost(id: Int, complitionHandler: @escaping (Result<User, Error>) -> Void) {
+        guard let accessToken: String = KeychainWrapper.standard.string(forKey: "token") else { return }
         
         guard let url = URL(string: "\(baseUrl)/wp-json/wp/v2/users/\(id)") else { return }
-
-        URLSession.shared.dataTask(with: url) { (data, _, error) in
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
             
             guard let data = data else { return }
             
@@ -322,7 +327,7 @@ class NetworkService: NetworkServiceProtocol {
             }
             
             guard let data = data else { return }
-            
+            print(String(decoding: data, as: UTF8.self))
             do {
                 let user = try JSONDecoder().decode(User.self, from: data)
                 complitionHandler(.success(user))
@@ -361,7 +366,7 @@ class NetworkService: NetworkServiceProtocol {
             
             
             guard let data = data else { return }
-            
+            print("LOG: fffff \(String(data: data, encoding: .utf8))")
             // Нужно сохранить в кейчейн данные
             do {
                 let auth = try JSONDecoder().decode(Auth.self, from: data)
@@ -370,6 +375,7 @@ class NetworkService: NetworkServiceProtocol {
                 KeychainWrapper.standard.set(auth.user_email ?? "", forKey: "user_email")
                 KeychainWrapper.standard.set(auth.user_nicename ?? "", forKey: "user_nicename")
                 KeychainWrapper.standard.set(auth.user_display_name ?? "", forKey: "user_display_name")
+                KeychainWrapper.standard.set(auth.user_id ?? "", forKey: "user_id")
                 
                 print("LOG: TOKEN \(String(describing: auth.token))")
                 
@@ -518,7 +524,6 @@ class NetworkService: NetworkServiceProtocol {
         request.allHTTPHeaderFields = headers
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
                 complitionHandler(.failure(.requestFailed))
                 return
