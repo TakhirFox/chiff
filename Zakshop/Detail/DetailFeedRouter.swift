@@ -10,7 +10,7 @@ import UIKit
 protocol DetailFeedRouterProtocol: AnyObject {
     func routeToProfile(id: Int)
     func routeToDetail(idPost: Int)
-    func routeToMessage(id: Int)
+    func routeToMessage(idPost: Int)
 }
 
 class DetailFeedRouter: BaseRouter {
@@ -28,7 +28,7 @@ extension DetailFeedRouter: DetailFeedRouterProtocol {
         viewController?.navigationController?.pushViewController(view, animated: true)
     }
     
-    func routeToMessage(id: Int) {
+    func routeToMessage(idPost: Int) {
         let view = ChatMessagesAssembly.create(messageId: 0, fromId: 0, toId: 0) // TODO: FAKE "TO ID"
         viewController?.navigationController?.pushViewController(view, animated: true)
     }

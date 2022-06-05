@@ -15,7 +15,7 @@ protocol DetailFeedPresenterProtocol: AnyObject {
     
     func routeToProfile(id: Int)
     func routeToDetail(idPost: Int)
-    func routeToMessage(id: Int)
+    func routeToMessage()
     
     func showDetailPostError(_ error: String)
     func showSimilarPostError(_ error: String)
@@ -48,8 +48,10 @@ extension DetailFeedPresenter: DetailFeedPresenterProtocol {
         router?.routeToDetail(idPost: idPost)
     }
     
-    func routeToMessage(id: Int) {
-        router?.routeToMessage(id: id)
+    func routeToMessage() {
+        guard let idPost = idPost else { return }
+        // TODO: Проверить, существует ли переписка
+        router?.routeToMessage(idPost: idPost)
     }
     
     func getSimilarPostSuccess(similar: [News]) {
