@@ -1,11 +1,11 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'Chiff' do
+target 'Zakshop' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Chiff
+  # Pods for Zakshop
   pod 'SwiftKeychainWrapper'
   pod 'SwiftyGif'
   pod 'Kingfisher'
@@ -14,12 +14,12 @@ target 'Chiff' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
 
-  target 'ChiffTests' do
+  target 'ZakshopTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'ChiffUITests' do
+  target 'ZakshopUITests' do
     # Pods for testing
   end
 
