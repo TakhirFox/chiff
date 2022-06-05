@@ -207,6 +207,7 @@ extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDa
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
             cell.titleLabel.text = "Наименование товара"
             cell.textField.addTarget(self, action: #selector(titleDidChange(_:)), for: .editingChanged)
+            cell.textField.keyboardType = .default
             cell.textField.delegate = self
             return cell
             
@@ -214,7 +215,10 @@ extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDa
         case .categoryItem:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
             cell.titleLabel.text = "Категории"
-//            cell.textField.text = "\(post.category)" // TODO: сделать вывод категории в поле
+//            if let categoryName = categories[post.category ?? 0].name {
+//                cell.textField.text = categoryName
+//            }
+//            cell.textField.text = categoryName // TODO: сделать вывод категории в поле
             cell.textField.inputView = pickerView
             cell.textField.delegate = self
             return cell
@@ -246,7 +250,6 @@ extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDa
             
         case .none:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-            
             return cell
             
         }
@@ -311,6 +314,7 @@ extension CreatePostViewController: UIPickerViewDelegate, UIPickerViewDataSource
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         post.category = categories[row].id
+        collectionView.reloadItems(at: [IndexPath(item: 1, section: 0)])
     }
     
 }
