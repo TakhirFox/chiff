@@ -25,8 +25,8 @@ class ContactCell: UICollectionViewCell {
         addSubview(callButton)
         addSubview(messageButton)
         
-        callButton.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: nil, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: frame.width / 2, height: 0))
-        messageButton.anchor(top: topAnchor, leading: callButton.trailingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 5, bottom: 0, right: 0), size: .init(width: frame.width / 2, height: 0))
+        callButton.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: nil, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: frame.width / 2, height: 40))
+        messageButton.anchor(top: topAnchor, leading: callButton.trailingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 5, bottom: 0, right: 0), size: .init(width: frame.width / 2, height: 40))
         
     }
     

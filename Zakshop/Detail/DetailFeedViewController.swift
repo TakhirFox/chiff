@@ -68,10 +68,14 @@ class DetailFeedViewController: BaseViewController, DetailFeedViewControllerProt
     }
     
     func setupCollectionView() {
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isHidden = true
+        collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.register(DetailImageCell.self, forCellWithReuseIdentifier: "cell1")
         collectionView.register(DetailNameCell.self, forCellWithReuseIdentifier: "cell2")
@@ -150,20 +154,18 @@ extension DetailFeedViewController: UICollectionViewDelegate, UICollectionViewDa
             }
             
         } else {
-
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell7", for: indexPath) as! FeedCell
-                cell.setupCell(similarNews?[indexPath.row])
-                return cell
             
-            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell7", for: indexPath) as! FeedCell
+            cell.setupCell(similarNews?[indexPath.row])
+            return cell
             
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         var height: CGFloat = 0
         var padding: CGFloat = 0
+        
         if indexPath.section == 0 {
             let items = Items(rawValue: indexPath.item)
             
@@ -178,7 +180,7 @@ extension DetailFeedViewController: UICollectionViewDelegate, UICollectionViewDa
                 height = 50
                 padding = 32
             case .descriptionItem:
-                height = 200
+                height = 100
                 padding = 32
             case .contactsItem:
                 height = 40
