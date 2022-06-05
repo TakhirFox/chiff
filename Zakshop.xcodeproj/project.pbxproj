@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		12D75302CEC61E73B87D5B29 /* ChatListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD63CC46570EFC2AC9B7289 /* ChatListPresenter.swift */; };
-		1E8DF8147F36032BDDA99892 /* Pods_Chiff_ChiffUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D635B449A75DE4298D3DAD49 /* Pods_Chiff_ChiffUITests.framework */; };
+		1E8DF8147F36032BDDA99892 /* Pods_Zakshop_ZakshopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D635B449A75DE4298D3DAD49 /* Pods_Zakshop_ZakshopUITests.framework */; };
 		2C4970484028E8AC49D905EF /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064FA3B93C699D483F18E4D2 /* ChatListViewController.swift */; };
 		5661A695D887FEAE090B64DB /* ChatListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB14034C87E5D4B56B28A94 /* ChatListAssembly.swift */; };
 		58E980F7C4BF817DD827B02C /* ChatListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F42EEB6BED078B1D99ACB /* ChatListRouter.swift */; };
@@ -117,8 +117,8 @@
 		ADFB2C1F27E6082500E0E1E5 /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFB2C1E27E6082500E0E1E5 /* ChatList.swift */; };
 		ADFB2C2327E6E13800E0E1E5 /* ReceivedChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFB2C2227E6E13800E0E1E5 /* ReceivedChatCell.swift */; };
 		ADFB2C2527E6E15000E0E1E5 /* SentChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFB2C2427E6E15000E0E1E5 /* SentChatCell.swift */; };
-		BA37F5DBE8C35A5D45F6FF7C /* Pods_Chiff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8819B23643ECB9B883731DC3 /* Pods_Chiff.framework */; };
-		D1C13753BCA82985C84CE867 /* Pods_ChiffTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF143C1A4E695442C3AEAAC4 /* Pods_ChiffTests.framework */; };
+		BA37F5DBE8C35A5D45F6FF7C /* Pods_Zakshop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8819B23643ECB9B883731DC3 /* Pods_Zakshop.framework */; };
+		D1C13753BCA82985C84CE867 /* Pods_ZakshopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF143C1A4E695442C3AEAAC4 /* Pods_ZakshopTests.framework */; };
 		EEE776261E58C3E58EE35AA0 /* ChatMessagesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F3E9A664933CAD74F7FBB /* ChatMessagesAssembly.swift */; };
 /* End PBXBuildFile section */
 
@@ -140,13 +140,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00A2B2BA372CB87792E86674 /* Pods-ZakshopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZakshopTests.release.xcconfig"; path = "Target Support Files/Pods-ZakshopTests/Pods-ZakshopTests.release.xcconfig"; sourceTree = "<group>"; };
 		00B8AC120FC1E363811ADFFA /* ChatMessagesRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatMessagesRouter.swift; sourceTree = "<group>"; };
+		0577A25F28436956DC0B71EF /* Pods-Zakshop-ZakshopUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zakshop-ZakshopUITests.debug.xcconfig"; path = "Target Support Files/Pods-Zakshop-ZakshopUITests/Pods-Zakshop-ZakshopUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		064FA3B93C699D483F18E4D2 /* ChatListViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		1083DA55A2129D462F75542F /* Pods-ZakshopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZakshopTests.debug.xcconfig"; path = "Target Support Files/Pods-ZakshopTests/Pods-ZakshopTests.debug.xcconfig"; sourceTree = "<group>"; };
 		251F42EEB6BED078B1D99ACB /* ChatListRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatListRouter.swift; sourceTree = "<group>"; };
 		2FD63CC46570EFC2AC9B7289 /* ChatListPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatListPresenter.swift; sourceTree = "<group>"; };
 		3DFEB1D79B390BCC75934114 /* Pods-Chiff-ChiffUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff-ChiffUITests.release.xcconfig"; path = "Target Support Files/Pods-Chiff-ChiffUITests/Pods-Chiff-ChiffUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3EB14034C87E5D4B56B28A94 /* ChatListAssembly.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatListAssembly.swift; sourceTree = "<group>"; };
 		63B06ABECD2C4BE15A8C310B /* ChatMessagesViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatMessagesViewController.swift; sourceTree = "<group>"; };
+		6A051EBCADEE906E1B9DFE6E /* Pods-Zakshop-ZakshopUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zakshop-ZakshopUITests.release.xcconfig"; path = "Target Support Files/Pods-Zakshop-ZakshopUITests/Pods-Zakshop-ZakshopUITests.release.xcconfig"; sourceTree = "<group>"; };
 		77551F287AA7E402A66D7AB5 /* Pods-ChiffTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiffTests.debug.xcconfig"; path = "Target Support Files/Pods-ChiffTests/Pods-ChiffTests.debug.xcconfig"; sourceTree = "<group>"; };
 		814F3E9A664933CAD74F7FBB /* ChatMessagesAssembly.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatMessagesAssembly.swift; sourceTree = "<group>"; };
 		842B2D4027B26337002E6AE8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -163,7 +167,7 @@
 		847D5E2C27C4DDB70031A5BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		847FA2A1271D690400FF9699 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		84E9C24F271EB76A004AB184 /* DescriptionPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPostCell.swift; sourceTree = "<group>"; };
-		8819B23643ECB9B883731DC3 /* Pods_Chiff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chiff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8819B23643ECB9B883731DC3 /* Pods_Zakshop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zakshop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D52C5812F8D81F2D7C13947 /* Pods-Chiff.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff.debug.xcconfig"; path = "Target Support Files/Pods-Chiff/Pods-Chiff.debug.xcconfig"; sourceTree = "<group>"; };
 		97687A476B3FE1641E222FB7 /* ChatMessagesPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatMessagesPresenter.swift; sourceTree = "<group>"; };
 		AABE47EDB0A3D1FF5A834195 /* Pods-ChiffTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChiffTests.release.xcconfig"; path = "Target Support Files/Pods-ChiffTests/Pods-ChiffTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -188,17 +192,17 @@
 		AD7D627227242A950014E82E /* DetailImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageCell.swift; sourceTree = "<group>"; };
 		AD7D6274272432510014E82E /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		AD7D627627244D2B0014E82E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
-		AD7F1225261CAFFF00EB09F7 /* Chiff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chiff.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD7F1225261CAFFF00EB09F7 /* Zakshop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zakshop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7F1228261CAFFF00EB09F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD7F122A261CAFFF00EB09F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AD7F1232261CAFFF00EB09F7 /* Chiff.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chiff.xcdatamodel; sourceTree = "<group>"; };
 		AD7F1234261CB00000EB09F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD7F1237261CB00000EB09F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD7F1239261CB00000EB09F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD7F123E261CB00100EB09F7 /* ChiffTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChiffTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD7F123E261CB00100EB09F7 /* ZakshopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZakshopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7F1242261CB00100EB09F7 /* ChiffTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChiffTests.swift; sourceTree = "<group>"; };
 		AD7F1244261CB00100EB09F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD7F1249261CB00100EB09F7 /* ChiffUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChiffUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD7F1249261CB00100EB09F7 /* ZakshopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZakshopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7F124D261CB00100EB09F7 /* ChiffUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChiffUITests.swift; sourceTree = "<group>"; };
 		AD7F124F261CB00100EB09F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD7F1267261CB31200EB09F7 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
@@ -260,11 +264,13 @@
 		ADFB2C2227E6E13800E0E1E5 /* ReceivedChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedChatCell.swift; sourceTree = "<group>"; };
 		ADFB2C2427E6E15000E0E1E5 /* SentChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentChatCell.swift; sourceTree = "<group>"; };
 		B1212EFEC1C87A2F8D35C005 /* ChatListInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatListInteractor.swift; sourceTree = "<group>"; };
-		D635B449A75DE4298D3DAD49 /* Pods_Chiff_ChiffUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chiff_ChiffUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D635B449A75DE4298D3DAD49 /* Pods_Zakshop_ZakshopUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zakshop_ZakshopUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6FE05C09C7DE95C78069530 /* Pods-Chiff-ChiffUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff-ChiffUITests.debug.xcconfig"; path = "Target Support Files/Pods-Chiff-ChiffUITests/Pods-Chiff-ChiffUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6A45C8F9701D1F44AA25441 /* ChatMessagesInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChatMessagesInteractor.swift; sourceTree = "<group>"; };
+		F64D04F4C9895D15AA575D8F /* Pods-Zakshop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zakshop.debug.xcconfig"; path = "Target Support Files/Pods-Zakshop/Pods-Zakshop.debug.xcconfig"; sourceTree = "<group>"; };
+		F81D3997DE7F11B63C1D6D6A /* Pods-Zakshop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zakshop.release.xcconfig"; path = "Target Support Files/Pods-Zakshop/Pods-Zakshop.release.xcconfig"; sourceTree = "<group>"; };
 		F9F85025EE487387C835A07A /* Pods-Chiff.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chiff.release.xcconfig"; path = "Target Support Files/Pods-Chiff/Pods-Chiff.release.xcconfig"; sourceTree = "<group>"; };
-		FF143C1A4E695442C3AEAAC4 /* Pods_ChiffTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChiffTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF143C1A4E695442C3AEAAC4 /* Pods_ZakshopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZakshopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,7 +278,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA37F5DBE8C35A5D45F6FF7C /* Pods_Chiff.framework in Frameworks */,
+				BA37F5DBE8C35A5D45F6FF7C /* Pods_Zakshop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +286,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1C13753BCA82985C84CE867 /* Pods_ChiffTests.framework in Frameworks */,
+				D1C13753BCA82985C84CE867 /* Pods_ZakshopTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E8DF8147F36032BDDA99892 /* Pods_Chiff_ChiffUITests.framework in Frameworks */,
+				1E8DF8147F36032BDDA99892 /* Pods_Zakshop_ZakshopUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,9 +317,9 @@
 		59DF2B31A6AFD7731365FC82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8819B23643ECB9B883731DC3 /* Pods_Chiff.framework */,
-				D635B449A75DE4298D3DAD49 /* Pods_Chiff_ChiffUITests.framework */,
-				FF143C1A4E695442C3AEAAC4 /* Pods_ChiffTests.framework */,
+				8819B23643ECB9B883731DC3 /* Pods_Zakshop.framework */,
+				D635B449A75DE4298D3DAD49 /* Pods_Zakshop_ZakshopUITests.framework */,
+				FF143C1A4E695442C3AEAAC4 /* Pods_ZakshopTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -532,9 +538,9 @@
 		AD7F121C261CAFFF00EB09F7 = {
 			isa = PBXGroup;
 			children = (
-				AD7F1227261CAFFF00EB09F7 /* Chiff */,
-				AD7F1241261CB00100EB09F7 /* ChiffTests */,
-				AD7F124C261CB00100EB09F7 /* ChiffUITests */,
+				AD7F1227261CAFFF00EB09F7 /* Zakshop */,
+				AD7F1241261CB00100EB09F7 /* ZakshopTests */,
+				AD7F124C261CB00100EB09F7 /* ZakshopUITests */,
 				AD7F1226261CAFFF00EB09F7 /* Products */,
 				C49C2E042797680D889AE388 /* Pods */,
 				59DF2B31A6AFD7731365FC82 /* Frameworks */,
@@ -544,14 +550,14 @@
 		AD7F1226261CAFFF00EB09F7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD7F1225261CAFFF00EB09F7 /* Chiff.app */,
-				AD7F123E261CB00100EB09F7 /* ChiffTests.xctest */,
-				AD7F1249261CB00100EB09F7 /* ChiffUITests.xctest */,
+				AD7F1225261CAFFF00EB09F7 /* Zakshop.app */,
+				AD7F123E261CB00100EB09F7 /* ZakshopTests.xctest */,
+				AD7F1249261CB00100EB09F7 /* ZakshopUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AD7F1227261CAFFF00EB09F7 /* Chiff */ = {
+		AD7F1227261CAFFF00EB09F7 /* Zakshop */ = {
 			isa = PBXGroup;
 			children = (
 				842B2D3727B24A45002E6AE8 /* Application */,
@@ -560,25 +566,25 @@
 				842B2D3827B24AE7002E6AE8 /* Supporting files */,
 				AD7F1239261CB00000EB09F7 /* Info.plist */,
 			);
-			path = Chiff;
+			path = Zakshop;
 			sourceTree = "<group>";
 		};
-		AD7F1241261CB00100EB09F7 /* ChiffTests */ = {
+		AD7F1241261CB00100EB09F7 /* ZakshopTests */ = {
 			isa = PBXGroup;
 			children = (
 				AD7F1242261CB00100EB09F7 /* ChiffTests.swift */,
 				AD7F1244261CB00100EB09F7 /* Info.plist */,
 			);
-			path = ChiffTests;
+			path = ZakshopTests;
 			sourceTree = "<group>";
 		};
-		AD7F124C261CB00100EB09F7 /* ChiffUITests */ = {
+		AD7F124C261CB00100EB09F7 /* ZakshopUITests */ = {
 			isa = PBXGroup;
 			children = (
 				AD7F124D261CB00100EB09F7 /* ChiffUITests.swift */,
 				AD7F124F261CB00100EB09F7 /* Info.plist */,
 			);
-			path = ChiffUITests;
+			path = ZakshopUITests;
 			sourceTree = "<group>";
 		};
 		ADA25DBE27D3C46700DFD875 /* EditProfile */ = {
@@ -719,6 +725,12 @@
 				3DFEB1D79B390BCC75934114 /* Pods-Chiff-ChiffUITests.release.xcconfig */,
 				77551F287AA7E402A66D7AB5 /* Pods-ChiffTests.debug.xcconfig */,
 				AABE47EDB0A3D1FF5A834195 /* Pods-ChiffTests.release.xcconfig */,
+				F64D04F4C9895D15AA575D8F /* Pods-Zakshop.debug.xcconfig */,
+				F81D3997DE7F11B63C1D6D6A /* Pods-Zakshop.release.xcconfig */,
+				0577A25F28436956DC0B71EF /* Pods-Zakshop-ZakshopUITests.debug.xcconfig */,
+				6A051EBCADEE906E1B9DFE6E /* Pods-Zakshop-ZakshopUITests.release.xcconfig */,
+				1083DA55A2129D462F75542F /* Pods-ZakshopTests.debug.xcconfig */,
+				00A2B2BA372CB87792E86674 /* Pods-ZakshopTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -726,9 +738,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AD7F1224261CAFFF00EB09F7 /* Chiff */ = {
+		AD7F1224261CAFFF00EB09F7 /* Zakshop */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD7F1252261CB00100EB09F7 /* Build configuration list for PBXNativeTarget "Chiff" */;
+			buildConfigurationList = AD7F1252261CB00100EB09F7 /* Build configuration list for PBXNativeTarget "Zakshop" */;
 			buildPhases = (
 				A3929AD02EE83D6F11AB0413 /* [CP] Check Pods Manifest.lock */,
 				AD7F1221261CAFFF00EB09F7 /* Sources */,
@@ -740,14 +752,14 @@
 			);
 			dependencies = (
 			);
-			name = Chiff;
+			name = Zakshop;
 			productName = Chiff;
-			productReference = AD7F1225261CAFFF00EB09F7 /* Chiff.app */;
+			productReference = AD7F1225261CAFFF00EB09F7 /* Zakshop.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AD7F123D261CB00100EB09F7 /* ChiffTests */ = {
+		AD7F123D261CB00100EB09F7 /* ZakshopTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD7F1255261CB00100EB09F7 /* Build configuration list for PBXNativeTarget "ChiffTests" */;
+			buildConfigurationList = AD7F1255261CB00100EB09F7 /* Build configuration list for PBXNativeTarget "ZakshopTests" */;
 			buildPhases = (
 				DFE6BBE536D78E056FB3C568 /* [CP] Check Pods Manifest.lock */,
 				AD7F123A261CB00100EB09F7 /* Sources */,
@@ -759,14 +771,14 @@
 			dependencies = (
 				AD7F1240261CB00100EB09F7 /* PBXTargetDependency */,
 			);
-			name = ChiffTests;
+			name = ZakshopTests;
 			productName = ChiffTests;
-			productReference = AD7F123E261CB00100EB09F7 /* ChiffTests.xctest */;
+			productReference = AD7F123E261CB00100EB09F7 /* ZakshopTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		AD7F1248261CB00100EB09F7 /* ChiffUITests */ = {
+		AD7F1248261CB00100EB09F7 /* ZakshopUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD7F1258261CB00100EB09F7 /* Build configuration list for PBXNativeTarget "ChiffUITests" */;
+			buildConfigurationList = AD7F1258261CB00100EB09F7 /* Build configuration list for PBXNativeTarget "ZakshopUITests" */;
 			buildPhases = (
 				ABC5C5BB748AD39BA2C07742 /* [CP] Check Pods Manifest.lock */,
 				AD7F1245261CB00100EB09F7 /* Sources */,
@@ -779,9 +791,9 @@
 			dependencies = (
 				AD7F124B261CB00100EB09F7 /* PBXTargetDependency */,
 			);
-			name = ChiffUITests;
+			name = ZakshopUITests;
 			productName = ChiffUITests;
-			productReference = AD7F1249261CB00100EB09F7 /* ChiffUITests.xctest */;
+			productReference = AD7F1249261CB00100EB09F7 /* ZakshopUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -806,7 +818,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AD7F1220261CAFFF00EB09F7 /* Build configuration list for PBXProject "Chiff" */;
+			buildConfigurationList = AD7F1220261CAFFF00EB09F7 /* Build configuration list for PBXProject "Zakshop" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -819,9 +831,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AD7F1224261CAFFF00EB09F7 /* Chiff */,
-				AD7F123D261CB00100EB09F7 /* ChiffTests */,
-				AD7F1248261CB00100EB09F7 /* ChiffUITests */,
+				AD7F1224261CAFFF00EB09F7 /* Zakshop */,
+				AD7F123D261CB00100EB09F7 /* ZakshopTests */,
+				AD7F1248261CB00100EB09F7 /* ZakshopUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -869,7 +881,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Chiff-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Zakshop-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -882,15 +894,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Chiff/Pods-Chiff-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Zakshop/Pods-Zakshop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Chiff/Pods-Chiff-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Zakshop/Pods-Zakshop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Chiff/Pods-Chiff-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zakshop/Pods-Zakshop-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ABC5C5BB748AD39BA2C07742 /* [CP] Check Pods Manifest.lock */ = {
@@ -908,7 +920,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Chiff-ChiffUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Zakshop-ZakshopUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -921,15 +933,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Chiff-ChiffUITests/Pods-Chiff-ChiffUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Zakshop-ZakshopUITests/Pods-Zakshop-ZakshopUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Chiff-ChiffUITests/Pods-Chiff-ChiffUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Zakshop-ZakshopUITests/Pods-Zakshop-ZakshopUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Chiff-ChiffUITests/Pods-Chiff-ChiffUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zakshop-ZakshopUITests/Pods-Zakshop-ZakshopUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DFE6BBE536D78E056FB3C568 /* [CP] Check Pods Manifest.lock */ = {
@@ -947,7 +959,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ChiffTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ZakshopTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1090,12 +1102,12 @@
 /* Begin PBXTargetDependency section */
 		AD7F1240261CB00100EB09F7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AD7F1224261CAFFF00EB09F7 /* Chiff */;
+			target = AD7F1224261CAFFF00EB09F7 /* Zakshop */;
 			targetProxy = AD7F123F261CB00100EB09F7 /* PBXContainerItemProxy */;
 		};
 		AD7F124B261CB00100EB09F7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AD7F1224261CAFFF00EB09F7 /* Chiff */;
+			target = AD7F1224261CAFFF00EB09F7 /* Zakshop */;
 			targetProxy = AD7F124A261CB00100EB09F7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1230,7 +1242,7 @@
 		};
 		AD7F1253261CB00100EB09F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D52C5812F8D81F2D7C13947 /* Pods-Chiff.debug.xcconfig */;
+			baseConfigurationReference = F64D04F4C9895D15AA575D8F /* Pods-Zakshop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1238,7 +1250,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = J4B53B6TAD;
-				INFOPLIST_FILE = Chiff/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Zakshop/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1254,7 +1266,7 @@
 		};
 		AD7F1254261CB00100EB09F7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F9F85025EE487387C835A07A /* Pods-Chiff.release.xcconfig */;
+			baseConfigurationReference = F81D3997DE7F11B63C1D6D6A /* Pods-Zakshop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1262,7 +1274,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = J4B53B6TAD;
-				INFOPLIST_FILE = Chiff/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Zakshop/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1278,96 +1290,96 @@
 		};
 		AD7F1256261CB00100EB09F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77551F287AA7E402A66D7AB5 /* Pods-ChiffTests.debug.xcconfig */;
+			baseConfigurationReference = 1083DA55A2129D462F75542F /* Pods-ZakshopTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J4B53B6TAD;
-				INFOPLIST_FILE = ChiffTests/Info.plist;
+				INFOPLIST_FILE = ZakshopTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.zakirovweb.ChiffTests;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.zakirovweb.ZakshopTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chiff.app/Chiff";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Zakshop.app/Zakshop";
 			};
 			name = Debug;
 		};
 		AD7F1257261CB00100EB09F7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AABE47EDB0A3D1FF5A834195 /* Pods-ChiffTests.release.xcconfig */;
+			baseConfigurationReference = 00A2B2BA372CB87792E86674 /* Pods-ZakshopTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J4B53B6TAD;
-				INFOPLIST_FILE = ChiffTests/Info.plist;
+				INFOPLIST_FILE = ZakshopTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.zakirovweb.ChiffTests;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.zakirovweb.ZakshopTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chiff.app/Chiff";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Zakshop.app/Zakshop";
 			};
 			name = Release;
 		};
 		AD7F1259261CB00100EB09F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6FE05C09C7DE95C78069530 /* Pods-Chiff-ChiffUITests.debug.xcconfig */;
+			baseConfigurationReference = 0577A25F28436956DC0B71EF /* Pods-Zakshop-ZakshopUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J4B53B6TAD;
-				INFOPLIST_FILE = ChiffUITests/Info.plist;
+				INFOPLIST_FILE = ZakshopUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.zakirovweb.ChiffUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.zakirovweb.ZakshopUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Chiff;
+				TEST_TARGET_NAME = Zakshop;
 			};
 			name = Debug;
 		};
 		AD7F125A261CB00100EB09F7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DFEB1D79B390BCC75934114 /* Pods-Chiff-ChiffUITests.release.xcconfig */;
+			baseConfigurationReference = 6A051EBCADEE906E1B9DFE6E /* Pods-Zakshop-ZakshopUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J4B53B6TAD;
-				INFOPLIST_FILE = ChiffUITests/Info.plist;
+				INFOPLIST_FILE = ZakshopUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.zakirovweb.ChiffUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.zakirovweb.ZakshopUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Chiff;
+				TEST_TARGET_NAME = Zakshop;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AD7F1220261CAFFF00EB09F7 /* Build configuration list for PBXProject "Chiff" */ = {
+		AD7F1220261CAFFF00EB09F7 /* Build configuration list for PBXProject "Zakshop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD7F1250261CB00100EB09F7 /* Debug */,
@@ -1376,7 +1388,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD7F1252261CB00100EB09F7 /* Build configuration list for PBXNativeTarget "Chiff" */ = {
+		AD7F1252261CB00100EB09F7 /* Build configuration list for PBXNativeTarget "Zakshop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD7F1253261CB00100EB09F7 /* Debug */,
@@ -1385,7 +1397,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD7F1255261CB00100EB09F7 /* Build configuration list for PBXNativeTarget "ChiffTests" */ = {
+		AD7F1255261CB00100EB09F7 /* Build configuration list for PBXNativeTarget "ZakshopTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD7F1256261CB00100EB09F7 /* Debug */,
@@ -1394,7 +1406,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD7F1258261CB00100EB09F7 /* Build configuration list for PBXNativeTarget "ChiffUITests" */ = {
+		AD7F1258261CB00100EB09F7 /* Build configuration list for PBXNativeTarget "ZakshopUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD7F1259261CB00100EB09F7 /* Debug */,
