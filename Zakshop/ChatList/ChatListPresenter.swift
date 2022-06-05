@@ -9,7 +9,7 @@
 protocol ChatListPresenterProtocol: AnyObject {
     func getChatList()
     
-    func routeToMessage(fromId: Int, toId: Int)
+    func routeToMessage(messageId: Int, fromId: Int, toId: Int)
     
     func showChatListSuccess(chatList: [ChatList])
     
@@ -31,8 +31,8 @@ extension ChatListPresenter: ChatListPresenterProtocol {
         interactor?.getChatList(id: fromId)
     }
     
-    func routeToMessage(fromId: Int, toId: Int) {
-        router?.routeToMessage(fromId: fromId, toId: toId)
+    func routeToMessage(messageId: Int, fromId: Int, toId: Int) {
+        router?.routeToMessage(messageId: messageId, fromId: fromId, toId: toId)
     }
     
     func showChatListSuccess(chatList: [ChatList]) {

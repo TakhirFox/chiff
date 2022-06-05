@@ -21,6 +21,7 @@ class ChatMessagesPresenter: BasePresenter {
     weak var view: ChatMessagesViewControllerProtocol?
     var interactor: ChatMessagesInteractorProtocol?
     var router: ChatMessagesRouterProtocol?
+    var messageId: Int?
     var fromId: Int?
     var toId: Int?
     
@@ -28,10 +29,9 @@ class ChatMessagesPresenter: BasePresenter {
 
 extension ChatMessagesPresenter: ChatMessagesPresenterProtocol {
     func getMessages() {
-        guard let fromId = fromId,
-        let toId = toId else { return }
+        guard let messageId = messageId else { return }
         
-        interactor?.getMessages(id: fromId)
+        interactor?.getMessages(id: messageId)
     }
     
     func sendMessageTo(message: String) {

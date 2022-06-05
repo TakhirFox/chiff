@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 protocol ChatListViewControllerProtocol: AnyObject {
     var presenter: ChatListPresenterProtocol? { get set }
@@ -19,6 +20,7 @@ protocol ChatListViewControllerProtocol: AnyObject {
 class ChatListViewController: BaseViewController, ChatListViewControllerProtocol {
     
     var tableView: UITableView!
+    var refreshControl = UIRefreshControl()
     
     var chatList: [ChatList]?
     var presenter: ChatListPresenterProtocol?
@@ -29,6 +31,7 @@ class ChatListViewController: BaseViewController, ChatListViewControllerProtocol
     
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
+        refreshControl.addTarget(self, action: #selector(refreshChat), for: .valueChanged)
         
         setupTableView()
         setupSubviews()
@@ -51,6 +54,7 @@ class ChatListViewController: BaseViewController, ChatListViewControllerProtocol
     
     func setupSubviews() {
         view.addSubview(tableView)
+        tableView.addSubview(refreshControl)
     }
     
     func setupConstraints() {
@@ -78,19 +82,39 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let fromId = chatList?[indexPath.row].id else { return }
-        guard let toId = chatList?[indexPath.row].recipients else { return }
+        guard let toId = chatList?[indexPath.row].id else { return }
         
-        presenter?.routeToMessage(fromId: fromId,
+//        if let senderIDS = chatList?[indexPath.row].senderIDS {
+//            print("LOG: qqqqq \(senderIDS.keys) adn userId \(userId)")
+//            for id in senderIDS.keys {
+//                if id == userId {
+//                    fromId = Int(id) ?? 0
+//                } else {
+//                    toId = Int(id) ?? 0
+//                }
+//            }
+//        }
+        
+        guard let messageId = chatList?[indexPath.row].id else { return }
+        
+        presenter?.routeToMessage(messageId: messageId,
+                                  fromId: fromId,
                                   toId: toId)
     }
     
 }
 
 extension ChatListViewController {
+    @objc func refreshChat() {
+        presenter?.getChatList()
+    }
+    
     func setChatList(chatList: [ChatList]) {
         DispatchQueue.main.async {
             self.chatList = chatList
             self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+            
 //            self.collectionView.isHidden = false
 //            self.activityIndicator.stopAnimating()
         }

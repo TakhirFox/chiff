@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 protocol ChatMessagesViewControllerProtocol: AnyObject {
     var presenter: ChatMessagesPresenterProtocol? { get set }
@@ -212,7 +213,9 @@ extension ChatMessagesViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if messages?[0].messages?[indexPath.row].senderID == 1 {
+        let myUserId: String? = KeychainWrapper.standard.string(forKey: "user_id")
+
+        if messages?[0].messages?[indexPath.row].senderID == Int(myUserId!) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SentChatCell
             cell.messageLabel.text = messages?[0].messages?[indexPath.row].message?.raw
             cell.dateLabel.text = "23:99"
@@ -223,7 +226,6 @@ extension ChatMessagesViewController: UITableViewDataSource, UITableViewDelegate
             cell.dateLabel.text = "23:99"
             return cell
         }
-        
         
     }
     
