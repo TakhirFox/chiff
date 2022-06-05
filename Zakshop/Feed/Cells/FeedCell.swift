@@ -75,7 +75,8 @@ class FeedCell: UICollectionViewCell {
                          leading: leadingAnchor,
                          bottom: nil,
                          trailing: trailingAnchor,
-                         padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+                         padding: .init(top: 0, left: 0, bottom: 0, right: 0),
+                         size: .init(width: 0, height: 180))
         
         titleLabel.anchor(top: imageView.bottomAnchor,
                           leading: leadingAnchor,
@@ -101,6 +102,11 @@ class FeedCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        layoutAttributes.bounds.size.height = systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        return layoutAttributes
     }
     
 }

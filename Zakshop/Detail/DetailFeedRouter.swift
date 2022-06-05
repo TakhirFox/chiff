@@ -29,7 +29,7 @@ extension DetailFeedRouter: DetailFeedRouterProtocol {
     }
     
     func routeToMessage(id: Int) {
-        let view = ChatMessagesAssembly.create(fromId: id, toId: 0) // TODO: FAKE "TO ID"
+        let view = ChatMessagesAssembly.create(messageId: 0, fromId: 0, toId: 0) // TODO: FAKE "TO ID"
         viewController?.navigationController?.pushViewController(view, animated: true)
     }
     
