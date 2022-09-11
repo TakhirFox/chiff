@@ -37,6 +37,7 @@ class FeedViewController: BaseViewController, FeedViewControllerProtocol {
     var categories: [Categories] = []
     var media: [Media] = []
     
+    let refreshControl = UIRefreshControl()
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<SectionKind, AnyHashable>! = nil
     
@@ -88,6 +89,8 @@ class FeedViewController: BaseViewController, FeedViewControllerProtocol {
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: "cellId")
         collectionView.register(CategoryFeedCell.self, forCellWithReuseIdentifier: "categoryCell")
         collectionView.delegate = self
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
     }
     
 }
@@ -212,9 +215,15 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension FeedViewController {
+    
+    @objc private func refreshData(_ sender: Any) {
+        presenter?.getPosts()
+    }
+    
     func newsDataReload(news: [News]) {
         DispatchQueue.main.async {
             self.news = news
+            self.refreshControl.endRefreshing()
             self.reloadData()
             self.collectionView.reloadData()
         }
