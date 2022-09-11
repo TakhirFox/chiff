@@ -28,9 +28,11 @@
 		<true/>
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>Камера?</string>
+	<string>Пусти в галерею</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Пусти в камеру</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Фотки?</string>
+	<string>Пусти в галерею</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
