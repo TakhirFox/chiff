@@ -85,6 +85,7 @@ class DetailFeedViewController: BaseViewController, DetailFeedViewControllerProt
         collectionView.register(PaidAdsCell.self, forCellWithReuseIdentifier: "cell5")
         collectionView.register(HeaderCell.self, forCellWithReuseIdentifier: "cell8")
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: "cell7")
+        collectionView.register(UserMapCell.self, forCellWithReuseIdentifier: "cell9")
     }
     
 }
@@ -118,8 +119,9 @@ extension DetailFeedViewController: UICollectionViewDelegate, UICollectionViewDa
                 return cell
                 
             case .locationItem:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-                cell.backgroundColor = .yellow
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell9", for: indexPath) as! UserMapCell
+                cell.titleLabel.text = "Томская область, Томск, ул. Ленина 52"
+                cell.imageView.image = UIImage(named: "mock_map")
                 return cell
                 
             case .descriptionItem:
