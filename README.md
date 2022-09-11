@@ -32,8 +32,9 @@
 ## Галерея:
 
 #### Главный экран
-<img src="http://swiftdevs.ru/feed.PNG" width="200" height="400" />
+<!-- <img src="http://swiftdevs.ru/feed.PNG" width="200" height="400" /> -->
 <!-- ![](http://swiftdevs.ru/feed.PNG) -->
+![feed](https://user-images.githubusercontent.com/60847855/189539469-16179b1b-cdbd-467b-b11c-11d69b3bee15.PNG)
 
 #### Детальная информация товара
 ![](http://swiftdevs.ru/detail.PNG)
