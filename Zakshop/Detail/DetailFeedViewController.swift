@@ -120,7 +120,7 @@ extension DetailFeedViewController: UICollectionViewDelegate, UICollectionViewDa
                 
             case .locationItem:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell9", for: indexPath) as! UserMapCell
-                cell.titleLabel.text = "Томская область, Томск, ул. Ленина 52"
+                cell.titleLabel.text = "Томская область, Томск, ул. Ленина 52 (Тестовые данные)"
                 cell.imageView.image = UIImage(named: "mock_map")
                 return cell
                 
