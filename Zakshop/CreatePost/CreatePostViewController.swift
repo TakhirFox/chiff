@@ -111,7 +111,7 @@ class CreatePostViewController: BaseViewController, CreatePostViewControllerProt
     
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
-                
+        
         setupCollectionView()
         setupImagePicker()
         setupSubviews()
@@ -181,9 +181,13 @@ class CreatePostViewController: BaseViewController, CreatePostViewControllerProt
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.keyboardDismissMode = .onDrag
+        collectionView.contentInset.bottom = 100
         collectionView.register(DescriptionPostCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.register(TextfieldCell.self, forCellWithReuseIdentifier: "cell1")
         collectionView.register(CreatePostImageButtonCell.self, forCellWithReuseIdentifier: "cell2")
+        collectionView.register(LoadImageCell.self, forCellWithReuseIdentifier: "cell3")
+        collectionView.register(TextfieldCell.self, forCellWithReuseIdentifier: "cell4")
+        collectionView.register(TextfieldCell.self, forCellWithReuseIdentifier: "cell5")
     }
     
     func setupImagePicker() {
@@ -213,18 +217,19 @@ extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDa
             
             
         case .categoryItem:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell5", for: indexPath) as! TextfieldCell
             cell.titleLabel.text = "Категории"
-//            if let categoryName = categories[post.category ?? 0].name {
-//                cell.textField.text = categoryName
-//            }
-//            cell.textField.text = categoryName // TODO: сделать вывод категории в поле
+            
+            if post.category != nil, let categoryName = categories[post.category ?? 0].name {
+                cell.textField.text = categoryName
+            }
+            
             cell.textField.inputView = pickerView
             cell.textField.delegate = self
             return cell
             
         case .costItem:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! TextfieldCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell4", for: indexPath) as! TextfieldCell
             cell.titleLabel.text = "Цена"
             cell.textField.addTarget(self, action: #selector(costDidChange(_:)), for: .editingChanged)
             cell.textField.keyboardType = .numberPad
@@ -238,15 +243,22 @@ extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDa
             return cell
             
         case .imageItem:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! CreatePostImageButtonCell
-            
-            cell.titleLabel.text = "Фото"
-            cell.button.addTarget(self, action: #selector(loadImage), for: .touchUpInside)
-            cell.images = images
-            post.images = images
-            cell.reloadCell()
-            
-            return cell
+            if images.count > 0 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! CreatePostImageButtonCell
+                
+                cell.titleLabel.text = "Фото"
+                cell.button.addTarget(self, action: #selector(loadImage), for: .touchUpInside)
+                cell.images = images
+                post.images = images
+                cell.reloadCell()
+                
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! LoadImageCell
+                cell.titleLabel.text = "Фото"
+                cell.plusLabel.text = "Добавить"
+                return cell
+            }
             
         case .none:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
@@ -276,6 +288,14 @@ extension CreatePostViewController: UICollectionViewDelegate, UICollectionViewDa
         }
         
         return .init(width: view.frame.width - 32, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 4 {
+            if images.count == 0 {
+                loadImage()
+            }
+        }
     }
    
 }
@@ -313,7 +333,7 @@ extension CreatePostViewController: UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        post.category = categories[row].id
+        post.category = row
         collectionView.reloadItems(at: [IndexPath(item: 1, section: 0)])
     }
     
@@ -336,7 +356,8 @@ extension CreatePostViewController {
     }
     
     @objc func createNewPostAction(_ sender: UITapGestureRecognizer) {
-
+        let createChoiceController = CreatePostViewController()
+        navigationController?.setViewControllers([createChoiceController], animated: false)
     }
     
     @objc func showPostAction(_ sender: UITapGestureRecognizer) {
@@ -352,12 +373,6 @@ extension CreatePostViewController {
     @objc func costDidChange(_ textField: UITextField) {
         if textField.text != nil {
             post.cost = textField.text
-        }
-    }
-    
-    @objc func descriprionDidChange(_ textField: UITextField) {
-        if textField.text != nil {
-            post.description = textField.text
         }
     }
     
@@ -384,7 +399,7 @@ extension CreatePostViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let scrollViewContentHeight = scrollView.contentSize.height
         let scrollViewHeight = scrollView.frame.height
-        let heightTabBar = tabBarController!.tabBar.frame.size.height
+        let heightTabBar = tabBarController?.tabBar.frame.size.height
         
         if scrollView.contentOffset.y < (scrollViewContentHeight - scrollViewHeight){
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
