@@ -32,25 +32,23 @@
 ## Галерея:
 
 #### Главный экран
-<!-- <img src="http://swiftdevs.ru/feed.PNG" width="200" height="400" /> -->
-<!-- ![](http://swiftdevs.ru/feed.PNG) -->
-![feed](https://user-images.githubusercontent.com/60847855/189539469-16179b1b-cdbd-467b-b11c-11d69b3bee15.PNG)
+<img src="https://user-images.githubusercontent.com/60847855/189539469-16179b1b-cdbd-467b-b11c-11d69b3bee15.PNG" width="250" />
 
 #### Детальная информация товара
-![](http://swiftdevs.ru/detail.PNG)
-![](http://swiftdevs.ru/detail2.PNG)
+<img src="https://user-images.githubusercontent.com/60847855/189539545-07f846e4-4dd7-40a9-8b42-d3b836f076ea.PNG" width="250" />
+<img src="https://user-images.githubusercontent.com/60847855/189539546-3a5ce0bb-9b75-479f-a278-84f608bf4d75.PNG" width="250" />
 
 #### Создание поста
-![](http://swiftdevs.ru/addpost.PNG)
+<img src="https://user-images.githubusercontent.com/60847855/189539536-cbcd4c6c-343c-4bfc-a68a-0d6c90c203d7.PNG" width="250" />
 
 #### Успешное создание поста
-![](http://swiftdevs.ru/post2.PNG)
+<img src="https://user-images.githubusercontent.com/60847855/189539530-4c6d42be-ae0a-453e-a982-b853d64fadf7.PNG" width="250" />
 
 #### Список чатов с продавцами/покупателями
-![](http://swiftdevs.ru/messanger.PNG)
+<img src="https://user-images.githubusercontent.com/60847855/189539557-4fc2bd99-2fe3-49b6-92ad-3ad427c64abe.PNG" width="250" />
 
 #### Переписка с с продавцом/покупателем
-![](http://swiftdevs.ru/chat2.PNG)
+<img src="https://user-images.githubusercontent.com/60847855/189539563-1e099e6f-0d66-4779-b450-bfda5309bed8.PNG" width="250" />
 
 #### Профиль пользователя
-![](http://swiftdevs.ru/profile.PNG)
+<img src="https://user-images.githubusercontent.com/60847855/189539569-fb79649c-2804-4b94-8a88-2f30888f33f4.PNG" width="250" />
