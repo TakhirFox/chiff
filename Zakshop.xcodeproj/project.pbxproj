@@ -112,6 +112,8 @@
 		ADE1A05D27C63C4700C4B74B /* TabBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE1A05C27C63C4700C4B74B /* TabBarInteractor.swift */; };
 		ADE1A05F27C63C5D00C4B74B /* TabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE1A05E27C63C5D00C4B74B /* TabBarRouter.swift */; };
 		ADE1A06127C63C6900C4B74B /* TabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE1A06027C63C6900C4B74B /* TabBarAssembly.swift */; };
+		ADE1FB4828CDFEA50010A9E5 /* LoadImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE1FB4728CDFEA50010A9E5 /* LoadImageCell.swift */; };
+		ADE1FB4A28CE34550010A9E5 /* UserMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE1FB4928CE34550010A9E5 /* UserMapCell.swift */; };
 		ADFB2C1B27E4CA8D00E0E1E5 /* NewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFB2C1A27E4CA8D00E0E1E5 /* NewUser.swift */; };
 		ADFB2C1D27E603E600E0E1E5 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFB2C1C27E603E600E0E1E5 /* ChatListCell.swift */; };
 		ADFB2C1F27E6082500E0E1E5 /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFB2C1E27E6082500E0E1E5 /* ChatList.swift */; };
@@ -258,6 +260,8 @@
 		ADE1A05C27C63C4700C4B74B /* TabBarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarInteractor.swift; sourceTree = "<group>"; };
 		ADE1A05E27C63C5D00C4B74B /* TabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRouter.swift; sourceTree = "<group>"; };
 		ADE1A06027C63C6900C4B74B /* TabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAssembly.swift; sourceTree = "<group>"; };
+		ADE1FB4728CDFEA50010A9E5 /* LoadImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImageCell.swift; sourceTree = "<group>"; };
+		ADE1FB4928CE34550010A9E5 /* UserMapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapCell.swift; sourceTree = "<group>"; };
 		ADFB2C1A27E4CA8D00E0E1E5 /* NewUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUser.swift; sourceTree = "<group>"; };
 		ADFB2C1C27E603E600E0E1E5 /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		ADFB2C1E27E6082500E0E1E5 /* ChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
@@ -619,6 +623,7 @@
 				AD6C9976272557C400A9FA34 /* TextfieldCell.swift */,
 				84E9C24F271EB76A004AB184 /* DescriptionPostCell.swift */,
 				AD8EFE64271F3B3A0056F8A8 /* CreatePostImageButtonCell.swift */,
+				ADE1FB4728CDFEA50010A9E5 /* LoadImageCell.swift */,
 			);
 			name = Cells;
 			path = ..;
@@ -654,6 +659,7 @@
 				AD7D6274272432510014E82E /* ImageCell.swift */,
 				AD8EFE712723D37D0056F8A8 /* InfoAuthorCell.swift */,
 				AD8EFE6D2723C8510056F8A8 /* DetailNameCell.swift */,
+				ADE1FB4928CE34550010A9E5 /* UserMapCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -978,6 +984,7 @@
 				842B2D4527B26435002E6AE8 /* BasePresenter.swift in Sources */,
 				AD938959278034EB00B0D925 /* Categoryes.swift in Sources */,
 				AD8EFE722723D37D0056F8A8 /* InfoAuthorCell.swift in Sources */,
+				ADE1FB4828CDFEA50010A9E5 /* LoadImageCell.swift in Sources */,
 				ADE1A05927C639F900C4B74B /* TabBarViewController.swift in Sources */,
 				8476F82327157A5F003F15BC /* User.swift in Sources */,
 				ADA98D4727CA8151009C89ED /* DetailFeedPresenter.swift in Sources */,
@@ -996,6 +1003,7 @@
 				AD8C130C2784C0EE00AD1D20 /* Post.swift in Sources */,
 				ADA98D5527CC9685009C89ED /* ProfileInteractor.swift in Sources */,
 				AD4CA60E27C7CBA500291AC7 /* ForgetPassPresenter.swift in Sources */,
+				ADE1FB4A28CE34550010A9E5 /* UserMapCell.swift in Sources */,
 				842B2D5827B26DF2002E6AE8 /* AuthAssembly.swift in Sources */,
 				AD4CA61027C7CBB900291AC7 /* ForgetPassInteractor.swift in Sources */,
 				ADA25DC827D3C52100DFD875 /* EditProfileRouter.swift in Sources */,
